@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ניהול האתר · מטוסי נייר</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .admin-hero{background:linear-gradient(155deg,#157A8B,#0A3F49);color:#fff;padding-block:34px;}
+  .admin-hero .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .admin-hero h1{font-size:30px;}
+  .admin-hero p{color:#cfe7ec;font-size:15px;margin-top:4px;}
+  section{padding-block:40px;}
+
+  /* login */
+  .login-card{max-width:420px;margin:60px auto;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:36px;box-shadow:var(--shadow-md);text-align:center;}
+  .login-card .lock{width:64px;height:64px;border-radius:18px;background:var(--sky);color:var(--teal);display:grid;place-items:center;margin:0 auto 16px;}
+  .login-card .lock svg{width:32px;height:32px;}
+  .login-card h2{font-size:24px;color:var(--teal-900);}
+  .login-card p{color:var(--muted);margin:6px 0 22px;font-size:15px;}
+  .err{color:#c0392b;font-size:14px;margin-top:10px;display:none;}
+
+  /* tabs */
+  .a-tabs{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:var(--r-pill);padding:5px;gap:4px;margin-bottom:28px;box-shadow:var(--shadow-sm);}
+  .a-tabs button{padding:10px 22px;border-radius:var(--r-pill);font-weight:600;font-size:15px;color:var(--teal-900);transition:.16s;}
+  .a-tabs button.active{background:var(--teal);color:#fff;}
+  .a-pane{display:none;} .a-pane.active{display:block;}
+
+  .admin-grid{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:40px;align-items:start;}
+  @media(max-width:920px){.admin-grid{grid-template-columns:1fr;}}
+  .form-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow-sm);position:sticky;top:20px;}
+  .form-card h3{font-size:21px;color:var(--teal-900);margin-bottom:6px;}
+  .form-card .hint{color:var(--muted);font-size:14px;margin-bottom:20px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .file-drop{border:1.5px dashed var(--line);border-radius:12px;padding:14px;text-align:center;color:var(--muted);font-size:14px;cursor:pointer;transition:.16s;}
+  .file-drop:hover{border-color:var(--teal);color:var(--teal);}
+  .file-drop img{max-height:90px;border-radius:8px;margin:8px auto 0;}
+
+  .list-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+  .list-head h3{font-size:20px;color:var(--teal-900);}
+  .item{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px;}
+  .item__thumb{width:54px;height:54px;border-radius:10px;object-fit:cover;background:var(--sky);flex-shrink:0;display:grid;place-items:center;font-size:24px;}
+  .item__main{flex:1;min-width:0;}
+  .item__main b{display:block;color:var(--teal-900);font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .item__main span{font-size:13px;color:var(--muted);}
+  .item__del{background:#fff0ee;color:#c0392b;border:1px solid #f5c6c0;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex-shrink:0;}
+  .item__del:hover{background:#c0392b;color:#fff;} .item__del svg{width:18px;height:18px;}
+  .saved{background:var(--mint-300);color:var(--teal-900);padding:12px 16px;border-radius:12px;font-weight:600;display:none;align-items:center;gap:9px;margin-bottom:16px;}
+  .saved svg{width:20px;height:20px;}
+  .reset-link{color:var(--muted);font-size:13px;text-decoration:underline;cursor:pointer;background:none;}
+</style>
+</head>
+<body data-page="admin">
+<div id="site-header"></div>
+
+<div class="admin-hero"><div class="wrap">
+  <div><h1>ניהול האתר</h1><p>הוספה ומחיקה של פרקים, הטבות ומדריכים. לפרסום לאתר החי — ייצאו JSON ושלחו לקלוד.</p></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <button class="btn btn--ghost" id="exportBtn" style="display:none">⬇ ייצוא JSON לפרסום</button>
+    <button class="btn btn--ghost" id="importTrigger" style="display:none">⬆ יבוא JSON</button>
+    <input type="file" id="importFile" accept=".json" style="display:none">
+    <button class="btn btn--ghost" id="logoutBtn" style="display:none">התנתקות</button>
+  </div>
+</div></div>
+
+<!-- LOGIN -->
+<div id="loginView">
+  <div class="login-card">
+    <div class="lock" id="lockIc"></div>
+    <h2>כניסת מנהל</h2>
+    <p>הזינו את סיסמת הניהול כדי להמשיך.</p>
+    <div class="field"><input type="password" id="pwInput" placeholder="סיסמה" autocomplete="current-password"></div>
+    <button class="btn btn--primary" id="loginBtn" style="width:100%;justify-content:center">כניסה</button>
+    <div class="err" id="loginErr">סיסמה שגויה, נסו שוב.</div>
+    <p style="margin-top:18px;font-size:12.5px;color:var(--muted)">הסיסמה נמצאת במסמך "מדריך עבודה" שקיבלתם.</p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<section id="dashView" style="display:none">
+  <div class="wrap">
+    <div class="a-tabs">
+      <button data-tab="ep" class="active">פרקים</button>
+      <button data-tab="disc">הטבות</button>
+      <button data-tab="guide">מדריכים</button>
+    </div>
+
+    <!-- EPISODES -->
+    <div class="a-pane active" id="pane-ep">
+      <div class="admin-grid">
+        <div class="form-card">
+          <h3>הוספת פרק חדש</h3>
+          <p class="hint">מלאו את הפרטים והפרק יופיע מיד באתר ובמדינה המתאימה.</p>
+          <div class="saved" id="savedEp"></div>
+          <form id="formEp">
+            <div class="field"><label>מדינה</label><select name="country" id="epCountry" required></select></div>
+            <div class="field"><label>כותרת (עברית)</label><input name="title" required placeholder="טוקיו: העיר שלא נרדמת"></div>
+            <div class="field"><label>כותרת באנגלית (ל-SEO)</label><input name="title_en" placeholder="Tokyo: The City That Never Sleeps"></div>
+            <div class="row2">
+              <div class="field"><label>תאריך</label><input name="date" type="date" required></div>
+              <div class="field"><label>אורך</label><input name="duration" placeholder="48 דק׳"></div>
+            </div>
+            <div class="field"><label>קישור Spotify (embed או רגיל)</label><input name="spotify" placeholder="https://open.spotify.com/episode/..."><small>נדביק את הקישור הרגיל מספוטיפיי — נהפוך אותו לנגן אוטומטית.</small></div>
+            <div class="field"><label>תיאור</label><textarea name="description" required placeholder="על מה הפרק?"></textarea></div>
+            <div class="field"><label>תמלול בעברית</label><textarea name="transcript_he" placeholder="התמלול המלא בעברית (משפר נגישות)"></textarea></div>
+            <div class="field"><label>תמלול באנגלית (ל-SEO)</label><textarea name="transcript_en" placeholder="Full English transcript — boosts Google visibility"></textarea></div>
+            <div class="field"><label>תמונת נושא לפרק</label>
+              <label class="file-drop" id="dropEp"><span>לחצו להעלאת תמונה (אופציונלי)</span><input type="file" accept="image/*" hidden></label></div>
+            <button class="btn btn--primary" type="submit" style="width:100%;justify-content:center;margin-top:6px">פרסום הפרק</button>
+          </form>
+        </div>
+        <div>
+          <div class="list-head"><h3>פרקים קיימים</h3><span class="chip" id="epCount"></span></div>
+          <div id="listEp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISCOUNTS -->
+    <div class="a-pane" id="pane-disc">
+      <div class="admin-grid">
+        <div class="form-card">
+          <h3>הוספת הטבה</h3>
+          <p class="hint">קודי הנחה ושיתופי פעולה למאזינים.</p>
+          <div class="saved" id="savedDisc"></div>
+          <form id="formDisc">
+            <div class="field"><label>שם ההטבה</label><input name="title" required placeholder="eSIM גלובלי לכל העולם"></div>
+            <div class="row2">
+              <div class="field"><label>כותרת מודגשת (ההנחה)</label><input name="headline" placeholder="15% הנחה"></div>
+              <div class="field"><label>ספק / מותג</label><input name="vendor" required placeholder="Airalo"></div>
+            </div>
+            <div class="field"><label>תיאור</label><textarea name="desc" required placeholder="מה מקבלים ואיך מממשים"></textarea></div>
+            <div class="row2">
+              <div class="field"><label>קוד קופון</label><input name="code" placeholder="PAPERPLANES"></div>
+              <div class="field"><label>קישור</label><input name="url" placeholder="https://..."></div>
+            </div>
+            <div class="field"><label>לוגו / תמונה</label>
+              <label class="file-drop" id="dropDisc"><span>לחצו להעלאת תמונה (אופציונלי)</span><input type="file" accept="image/*" hidden></label></div>
+            <button class="btn btn--primary" type="submit" style="width:100%;justify-content:center;margin-top:6px">פרסום ההטבה</button>
+          </form>
+        </div>
+        <div>
+          <div class="list-head"><h3>הטבות קיימות</h3><span class="chip" id="discCount"></span></div>
+          <div id="listDisc"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIDES -->
+    <div class="a-pane" id="pane-guide">
+      <div class="admin-grid">
+        <div class="form-card">
+          <h3>הוספת מדריך</h3>
+          <p class="hint">מדריכים דיגיטליים למכירה.</p>
+          <div class="saved" id="savedGuide"></div>
+          <form id="formGuide">
+            <div class="field"><label>שם המדריך</label><input name="title" required placeholder="מדריך יפן המלא — 3 שבועות"></div>
+            <div class="field"><label>מדינה</label><select name="country" id="guideCountry" required></select></div>
+            <div class="row2">
+              <div class="field"><label>מחיר</label><input name="price" placeholder="₪89"></div>
+              <div class="field"><label>קישור לרכישה</label><input name="url" placeholder="https://..."></div>
+            </div>
+            <div class="field"><label>תיאור</label><textarea name="desc" required placeholder="מה כולל המדריך?"></textarea></div>
+            <div class="field"><label>תמונת כריכה</label>
+              <label class="file-drop" id="dropGuide"><span>לחצו להעלאת תמונה (אופציונלי)</span><input type="file" accept="image/*" hidden></label></div>
+            <button class="btn btn--primary" type="submit" style="width:100%;justify-content:center;margin-top:6px">פרסום המדריך</button>
+          </form>
+        </div>
+        <div>
+          <div class="list-head"><h3>מדריכים קיימים</h3><span class="chip" id="guideCount"></span></div>
+          <div id="listGuide"></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:30px">
+      <button class="reset-link" id="resetBtn">איפוס לכל תוכן הדוגמה המקורי</button>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/chrome.js"></script>
+<script>
+(function(){
+  var I = PPIcons, PP = window.PP;
+  document.getElementById("lockIc").innerHTML = I.user;
+
+  /* ---------- auth ---------- */
+  function showDash(on){
+    document.getElementById("loginView").style.display = on?"none":"block";
+    document.getElementById("dashView").style.display = on?"block":"none";
+    document.getElementById("logoutBtn").style.display = on?"inline-flex":"none";
+    document.getElementById("exportBtn").style.display = on?"inline-flex":"none";
+    document.getElementById("importTrigger").style.display = on?"inline-flex":"none";
+    if(on) renderAll();
+  }
+
+  /* export */
+  document.getElementById("exportBtn").addEventListener("click", function(){
+    var json = PP.exportJSON();
+    var blob = new Blob([json], {type:"application/json"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "paperplanes-data-"+new Date().toISOString().slice(0,10)+".json";
+    a.click();
+  });
+
+  /* import */
+  document.getElementById("importTrigger").addEventListener("click", function(){
+    document.getElementById("importFile").click();
+  });
+  document.getElementById("importFile").addEventListener("change", function(){
+    var f = this.files[0]; if(!f) return;
+    var rd = new FileReader();
+    rd.onload = function(e){
+      try {
+        PP.importJSON(e.target.result);
+        alert("יובא בהצלחה! מרענן...");
+        location.reload();
+      } catch(err){ alert("שגיאה בקובץ: "+err.message); }
+    };
+    rd.readAsText(f);
+  });
+  function tryLogin(){
+    var v = document.getElementById("pwInput").value;
+    if(PP.checkPassword(v)){ PP.login(); showDash(true); }
+    else { document.getElementById("loginErr").style.display="block"; }
+  }
+  document.getElementById("loginBtn").addEventListener("click",tryLogin);
+  document.getElementById("pwInput").addEventListener("keydown",function(e){if(e.key==="Enter")tryLogin();});
+  document.getElementById("logoutBtn").addEventListener("click",function(){PP.logout();showDash(false);});
+
+  /* ---------- tabs ---------- */
+  document.querySelector(".a-tabs").addEventListener("click",function(e){
+    var b=e.target.closest("button"); if(!b)return;
+    [].forEach.call(this.children,function(x){x.classList.remove("active");});
+    b.classList.add("active");
+    var t=b.getAttribute("data-tab");
+    ["ep","disc","guide"].forEach(function(k){
+      document.getElementById("pane-"+k).classList.toggle("active",k===t);
+    });
+  });
+
+  /* ---------- country selects ---------- */
+  function fillCountries(sel){
+    sel.innerHTML = PP.countries.map(function(c){return '<option value="'+c.code+'">'+c.flag+' '+c.he+'</option>';}).join("");
+  }
+  fillCountries(document.getElementById("epCountry"));
+  fillCountries(document.getElementById("guideCountry"));
+
+  /* ---------- image upload (resize -> dataURL) ---------- */
+  function wireDrop(dropId, store){
+    var drop = document.getElementById(dropId);
+    var input = drop.querySelector("input");
+    drop.addEventListener("click",function(){input.click();});
+    input.addEventListener("change",function(){
+      var f = input.files[0]; if(!f) return;
+      var rd = new FileReader();
+      rd.onload = function(){
+        var img = new Image();
+        img.onload = function(){
+          var max=900, w=img.width, h=img.height;
+          if(w>max){h=h*max/w;w=max;}
+          var cv=document.createElement("canvas");cv.width=w;cv.height=h;
+          cv.getContext("2d").drawImage(img,0,0,w,h);
+          store.value = cv.toDataURL("image/jpeg",0.82);
+          drop.innerHTML = '<span>תמונה נטענה ✓</span><img src="'+store.value+'">';
+        };
+        img.src = rd.result;
+      };
+      rd.readAsDataURL(f);
+    });
+  }
+  var epImg={value:""}, discImg={value:""}, guideImg={value:""};
+  wireDrop("dropEp",epImg); wireDrop("dropDisc",discImg); wireDrop("dropGuide",guideImg);
+
+  function flash(id){var el=document.getElementById(id);el.style.display="flex";el.innerHTML=I.check+" נשמר בהצלחה!";setTimeout(function(){el.style.display="none";},2600);}
+
+  /* ---------- submit handlers ---------- */
+  document.getElementById("formEp").addEventListener("submit",function(e){
+    e.preventDefault(); var f=this;
+    PP.addEpisode({
+      id:PP.uid("ep"), country:f.country.value,
+      title:f.title.value, title_en:f.title_en.value,
+      date:f.date.value, duration:f.duration.value, spotify:f.spotify.value,
+      cover:epImg.value, description:f.description.value,
+      transcript_he:f.transcript_he.value, transcript_en:f.transcript_en.value
+    });
+    f.reset(); epImg.value=""; document.getElementById("dropEp").innerHTML='<span>לחצו להעלאת תמונה (אופציונלי)</span><input type="file" accept="image/*" hidden>';
+    wireDrop("dropEp",epImg); flash("savedEp"); renderEp();
+  });
+  document.getElementById("formDisc").addEventListener("submit",function(e){
+    e.preventDefault(); var f=this;
+    PP.addDiscount({id:PP.uid("disc"),title:f.title.value,headline:f.headline.value,vendor:f.vendor.value,desc:f.desc.value,code:f.code.value,url:f.url.value,image:discImg.value});
+    f.reset(); discImg.value=""; document.getElementById("dropDisc").innerHTML='<span>לחצו להעלאת תמונה (אופציונלי)</span><input type="file" accept="image/*" hidden>';
+    wireDrop("dropDisc",discImg); flash("savedDisc"); renderDisc();
+  });
+  document.getElementById("formGuide").addEventListener("submit",function(e){
+    e.preventDefault(); var f=this;
+    PP.addGuide({id:PP.uid("guide"),title:f.title.value,country:f.country.value,price:f.price.value,url:f.url.value,desc:f.desc.value,image:guideImg.value});
+    f.reset(); guideImg.value=""; document.getElementById("dropGuide").innerHTML='<span>לחצו להעלאת תמונה (אופציונלי)</span><input type="file" accept="image/*" hidden>';
+    wireDrop("dropGuide",guideImg); flash("savedGuide"); renderGuide();
+  });
+
+  /* ---------- lists ---------- */
+  function renderEp(){
+    var eps=PP.episodes();
+    document.getElementById("epCount").textContent=eps.length+" פרקים";
+    document.getElementById("listEp").innerHTML = eps.map(function(e){
+      var c=PP.countryByCode(e.country)||{flag:"",he:""};
+      var thumb=e.cover?'<img class="item__thumb" src="'+e.cover+'">':'<div class="item__thumb">'+c.flag+'</div>';
+      return '<div class="item">'+thumb+'<div class="item__main"><b>'+e.title+'</b><span>'+c.flag+' '+c.he+' · '+(e.date||"")+'</span></div>'+
+        '<button class="item__del" data-id="'+e.id+'">'+I.trash+'</button></div>';
+    }).join("") || '<p class="hint">אין פרקים עדיין.</p>';
+    document.querySelectorAll("#listEp .item__del").forEach(function(b){
+      b.onclick=function(){if(confirm("למחוק את הפרק?")){PP.deleteEpisode(b.getAttribute("data-id"));renderEp();}};
+    });
+  }
+  function renderDisc(){
+    var items=PP.discounts();
+    document.getElementById("discCount").textContent=items.length+" הטבות";
+    document.getElementById("listDisc").innerHTML = items.map(function(d){
+      var thumb=d.image?'<img class="item__thumb" src="'+d.image+'">':'<div class="item__thumb">🏷️</div>';
+      return '<div class="item">'+thumb+'<div class="item__main"><b>'+d.title+'</b><span>'+(d.vendor||"")+(d.code?' · '+d.code:'')+'</span></div>'+
+        '<button class="item__del" data-id="'+d.id+'">'+I.trash+'</button></div>';
+    }).join("") || '<p class="hint">אין הטבות עדיין.</p>';
+    document.querySelectorAll("#listDisc .item__del").forEach(function(b){
+      b.onclick=function(){if(confirm("למחוק את ההטבה?")){PP.deleteDiscount(b.getAttribute("data-id"));renderDisc();}};
+    });
+  }
+  function renderGuide(){
+    var items=PP.guides();
+    document.getElementById("guideCount").textContent=items.length+" מדריכים";
+    document.getElementById("listGuide").innerHTML = items.map(function(g){
+      var c=PP.countryByCode(g.country)||{flag:"📘"};
+      var thumb=g.image?'<img class="item__thumb" src="'+g.image+'">':'<div class="item__thumb">'+(c.flag||"📘")+'</div>';
+      return '<div class="item">'+thumb+'<div class="item__main"><b>'+g.title+'</b><span>'+(c.he||"")+(g.price?' · '+g.price:'')+'</span></div>'+
+        '<button class="item__del" data-id="'+g.id+'">'+I.trash+'</button></div>';
+    }).join("") || '<p class="hint">אין מדריכים עדיין.</p>';
+    document.querySelectorAll("#listGuide .item__del").forEach(function(b){
+      b.onclick=function(){if(confirm("למחוק את המדריך?")){PP.deleteGuide(b.getAttribute("data-id"));renderGuide();}};
+    });
+  }
+  function renderAll(){renderEp();renderDisc();renderGuide();}
+
+  document.getElementById("resetBtn").addEventListener("click",function(){
+    if(confirm("לאפס את כל התוכן לתוכן הדוגמה המקורי? פעולה זו תמחק את כל מה שהוספת.")){
+      PP.resetAll(); renderAll();
+    }
+  });
+
+  showDash(PP.isAdmin());
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הטבות למטיילים · מטוסי נייר</title>
+<meta name="description" content="הטבות וקודי הנחה בלעדיים למאזיני מטוסי נייר — eSIM, ביטוח נסיעות, סיורים ועוד.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script src="image-slot.js"></script>
+<style>
+  .p-hero{background:linear-gradient(150deg,#157A8B,#0A3F49);color:#fff;padding-block:clamp(40px,6vw,68px);position:relative;overflow:hidden;}
+  .p-hero .wrap{position:relative;z-index:2;}
+  .p-hero .eyebrow{color:var(--mint-300);}
+  .p-hero h1{font-size:clamp(34px,5vw,58px);margin-top:8px;}
+  .p-hero p{font-size:18px;color:#d6eef2;margin-top:12px;max-width:54ch;}
+  .p-plane{position:absolute;width:130px;color:rgba(167,230,216,.28);top:16%;left:6%;transform:rotate(-12deg);z-index:2;}
+  section{padding-block:clamp(40px,5vw,68px);}
+
+  .disc{display:flex;flex-direction:column;overflow:hidden;}
+  .disc__logo{height:128px;background:#f8fbfc;border-bottom:1px solid var(--line);display:grid;place-items:center;padding:20px;position:relative;overflow:hidden;}
+  .disc__logo image-slot{position:absolute;inset:0;width:100%!important;height:100%!important;opacity:.45;}
+  .disc__logo img{max-height:100%;max-width:78%;object-fit:contain;}
+  .disc__logo .vendor-mark{font-family:var(--head);font-size:30px;color:var(--teal);letter-spacing:.01em;text-align:center;}
+  .disc__ribbon{position:absolute;inset-block-start:14px;inset-inline-start:14px;background:var(--sun);color:#5a3c00;font-weight:700;
+    font-size:14px;padding:6px 14px;border-radius:var(--r-pill);box-shadow:var(--shadow-sm);}
+  .disc__body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1;}
+  .disc__vendor{font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mint);}
+  .disc__headline{font-family:var(--head);font-size:30px;color:var(--teal-900);line-height:1;}
+  .disc__title{font-size:18px;color:var(--teal-900);font-weight:600;}
+  .disc__desc{color:var(--muted);font-size:15px;flex:1;}
+  .disc__code{display:flex;align-items:center;gap:8px;background:var(--sky-50);border:1.5px dashed var(--teal);border-radius:12px;padding:8px 8px 8px 14px;}
+  .disc__code-label{font-size:12px;color:var(--muted);font-weight:600;}
+  .disc__code code{font-family:var(--head);font-size:17px;color:var(--teal-900);letter-spacing:.06em;flex:1;}
+  .copy-btn{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:#fff;font-weight:600;font-size:13.5px;
+    padding:8px 13px;border-radius:9px;transition:.16s;white-space:nowrap;}
+  .copy-btn:hover{background:var(--teal-700);}
+  .copy-btn.copied{background:var(--mint);color:var(--teal-900);}
+  .copy-btn svg{width:15px;height:15px;}
+  .disc__foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;}
+  .admin-del{display:inline-flex;align-items:center;gap:6px;background:#fff0ee;color:#c0392b;border:1px solid #f5c6c0;padding:7px 12px;border-radius:10px;font-weight:600;font-size:13.5px;}
+  .admin-del:hover{background:#c0392b;color:#fff;} .admin-del svg{width:16px;height:16px;}
+  .admin-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--teal-900);color:#cfe7ec;padding:13px 18px;border-radius:14px;margin-bottom:26px;font-size:14.5px;}
+  .admin-bar a{color:var(--sun);font-weight:600;}
+</style>
+</head>
+<body data-page="discounts">
+<div id="site-header"></div>
+
+<section class="p-hero">
+  <span class="p-plane" id="pPlane"></span>
+  <div class="clouds" data-clouds></div>
+  <div class="wrap">
+    <span class="eyebrow" id="pEyebrow"></span>
+    <h1 data-i18n="disc_title"></h1>
+    <p data-i18n="disc_p"></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div id="adminBar"></div>
+    <div class="grid-cards" id="discGrid"></div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/chrome.js"></script>
+<script>
+(function () {
+  var I = PPIcons, PP = window.PP, T = window.T;
+  document.getElementById("pPlane").innerHTML = I.planeFill;
+  document.getElementById("pEyebrow").innerHTML = I.tag + " " + t("disc_eyebrow");
+
+  var admin = PP.isAdmin();
+  if (admin) document.getElementById("adminBar").innerHTML =
+    '<div class="admin-bar"><span>✦ '+t("admin_disc")+'</span><a href="admin.html">'+t("admin_add_disc")+'</a></div>';
+
+  function render(){
+    var items = PP.discounts();
+    var box = document.getElementById("discGrid");
+    if(!items.length){box.innerHTML='<p class="lead">'+t("disc_empty")+'</p>';return;}
+    box.innerHTML = items.map(function(d){
+      var logo = d.image
+        ? '<img src="'+d.image+'" alt="'+(d.vendor||"")+'">'
+        : '<image-slot id="logo-'+d.id+'" shape="rect" fit="contain" placeholder="לוגו"></image-slot>'+
+          '<span class="vendor-mark">'+(d.vendor||"")+'</span>';
+      var code = d.code ? '<div class="disc__code"><span class="disc__code-label">'+t("disc_copy_label")+'</span><code>'+d.code+'</code>'+
+        '<button class="copy-btn" data-code="'+d.code+'">'+I.tag+' '+t("disc_copy")+'</button></div>' : '';
+      return '<div class="card disc">'+
+        '<div class="disc__logo">'+logo+'</div>'+
+        '<div class="disc__body">'+
+          '<span class="disc__vendor">'+(d.vendor||"")+'</span>'+
+          (d.headline?'<div class="disc__headline">'+d.headline+'</div>':'')+
+          '<h3 class="disc__title">'+d.title+'</h3>'+
+          '<p class="disc__desc">'+(d.desc||"")+'</p>'+
+          code+
+          '<div class="disc__foot">'+
+            '<a class="btn btn--primary btn--sm" href="'+(d.url||"#")+'" target="_blank" rel="noopener">'+t("disc_redeem")+'</a>'+
+            (admin?'<button class="admin-del" data-id="'+d.id+'">'+I.trash+' '+t("del")+'</button>':'')+
+          '</div>'+
+        '</div></div>';
+    }).join("");
+
+    box.querySelectorAll(".copy-btn").forEach(function(b){
+      b.addEventListener("click",function(){
+        var code=b.getAttribute("data-code");
+        var done=function(){ b.classList.add("copied"); b.innerHTML=I.check+' '+t("disc_copied");
+          setTimeout(function(){b.classList.remove("copied");b.innerHTML=I.tag+' '+t("disc_copy");},1800); };
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(code).then(done,done);}
+        else{var ta=document.createElement("textarea");ta.value=code;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");}catch(e){}ta.remove();done();}
+      });
+    });
+    if(admin) box.querySelectorAll(".admin-del").forEach(function(b){
+      b.addEventListener("click",function(){ if(confirm("?")){PP.deleteDiscount(b.getAttribute("data-id"));render();} });
+    });
+  }
+  render();
+})();
+</script>
+</body>
+</html>

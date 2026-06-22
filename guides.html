@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מדריכים דיגיטליים · מטוסי נייר</title>
+<meta name="description" content="מדריכי טיול דיגיטליים מפורטים לפי מדינה — מסלולים, תקציב, המלצות וכל מה שצריך לפני שטסים.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .p-hero{background:linear-gradient(150deg,#157A8B,#0A3F49);color:#fff;padding-block:clamp(40px,6vw,68px);position:relative;overflow:hidden;}
+  .p-hero .wrap{position:relative;z-index:2;}
+  .p-hero h1{font-size:clamp(34px,5vw,58px);margin-top:8px;}
+  .p-hero p{font-size:18px;color:#d6eef2;margin-top:12px;max-width:54ch;}
+  .p-plane{position:absolute;width:130px;color:rgba(167,230,216,.28);top:16%;left:6%;transform:rotate(-12deg);}
+  section{padding-block:clamp(40px,5vw,68px);}
+  .guide__media{height:170px;position:relative;background:linear-gradient(135deg,#5FC9B4,#157A8B);display:grid;place-items:center;}
+  .guide__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .guide__flag{position:relative;z-index:2;font-size:56px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.25));}
+  .guide__price{position:absolute;z-index:3;top:12px;inset-inline-start:12px;background:var(--sun);color:#5a3c00;
+    font-weight:700;padding:6px 14px;border-radius:var(--r-pill);font-size:15px;box-shadow:var(--shadow-sm);}
+  .guide__body{padding:22px;display:flex;flex-direction:column;gap:12px;flex:1;}
+  .guide__title{font-family:var(--head);font-size:21px;color:var(--teal-900);}
+  .guide__desc{color:var(--muted);font-size:15px;flex:1;}
+  .guide__foot{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .admin-del{display:inline-flex;align-items:center;gap:6px;background:#fff0ee;color:#c0392b;border:1px solid #f5c6c0;padding:7px 12px;border-radius:10px;font-weight:600;font-size:13.5px;}
+  .admin-del:hover{background:#c0392b;color:#fff;} .admin-del svg{width:16px;height:16px;}
+  .admin-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--teal-900);color:#cfe7ec;padding:13px 18px;border-radius:14px;margin-bottom:26px;font-size:14.5px;}
+  .admin-bar a{color:var(--sun);font-weight:600;}
+</style>
+</head>
+<body data-page="guides">
+<div id="site-header"></div>
+
+<section class="p-hero">
+  <span class="p-plane" id="pPlane"></span>
+  <div class="clouds" data-clouds></div>
+  <div class="wrap">
+    <span class="eyebrow" id="pEyebrow" style="color:var(--mint-300)"></span>
+    <h1 data-i18n="guide_title"></h1>
+    <p data-i18n="guide_p"></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div id="adminBar"></div>
+    <div class="grid-cards" id="guideGrid"></div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/chrome.js"></script>
+<script>
+(function () {
+  var I = PPIcons, PP = window.PP, T = window.T;
+  var nm = function(c){return T.lang==="he"?c.he:c.en;};
+  document.getElementById("pPlane").innerHTML = I.planeFill;
+  document.getElementById("pEyebrow").innerHTML = I.book + " " + t("guide_eyebrow");
+
+  var admin = PP.isAdmin();
+  if (admin) document.getElementById("adminBar").innerHTML =
+    '<div class="admin-bar"><span>✦ '+t("admin_guide")+'</span><a href="admin.html">'+t("admin_add_guide")+'</a></div>';
+
+  function render(){
+    var items = PP.guides();
+    var box = document.getElementById("guideGrid");
+    if(!items.length){box.innerHTML='<p class="lead">'+t("guide_empty")+'</p>';return;}
+    box.innerHTML = items.map(function(g){
+      var c = PP.countryByCode(g.country) || {flag:"📘"};
+      var media = g.image ? '<img src="'+g.image+'" alt="'+g.title+'">' : '<span class="guide__flag">'+(c.flag||"📘")+'</span>';
+      return '<div class="card guide">'+
+        '<div class="guide__media">'+(g.price?'<span class="guide__price">'+g.price+'</span>':'')+media+'</div>'+
+        '<div class="guide__body">'+
+          '<h3 class="guide__title">'+g.title+'</h3>'+
+          '<p class="guide__desc">'+(g.desc||"")+'</p>'+
+          '<div class="guide__foot">'+
+            '<a class="btn btn--sun btn--sm" href="'+(g.url||"#")+'" target="_blank" rel="noopener">'+I.book+' '+t("guide_buy")+'</a>'+
+            (admin?'<button class="admin-del" data-id="'+g.id+'">'+I.trash+' '+t("del")+'</button>':'')+
+          '</div>'+
+        '</div></div>';
+    }).join("");
+    if(admin) box.querySelectorAll(".admin-del").forEach(function(b){
+      b.addEventListener("click",function(){ if(confirm("?")){PP.deleteGuide(b.getAttribute("data-id"));render();} });
+    });
+  }
+  render();
+})();
+</script>
+</body>
+</html>

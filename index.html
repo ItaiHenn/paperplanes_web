@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מטוסי נייר · פודקאסט טיולים והרפתקאות מסביב לעולם</title>
+<meta name="description" content="מטוסי נייר — פודקאסט על טיולים, הרפתקאות, סיפורים ומקומות מכל העולם, עם איתי חן. גלו את כל המדינות שביקרנו בהן על גבי גלובוס אינטראקטיבי והאזינו לפרקים.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#157A8B 0%, #0E5E6C 60%, #0A3F49 100%);color:#fff;}
+  .hero .wrap{position:relative;z-index:2;padding-block:clamp(48px,7vw,86px) clamp(40px,6vw,72px);
+    display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;}
+  .hero__eyebrow{display:inline-flex;align-items:center;gap:9px;font-weight:600;letter-spacing:.14em;font-size:13.5px;
+    background:rgba(255,255,255,.12);padding:8px 16px;border-radius:var(--r-pill);}
+  .hero__eyebrow svg{width:18px;height:18px;color:var(--mint-300);}
+  .hero h1{font-size:clamp(40px,6.2vw,76px);margin:22px 0 0;line-height:.98;}
+  .hero h1 .accent{color:var(--mint-300);}
+  .hero__tag{font-size:clamp(16px,2vw,21px);color:#d6eef2;margin-top:18px;max-width:42ch;}
+  .hero__tag b{color:#fff;font-weight:600;}
+  .hero__cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+  .hero__stats{display:flex;gap:30px;margin-top:34px;}
+  .hero__stat b{font-family:var(--head);font-size:34px;color:#fff;display:block;line-height:1;}
+  .hero__stat span{font-size:13.5px;color:#bfe0e6;}
+  .hero__art{position:relative;aspect-ratio:1;max-width:380px;margin-inline:auto;}
+  .hero__art img{width:100%;border-radius:32px;box-shadow:var(--shadow-lg);transform:rotate(-3deg);border:6px solid rgba(255,255,255,.9);}
+  .hero__plane{position:absolute;color:rgba(255,255,255,.18);width:120px;}
+  .hero__plane.p1{top:6%;right:-4%;width:90px;color:rgba(167,230,216,.4);transform:rotate(8deg);}
+  .hero__plane.p2{bottom:-2%;left:-6%;width:140px;transform:rotate(-12deg);}
+  .hero__cloud{position:absolute;background:rgba(255,255,255,.10);border-radius:999px;}
+  .hc1{width:200px;height:60px;top:18%;left:-40px;}
+  .hc2{display:none;}
+  .hero__stats{position:relative;z-index:3;}
+  .hero .clouds .c-d{display:none;}
+  @media(max-width:880px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero__art{display:block;max-width:140px;margin-inline:auto;margin-bottom:0;order:-1;}
+    .hero__art img{border-radius:24px;transform:rotate(-2deg);}
+    .hero__plane{display:none;}
+  }
+
+  section{padding-block:clamp(48px,6vw,84px);}
+  .sec-head{margin-bottom:34px;}
+  .globe-note{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14.5px;margin-top:14px;}
+  .globe-note svg{width:18px;height:18px;color:var(--mint);}
+
+  .listen-band{background:#fff;border-block:1px solid var(--line);}
+  .episodes-wrap{display:grid;gap:24px;}
+  .ep-date{font-size:13px;color:var(--muted);}
+
+  .cta-band{background:linear-gradient(140deg,#5FC9B4,#157A8B);color:#fff;border-radius:var(--r-lg);
+    padding:clamp(34px,5vw,60px);display:grid;grid-template-columns:1.4fr auto;gap:30px;align-items:center;}
+  .cta-band h2{font-size:clamp(26px,3.4vw,40px);}
+  .cta-band p{color:#e6f7f3;margin-top:12px;font-size:17px;}
+  @media(max-width:740px){.cta-band{grid-template-columns:1fr;}}
+</style>
+</head>
+<body data-page="home">
+<div id="site-header"></div>
+
+<!-- HERO -->
+<section class="hero" style="line-height: 0; height: 5px">
+  <div class="hero__cloud hc1"></div>
+  <div class="hero__cloud hc2"></div>
+  <div class="clouds" data-clouds></div>
+  <div class="wrap">
+    <div class="hero__copy">
+      <span class="hero__eyebrow" id="heroEyebrow"></span>
+      <h1 data-i18n-html="hero_h1" style="font-family:Rubik"></h1>
+      <p class="hero__tag" data-i18n-html="hero_tag" style="font-weight:700"></p>
+      <div class="hero__cta">
+        <a href="#globe" class="btn btn--sun" id="ctaGlobe"></a>
+        <a href="#listen" class="btn btn--ghost" data-i18n="hero_cta_listen" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)"></a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><b id="statCountries">30</b><span data-i18n="stat_countries"></span></div>
+        <div class="hero__stat"><b id="statEpisodes">—</b><span data-i18n="stat_episodes"></span></div>
+        <div class="hero__stat"><b>6</b><span data-i18n="stat_continents"></span></div>
+      </div>
+    </div>
+    <div class="hero__art">
+      <span class="hero__plane p1" id="hp1"></span>
+      <img src="assets/logo.jpg" alt="מטוסי נייר — איתי חן">
+      <span class="hero__plane p2" id="hp2"></span>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBE -->
+<section id="globe-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" id="globeEyebrow" style="font-size:20px"></span>
+      <h2 class="h-sec" data-i18n="globe_title"></h2>
+      <p class="lead" data-i18n="globe_lead"></p>
+    </div>
+    <div class="globe-stage"><div id="globe"></div></div>
+    <p class="globe-note" id="globeHint"></p>
+    <div style="margin-top:26px">
+      <div class="country-chips" id="countryChips"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LISTEN -->
+<section id="listen" class="listen-band">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" id="listenEyebrow" style="font-size:20px"></span>
+      <h2 class="h-sec" data-i18n="listen_title"></h2>
+      <p class="lead" data-i18n="listen_lead"></p>
+    </div>
+    <div class="listen-grid" id="listenGrid"></div>
+  </div>
+</section>
+
+<!-- LATEST EPISODES -->
+<section id="episodes">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" id="epEyebrow" style="font-size:20px"></span>
+      <h2 class="h-sec" data-i18n="eplist_title"></h2>
+    </div>
+    <div class="grid-cards" id="latestEpisodes"></div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section id="contact-cta">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h2 data-i18n="cta_title"></h2>
+        <p data-i18n="cta_p" style="font-size:17px"></p>
+      </div>
+      <a href="contact.html" class="btn btn--sun" data-i18n="cta_btn" style="font-size:18px;padding:16px 30px"></a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<!-- structured data for SEO -->
+<script type="application/ld+json" id="ldjson"></script>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/chrome.js"></script>
+<script>
+(function () {
+  var I = PPIcons, PP = window.PP, T = window.T;
+  var loc = T.lang==="he" ? "he-IL" : "en-US";
+  function fmtDate(d){ try{return new Date(d).toLocaleDateString(loc,{day:"numeric",month:"long",year:"numeric"});}catch(e){return d;} }
+
+  var nm = function(c){return T.lang==="he"?c.he:c.en;};
+  document.getElementById("heroEyebrow").innerHTML = I.planeFill + " " + t("hero_eyebrow");
+  document.getElementById("ctaGlobe").innerHTML = I.globe + " " + t("hero_cta_globe");
+  document.getElementById("globeEyebrow").innerHTML = I.globe + " " + t("globe_eyebrow");
+  document.getElementById("listenEyebrow").innerHTML = I.planeFill + " " + t("listen_eyebrow");
+  document.getElementById("epEyebrow").innerHTML = I.play + " " + t("eplist_eyebrow");
+  document.getElementById("globeHint").innerHTML = I.pin + " " + t("globe_hint");
+  document.getElementById("hp1").innerHTML = I.planeFill;
+  document.getElementById("hp2").innerHTML = I.planeFill;
+
+  // stats
+  var eps = PP.episodes();
+  document.getElementById("statEpisodes").textContent = eps.length;
+  document.getElementById("statCountries").textContent = PP.countries.length;
+
+  // listen grid
+  var L = [
+    {k:"spotify",t:"Spotify",s:t("s_spotify"),cls:"bg-spotify",ic:I.spotify},
+    {k:"youtube",t:"YouTube",s:t("s_youtube"),cls:"bg-youtube",ic:I.youtube},
+    {k:"apple",t:"Apple Podcasts",s:t("s_apple"),cls:"bg-apple",ic:I.apple},
+    {k:"instagram",t:"Instagram",s:t("s_instagram"),cls:"bg-instagram",ic:I.instagram},
+    {k:"facebook",t:t("t_facebook"),s:t("s_facebook"),cls:"bg-facebook",ic:I.facebook}
+  ];
+  document.getElementById("listenGrid").innerHTML = L.map(function(x){
+    return '<a class="listen" href="'+PP.social[x.k]+'" target="_blank" rel="noopener">'+
+      '<span class="listen__ic '+x.cls+'">'+x.ic+'</span>'+
+      '<span><span class="listen__t">'+x.t+'</span><br><span class="listen__s">'+x.s+'</span></span></a>';
+  }).join("");
+
+  // country chips
+  var counts = PP.countriesWithEpisodes();
+  document.getElementById("countryChips").innerHTML = PP.countries.map(function(c){
+    var n = counts[c.code]||0;
+    return '<a class="country-chip'+(n?'':' soon')+'" href="country.html?c='+c.code+'">'+
+      c.flag+' '+nm(c)+ (n?'<span class="n">'+n+'</span>':'<span class="n">'+t("soon")+'</span>')+'</a>';
+  }).join("");
+
+  // latest episodes (up to 3)
+  document.getElementById("latestEpisodes").innerHTML = eps.slice(0,3).map(function(e){
+    var c = PP.countryByCode(e.country)||{};
+    var cover = e.cover || "assets/logo.jpg";
+    var ttl = (T.lang==="en" && e.title_en) ? e.title_en : e.title;
+    return '<a class="card" href="episode.html?id='+e.id+'">'+
+      '<div class="card__media"><img src="'+cover+'" alt="'+ttl+'">'+
+        '<span class="card__tag">'+(c.flag||"")+' '+nm(c)+'</span></div>'+
+      '<div class="card__body">'+
+        '<span class="ep-date">'+fmtDate(e.date)+' · '+(e.duration||"")+'</span>'+
+        '<h3 class="card__title">'+ttl+'</h3>'+
+        '<p class="card__desc">'+(e.description||"")+'</p>'+
+        '<span class="card__foot"><span class="chip">'+I.play+' '+t("listen_chip")+'</span></span>'+
+      '</div></a>';
+  }).join("");
+
+  // JSON-LD
+  document.getElementById("ldjson").textContent = JSON.stringify({
+    "@context":"https://schema.org","@type":"PodcastSeries",
+    "name":"מטוסי נייר · Paper Planes","inLanguage":"he",
+    "description":"פודקאסט על טיולים, הרפתקאות, סיפורים ומקומות מכל העולם.",
+    "webFeed":PP.social.spotify,
+    "author":{"@type":"Person","name":"איתי חן"}
+  });
+})();
+</script>
+<!-- globe libs -->
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script src="https://unpkg.com/globe.gl@2.34.4/dist/globe.gl.min.js"></script>
+<script src="js/globe.js"></script>
+</body>
+</html>
