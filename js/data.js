@@ -269,7 +269,7 @@
   ];
 
   /* ---------- localStorage keys ---------- */
-  var K = { ep:"pp_episodes_v2", disc:"pp_discounts_v2", guide:"pp_guides_v1" };
+  var K = { ep:"pp_episodes_v3", disc:"pp_discounts_v2", guide:"pp_guides_v1" };
 
   function read(key, seed) {
     try {
