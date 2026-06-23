@@ -107,6 +107,14 @@
             <div class="field"><label>קישור Spotify (embed או רגיל)</label><input name="spotify" placeholder="https://open.spotify.com/episode/..."><small>נדביק את הקישור הרגיל מספוטיפיי — נהפוך אותו לנגן אוטומטית.</small></div>
             <div class="field"><label>תיאור</label><textarea name="description" required placeholder="על מה הפרק?"></textarea></div>
             <div class="field"><label>תמלול בעברית</label><textarea name="transcript_he" placeholder="התמלול המלא בעברית (משפר נגישות)"></textarea></div>
+            <div class="field">
+              <label>יבוא תמלול מ-Google Docs <small style="font-weight:400;color:var(--muted)">(אופציונלי)</small></label>
+              <div style="display:flex;gap:8px;align-items:center">
+                <input type="url" id="gdocUrl" placeholder="https://docs.google.com/document/d/..." style="flex:1;min-width:0">
+                <button type="button" id="fetchGdoc" class="btn btn--primary" style="white-space:nowrap;flex-shrink:0">משוך טקסט</button>
+              </div>
+              <small style="color:var(--muted)">הדוק חייב להיות מפורסם לרשת כ-Plain Text: File → Share → Publish to web → Plain text</small>
+            </div>
             <div class="field"><label>תמלול באנגלית (ל-SEO)</label><textarea name="transcript_en" placeholder="Full English transcript — boosts Google visibility"></textarea></div>
             <div class="field"><label>תמונת נושא לפרק</label>
               <label class="file-drop" id="dropEp"><span>לחצו להעלאת תמונה (אופציונלי)</span><input type="file" accept="image/*" hidden></label></div>
@@ -356,6 +364,32 @@
     if(confirm("לאפס את כל התוכן לתוכן הדוגמה המקורי? פעולה זו תמחק את כל מה שהוספת.")){
       PP.resetAll(); renderAll();
     }
+  });
+
+  /* ---------- Google Docs transcript import ---------- */
+  document.getElementById("fetchGdoc").addEventListener("click", function() {
+    var raw = document.getElementById("gdocUrl").value.trim();
+    var m = raw.match(/\/document\/d\/([a-zA-Z0-9_-]+)/);
+    if (!m) { alert("URL לא תקין — יש להדביק קישור ל-Google Doc"); return; }
+    var url = "https://docs.google.com/document/d/" + m[1] + "/pub?output=txt";
+    var btn = this;
+    btn.textContent = "...טוען";
+    btn.disabled = true;
+    fetch(url)
+      .then(function(r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.text();
+      })
+      .then(function(txt) {
+        document.querySelector("textarea[name=transcript_he]").value = txt.trim();
+        btn.textContent = "✓ נטען";
+        setTimeout(function(){ btn.textContent = "משוך טקסט"; btn.disabled = false; }, 2000);
+      })
+      .catch(function(err) {
+        alert("לא הצליח למשוך את הטקסט. ודא שהמסמך מפורסם לרשת (Publish to web).\n\n" + err);
+        btn.textContent = "משוך טקסט";
+        btn.disabled = false;
+      });
   });
 
   showDash(PP.isAdmin());
