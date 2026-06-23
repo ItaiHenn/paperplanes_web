@@ -54,6 +54,8 @@
   });
 
 
+  var I = window.PPIcons || {};
+  var S = window.PP || {};
   var page = document.body.getAttribute("data-page") || "";
 
   var NAV = [
