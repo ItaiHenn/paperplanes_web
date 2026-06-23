@@ -290,11 +290,14 @@
     },
 
     episodes:              function ()    { return read(K.ep,   SEED_EPISODES); },
-    episodesByCountry:     function (c)   { return this.episodes().filter(function(e){ return e.country===c; }); },
+    episodesByCountry:     function (c)   { return this.episodes().filter(function(e){ return e.country.split(", ").indexOf(c)!==-1; }); },
     episodeById:           function (id)  { return this.episodes().filter(function(e){ return e.id===id; })[0]||null; },
     countriesWithEpisodes: function ()    {
       var eps=this.episodes(), set={};
-      eps.forEach(function(e){ if(e.country) set[e.country]=(set[e.country]||0)+1; });
+      eps.forEach(function(e){
+        if(!e.country) return;
+        e.country.split(", ").forEach(function(c){ if(c) set[c]=(set[c]||0)+1; });
+      });
       return set;
     },
 
