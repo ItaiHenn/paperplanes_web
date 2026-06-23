@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /workflow-guide.html
+
+Sitemap: https://paperplanes.co.il/sitemap.xml
