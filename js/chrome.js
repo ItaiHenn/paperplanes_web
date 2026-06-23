@@ -1,6 +1,59 @@
 /* ===== Paper Planes — shared header + footer (i18n) ===== */
 (function () {
-  var I = window.PPIcons, S = window.PP, T = window.T;
+  /* ---- Google Analytics 4 ---- */
+  var GA_ID = "G-CBYGT3Q5G6";
+  (function(){
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+    document.head.appendChild(s);
+  })();
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag("js", new Date());
+  gtag("config", GA_ID);
+
+  /* ---- Click tracking ---- */
+  document.addEventListener("click", function(ev){
+    var el = ev.target.closest("a[href], button");
+    if (!el) return;
+    var href = el.getAttribute("href") || "";
+
+    // Episode card or episode page link
+    if (href.indexOf("episode.html") !== -1) {
+      var id = (href.match(/id=([^&]+)/) || [])[1] || "";
+      var title = (el.querySelector(".card__title") || el.querySelector("h3") || {}).textContent || id;
+      gtag("event", "episode_click", { episode_id: id, episode_title: title.trim() });
+
+    // Discount "redeem" button
+    } else if (el.closest(".disc") && el.classList.contains("btn")) {
+      var vendor = ((el.closest(".disc")||{}).querySelector(".disc__vendor")||{}).textContent || "";
+      gtag("event", "discount_click", { vendor: vendor.trim() });
+
+    // Copy coupon code button
+    } else if (el.classList.contains("copy-btn")) {
+      var code = el.getAttribute("data-code") || "";
+      gtag("event", "coupon_copy", { code: code });
+
+    // Guide buy button
+    } else if (el.closest(".guide") && el.classList.contains("btn")) {
+      var gtitle = ((el.closest(".guide")||{}).querySelector(".guide__title")||{}).textContent || "";
+      gtag("event", "guide_click", { guide_title: gtitle.trim() });
+
+    // Quiz banner
+    } else if (href.indexOf("formaloo") !== -1) {
+      gtag("event", "quiz_click");
+
+    // Listen platform links (Spotify, Apple, YouTube, etc.)
+    } else if (el.closest(".listen") || el.closest(".aside-listen")) {
+      var platform = (el.querySelector(".listen__t") || el.querySelector("span:last-child") || {}).textContent
+        || href.replace(/https?:\/\/(www\.)?/,"").split("/")[0];
+      gtag("event", "platform_click", { platform: platform.trim() });
+    }
+  });
+
+
   var page = document.body.getAttribute("data-page") || "";
 
   var NAV = [
