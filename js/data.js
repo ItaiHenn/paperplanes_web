@@ -3,6 +3,7 @@
   "use strict";
 
   var ADMIN_PASSWORD = "Itaipaper1998";
+  var SHEET_URL = "https://script.google.com/macros/s/AKfycbwcTrKkV5Kks5FrEUXJ83t-fqvsatIud103kE9TWf-pLLPE4dE-8Zw8GeTtM4mMjoZLgA/exec";
 
   var SOCIAL = {
     spotify:   "https://open.spotify.com/show/174FVxtm9QQQ88pfivcSxF",
@@ -335,8 +336,34 @@
     logout:        function ()   { sessionStorage.removeItem("pp_admin"); },
     isAdmin:       function ()   { return sessionStorage.getItem("pp_admin")==="1"; },
 
-    uid: function (prefix) { return (prefix||"id")+"-"+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+    uid: function (prefix) { return (prefix||"id")+"-"+Date.now().toString(36)+Math.random().toString(36).slice(2,6); },
+
+    syncSheet: function (onDone) {
+      fetch(SHEET_URL)
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          if (d.episodes && d.episodes.length) {
+            write(K.ep, d.episodes);
+            if (onDone) onDone(null, d.episodes.length);
+          }
+        })
+        .catch(function(e){ if (onDone) onDone(e); });
+    }
   };
+
+  /* Auto-sync from sheet in background on every page load */
+  try {
+    fetch(SHEET_URL)
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (d.episodes && d.episodes.length) {
+          try {
+            localStorage.setItem(K.ep, JSON.stringify(d.episodes));
+          } catch(e){}
+        }
+      })
+      .catch(function(){});
+  } catch(e){}
 
   global.PP = Store;
 })(window);
