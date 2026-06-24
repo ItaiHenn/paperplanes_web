@@ -342,10 +342,10 @@
       fetch(SHEET_URL)
         .then(function(r){ return r.json(); })
         .then(function(d){
-          if (d.episodes && d.episodes.length) {
-            write(K.ep, d.episodes);
-            if (onDone) onDone(null, d.episodes.length);
-          }
+          if (d.episodes  && d.episodes.length)  write(K.ep,    d.episodes);
+          if (d.discounts && d.discounts.length) write(K.disc,  d.discounts);
+          if (d.guides    && d.guides.length)    write(K.guide, d.guides);
+          if (onDone) onDone(null, (d.episodes||[]).length);
         })
         .catch(function(e){ if (onDone) onDone(e); });
     }
@@ -356,11 +356,11 @@
     fetch(SHEET_URL)
       .then(function(r){ return r.json(); })
       .then(function(d){
-        if (d.episodes && d.episodes.length) {
-          try {
-            localStorage.setItem(K.ep, JSON.stringify(d.episodes));
-          } catch(e){}
-        }
+        try {
+          if (d.episodes  && d.episodes.length)  localStorage.setItem(K.ep,    JSON.stringify(d.episodes));
+          if (d.discounts && d.discounts.length) localStorage.setItem(K.disc,  JSON.stringify(d.discounts));
+          if (d.guides    && d.guides.length)    localStorage.setItem(K.guide, JSON.stringify(d.guides));
+        } catch(e){}
       })
       .catch(function(){});
   } catch(e){}

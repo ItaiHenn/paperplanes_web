@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מדריך ניהול · מטוסי נייר</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Rubik',sans-serif;background:#f5f7fa;color:#1a2535;direction:rtl;}
+  .cover{background:linear-gradient(135deg,#157A8B,#0A3F49);color:#fff;padding:60px 40px;text-align:center;page-break-after:always;}
+  .cover h1{font-size:42px;margin-bottom:12px;}
+  .cover p{font-size:18px;opacity:.85;}
+  .cover .badge{display:inline-block;background:rgba(255,255,255,.15);border-radius:999px;padding:6px 18px;font-size:13px;margin-top:20px;}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 24px;}
+  h2{font-size:26px;color:#157A8B;border-bottom:3px solid #157A8B;padding-bottom:10px;margin:48px 0 24px;}
+  h3{font-size:18px;color:#0A3F49;margin:28px 0 12px;}
+  p{line-height:1.8;margin-bottom:12px;font-size:15px;}
+  .flow{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin:20px 0;}
+  .step{background:#fff;border:2px solid #157A8B;border-radius:12px;padding:14px 18px;text-align:center;min-width:130px;font-size:13px;font-weight:600;color:#157A8B;position:relative;}
+  .arrow{font-size:22px;color:#5FC9B4;padding:0 8px;font-weight:700;}
+  .box{background:#fff;border-radius:12px;padding:20px 24px;margin:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+  .box.warn{border-right:4px solid #e8a317;background:#fffbf0;}
+  .box.tip{border-right:4px solid #5FC9B4;background:#f0fbf9;}
+  .box.danger{border-right:4px solid #e84040;background:#fff5f5;}
+  .tag{display:inline-block;background:#157A8B;color:#fff;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:600;margin-left:6px;}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;}
+  th{background:#157A8B;color:#fff;padding:10px 14px;text-align:right;}
+  td{padding:9px 14px;border-bottom:1px solid #e5e9ef;}
+  tr:nth-child(even) td{background:#f9fbfc;}
+  ul,ol{padding-right:20px;margin:10px 0;}
+  li{margin-bottom:6px;line-height:1.7;font-size:15px;}
+  .diagram{background:#fff;border-radius:16px;padding:28px;margin:20px 0;box-shadow:0 2px 10px rgba(0,0,0,.08);}
+  .diagram-title{font-size:13px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px;}
+  .arch{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:16px 0;}
+  .arch-box{background:#f0fbf9;border:2px solid #5FC9B4;border-radius:12px;padding:16px;text-align:center;}
+  .arch-box .icon{font-size:28px;margin-bottom:6px;}
+  .arch-box .label{font-size:13px;font-weight:700;color:#0A3F49;}
+  .arch-box .sub{font-size:11px;color:#666;margin-top:4px;}
+  .url{font-family:monospace;background:#f0f4f8;padding:2px 8px;border-radius:4px;font-size:13px;}
+  @media print{
+    .cover{page-break-after:always;}
+    h2{page-break-before:always;}
+    h2:first-of-type{page-break-before:avoid;}
+    .box,.diagram{page-break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>✈ מטוסי נייר</h1>
+  <p>מדריך ניהול אתר — Admin Manual</p>
+  <div class="badge">גרסה 1.0 · יוני 2026</div>
+</div>
+
+<div class="wrap">
+
+<!-- SECTION 1 -->
+<h2>1. מבנה המערכת</h2>
+<div class="diagram">
+  <div class="diagram-title">ארכיטקטורת האתר</div>
+  <div class="arch">
+    <div class="arch-box"><div class="icon">📊</div><div class="label">Google Sheets</div><div class="sub">בסיס הנתונים — פרקים, הנחות, מדריכים</div></div>
+    <div class="arch-box"><div class="icon">💻</div><div class="label">GitHub</div><div class="sub">קוד האתר · ענף: main</div></div>
+    <div class="arch-box"><div class="icon">🌐</div><div class="label">Vercel</div><div class="sub">אחסון ופרסום אוטומטי</div></div>
+  </div>
+  <p style="text-align:center;font-size:13px;color:#666;margin-top:8px;">Sheets → האתר שולף נתונים אוטומטית | GitHub → Vercel מפרסם אוטומטית</p>
+</div>
+
+<div class="box tip">
+  <strong>✅ עקרון בסיסי:</strong> כל שינוי בGoogle Sheets מתעדכן באתר אוטומטית בטעינה הבאה של הדף. שינויים בקוד מתפרסמים תוך ~30 שניות לאחר push ל-GitHub.
+</div>
+
+<h3>קישורים חשובים</h3>
+<table>
+  <tr><th>שם</th><th>קישור / פרטים</th></tr>
+  <tr><td>האתר החי</td><td><span class="url">paperplanes.co.il</span></td></tr>
+  <tr><td>פאנל ניהול</td><td><span class="url">paperplanes.co.il/admin.html</span></td></tr>
+  <tr><td>GitHub</td><td><span class="url">github.com/itaihenn/paperplanes_web</span></td></tr>
+  <tr><td>Vercel</td><td><span class="url">vercel.com</span> — פרויקט paperplanes_website</td></tr>
+  <tr><td>Google Sheets</td><td>מטוסי נייר — תוכן</td></tr>
+  <tr><td>סיסמת אדמין</td><td><span class="url">Itaipaper1998</span></td></tr>
+</table>
+
+<!-- SECTION 2 -->
+<h2>2. הוספת פרק חדש</h2>
+
+<h3>דרך A — דרך Google Sheets (מומלץ)</h3>
+<div class="flow">
+  <div class="step">פתחו Google Sheets<br>"מטוסי נייר — תוכן"</div>
+  <div class="arrow">←</div>
+  <div class="step">הוסיפו שורה חדשה<br>בטאב Episodes</div>
+  <div class="arrow">←</div>
+  <div class="step">מלאו את כל<br>השדות הנדרשים</div>
+  <div class="arrow">←</div>
+  <div class="step">שמרו — האתר<br>מתעדכן אוטומטית</div>
+</div>
+
+<h3>דרך B — דרך פאנל הניהול</h3>
+<div class="flow">
+  <div class="step">כנסו ל-<br>admin.html</div>
+  <div class="arrow">←</div>
+  <div class="step">הכניסו סיסמה:<br>Itaipaper1998</div>
+  <div class="arrow">←</div>
+  <div class="step">לחצו<br>"הוסף פרק"</div>
+  <div class="arrow">←</div>
+  <div class="step">מלאו טופס<br>ולחצו שמור</div>
+</div>
+
+<h3>שדות פרק — מה למלא</h3>
+<table>
+  <tr><th>שדה</th><th>תיאור</th><th>דוגמה</th></tr>
+  <tr><td>id</td><td>מזהה ייחודי (אוטומטי)</td><td>ep-174-יפן</td></tr>
+  <tr><td>title</td><td>שם הפרק בעברית</td><td>174- יפן — כל מה שצריך לדעת</td></tr>
+  <tr><td>country</td><td>קוד מדינה (ראו טבלה)</td><td>jp</td></tr>
+  <tr><td>date</td><td>תאריך (YYYY-MM-DD)</td><td>2026-06-16</td></tr>
+  <tr><td>duration</td><td>משך הפרק</td><td>52 דק׳</td></tr>
+  <tr><td>spotify</td><td>קישור לפרק בספוטיפיי</td><td>https://podcasters.spotify.com/...</td></tr>
+  <tr><td>cover</td><td>URL לתמונת כריכה</td><td>https://d3t3ozftmdmh3i.cloudfront.net/...</td></tr>
+  <tr><td>description</td><td>תיאור הפרק</td><td>טקסט חופשי</td></tr>
+  <tr><td>transcript_he</td><td>תמלול עברית (SEO)</td><td>טקסט מלא של הפרק</td></tr>
+</table>
+
+<div class="box tip">
+  <strong>💡 טיפ — תמלול מ-Google Docs:</strong> כתבו את התמלול ב-Google Docs → File → Share → Publish to web → Plain text → העתיקו את הקישור → הדביקו בשדה "יבוא מ-Google Docs" בפאנל הניהול → לחצו "משוך טקסט". התמלול יועתק אוטומטית לשדה.
+</div>
+
+<h3>קודי מדינות נפוצים</h3>
+<table>
+  <tr><th>מדינה</th><th>קוד</th><th>מדינה</th><th>קוד</th><th>מדינה</th><th>קוד</th></tr>
+  <tr><td>יפן</td><td>jp</td><td>תאילנד</td><td>th</td><td>פרו</td><td>pe</td></tr>
+  <tr><td>ניו זילנד</td><td>nz</td><td>ויאטנם</td><td>vn</td><td>ארגנטינה</td><td>ar</td></tr>
+  <tr><td>אוסטרליה</td><td>au</td><td>סינגפור</td><td>sg</td><td>ברזיל</td><td>br</td></tr>
+  <tr><td>פיליפינים</td><td>ph</td><td>הפיליפינים</td><td>ph</td><td>דרום אפריקה</td><td>za</td></tr>
+  <tr><td>איי שלמה</td><td>sb</td><td>פיג'י</td><td>fj</td><td>אנטארקטיקה</td><td>aq</td></tr>
+</table>
+<p style="font-size:13px;color:#666;">פרק שמופיע בכמה מדינות — הפרידו בפסיק ורווח: <span class="url">jp, nz</span></p>
+
+<!-- SECTION 3 -->
+<h2>3. עריכת פרק קיים</h2>
+
+<div class="flow">
+  <div class="step">כנסו ל-<br>admin.html</div>
+  <div class="arrow">←</div>
+  <div class="step">חפשו את הפרק<br>ברשימה</div>
+  <div class="arrow">←</div>
+  <div class="step">לחצו<br>"עריכה" ✏️</div>
+  <div class="arrow">←</div>
+  <div class="step">ערכו ולחצו<br>"שמור"</div>
+</div>
+
+<div class="box warn">
+  <strong>⚠️ שימו לב:</strong> עריכה בפאנל הניהול שומרת רק בדפדפן שלכם (localStorage). אם תרצו שהשינוי יופיע לכל המאזינים — עדכנו גם ב-Google Sheets.
+</div>
+
+<!-- SECTION 4 -->
+<h2>4. ניהול הטבות והנחות</h2>
+
+<div class="flow">
+  <div class="step">כנסו ל-<br>admin.html</div>
+  <div class="arrow">←</div>
+  <div class="step">גללו לסקציה<br>"הטבות"</div>
+  <div class="arrow">←</div>
+  <div class="step">לחצו "הוסף<br>הטבה חדשה"</div>
+  <div class="arrow">←</div>
+  <div class="step">מלאו פרטים<br>ושמרו</div>
+</div>
+
+<h3>שדות הטבה</h3>
+<table>
+  <tr><th>שדה</th><th>תיאור</th></tr>
+  <tr><td>vendor</td><td>שם הספק (GetYourGuide, Airalo...)</td></tr>
+  <tr><td>desc</td><td>תיאור ההטבה</td></tr>
+  <tr><td>code</td><td>קוד קופון (אם יש)</td></tr>
+  <tr><td>url</td><td>קישור למימוש</td></tr>
+  <tr><td>pct</td><td>אחוז הנחה (מספר בלבד, למשל: 15)</td></tr>
+</table>
+
+<!-- SECTION 5 -->
+<h2>5. ניהול מדריכים</h2>
+
+<div class="flow">
+  <div class="step">כנסו ל-<br>admin.html</div>
+  <div class="arrow">←</div>
+  <div class="step">גללו לסקציה<br>"מדריכים"</div>
+  <div class="arrow">←</div>
+  <div class="step">לחצו "הוסף<br>מדריך חדש"</div>
+  <div class="arrow">←</div>
+  <div class="step">מלאו פרטים<br>ושמרו</div>
+</div>
+
+<!-- SECTION 6 -->
+<h2>6. עדכון תמונות ומדיה</h2>
+
+<div class="box">
+  <h3 style="margin-top:0">להחליף תמונה באתר:</h3>
+  <ol>
+    <li>כנסו ל- <span class="url">github.com/itaihenn/paperplanes_web</span></li>
+    <li>נווטו לתיקיית <span class="url">assets/</span></li>
+    <li>לחצו על "Add file" → "Upload files"</li>
+    <li>גררו את התמונה החדשה עם אותו שם (למשל <span class="url">logo.jpg</span>)</li>
+    <li>לחצו "Commit changes" — הורסל יתעדכן אוטומטית</li>
+  </ol>
+</div>
+
+<h3>תמונות קיימות</h3>
+<table>
+  <tr><th>קובץ</th><th>שימוש</th></tr>
+  <tr><td>assets/logo.jpg</td><td>לוגו הפודקאסט — מופיע בהירו ובכל הדפים</td></tr>
+  <tr><td>assets/quiz.jpg</td><td>תמונת שאלון ההתאמה בעמוד הבית</td></tr>
+  <tr><td>assets/favicon.png</td><td>האייקון בטאב הדפדפן</td></tr>
+  <tr><td>assets/itai.jpeg</td><td>תמונת איתי חן בעמוד "על הפודקאסט"</td></tr>
+</table>
+
+<!-- SECTION 7 -->
+<h2>7. זרימת עבודה מלאה — סיכום</h2>
+
+<div class="diagram">
+  <div class="diagram-title">מחזור חיים של תוכן חדש</div>
+  <div class="flow" style="flex-direction:column;gap:12px;align-items:flex-start;">
+    <div style="display:flex;align-items:center;gap:12px;width:100%;">
+      <div class="step" style="min-width:160px;">🎙 הקלטת פרק חדש</div>
+      <div style="font-size:13px;color:#666;">→ מעלים ל-Spotify / Anchor</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;width:100%;">
+      <div class="step" style="min-width:160px;">📊 עדכון Google Sheets</div>
+      <div style="font-size:13px;color:#666;">→ מוסיפים שורה עם פרטי הפרק (כולל קישור Spotify וURL תמונה)</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;width:100%;">
+      <div class="step" style="min-width:160px;">📝 תמלול (אופציונלי)</div>
+      <div style="font-size:13px;color:#666;">→ כותבים ב-Google Docs → מייבאים לאדמין → שומרים בשיט</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;width:100%;">
+      <div class="step" style="min-width:160px;">🌐 האתר מתעדכן</div>
+      <div style="font-size:13px;color:#666;">→ טעינה הבאה שולפת את הנתונים החדשים מ-Sheets</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8 -->
+<h2>8. פתרון בעיות נפוצות</h2>
+
+<div class="box warn">
+  <strong>⚠️ הפרק לא מופיע באתר אחרי עדכון ב-Sheets</strong><br>
+  פתרון: טענו את הדף מחדש פעמיים (הפעם הראשונה מסנכרנת, השנייה מציגה).
+</div>
+
+<div class="box warn">
+  <strong>⚠️ האתר מציג גרסה ישנה</strong><br>
+  פתרון: לחצו Ctrl+Shift+R (Windows) או Cmd+Shift+R (Mac) לרענון מלא.
+</div>
+
+<div class="box danger">
+  <strong>🚨 האתר ריק / לא נטען כראוי</strong><br>
+  1. בדקו שה-Vercel deployment הצליח (vercel.com → הפרויקט → Deployments)<br>
+  2. בדקו שה-Apps Script של Google Sheets עדיין מוגדר כ-Web App עם גישה ל-Anyone<br>
+  3. פתחו F12 → Console ובדקו שגיאות JavaScript
+</div>
+
+<div class="box tip">
+  <strong>💡 איך לוודא שהכל עובד:</strong><br>
+  כנסו לאתר ב-Incognito Mode — אם האתר עובד שם, הבעיה היא cache מקומי בדפדפן.
+</div>
+
+<!-- SECTION 9 -->
+<h2>9. עבודה עם Claude לשינויים בקוד</h2>
+
+<div class="box">
+  <h3 style="margin-top:0">כשצריך לשנות משהו בקוד:</h3>
+  <p>פתחו Claude Code (claude.ai/code) ותנו הפרומפט הבא כהתחלה:</p>
+  <div style="background:#f0f4f8;border-radius:8px;padding:16px;font-family:monospace;font-size:13px;direction:ltr;text-align:left;margin-top:12px;">
+    I'm working on the Paper Planes podcast website.<br>
+    Repo: itaihenn/paperplanes_web (branch: main)<br>
+    Live site: paperplanes.co.il<br>
+    Admin password: Itaipaper1998<br>
+    Google Sheets: "מטוסי נייר — תוכן"<br><br>
+    [תארו כאן מה אתם רוצים לשנות]
+  </div>
+</div>
+
+<div class="box tip">
+  <strong>💡 כללי זהב לעבודה עם Claude:</strong>
+  <ul style="margin-top:10px;">
+    <li>תמיד ציינו שהענף הוא <strong>main</strong></li>
+    <li>לא לגעת בקבצים ב-Google Drive מעבר ל"מטוסי נייר — תוכן"</li>
+    <li>לאחר שינויים — בדקו ב-Vercel שה-deployment הצליח</li>
+  </ul>
+</div>
+
+<div style="text-align:center;padding:40px 0 20px;color:#888;font-size:13px;">
+  מטוסי נייר · מדריך ניהול · נבנה באהבה ✈
+</div>
+
+</div>
+</body>
+</html>
