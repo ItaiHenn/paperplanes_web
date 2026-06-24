@@ -31,7 +31,7 @@
   .guide__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   .guide__flag{position:relative;z-index:2;font-size:56px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.25));}
   .guide__price{position:absolute;z-index:3;top:12px;inset-inline-start:12px;background:var(--sun);color:#5a3c00;
-    font-weight:700;padding:6px 14px;border-radius:var(--r-pill);font-size:15px;box-shadow:var(--shadow-sm);}
+    font-weight:700;padding:6px 14px;border-radius:var(--r-pill);font-size:20px;box-shadow:var(--shadow-sm);}
   .guide__body{padding:22px;display:flex;flex-direction:column;gap:12px;flex:1;}
   .guide__title{font-family:var(--head);font-size:21px;color:var(--teal-900);}
   .guide__desc{color:var(--muted);font-size:15px;flex:1;}
@@ -93,8 +93,9 @@
       var c = PP.countryByCode(g.country) || {flag:"📘"};
       var imgSrc = driveImg(g.image);
       var media = imgSrc ? '<img src="'+imgSrc+'" alt="'+g.title+'">' : '<span class="guide__flag">'+(c.flag||"📘")+'</span>';
+      var priceLabel = g.price ? (String(g.price).includes('₪') ? g.price : '₪'+g.price) : '';
       return '<div class="card guide">'+
-        '<div class="guide__media">'+(g.price?'<span class="guide__price">'+g.price+'</span>':'')+media+'</div>'+
+        '<div class="guide__media">'+(priceLabel?'<span class="guide__price">'+priceLabel+'</span>':'')+media+'</div>'+
         '<div class="guide__body">'+
           '<h3 class="guide__title">'+g.title+'</h3>'+
           '<p class="guide__desc">'+(g.desc||"")+'</p>'+
