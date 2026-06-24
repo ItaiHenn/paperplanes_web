@@ -338,6 +338,41 @@
 
     uid: function (prefix) { return (prefix||"id")+"-"+Date.now().toString(36)+Math.random().toString(36).slice(2,6); },
 
+    postToSheet: function (payload, onDone) {
+      fetch(SHEET_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify(payload)
+      })
+        .then(function(r){ return r.json(); })
+        .then(function(d){ if (onDone) onDone(d.ok ? null : new Error(d.error||"שגיאה"), d); })
+        .catch(function(e){ if (onDone) onDone(e); });
+    },
+
+    saveDiscountToSheet: function (d, onDone) {
+      var isNew = !this.discounts().some(function(x){ return x.id===d.id; });
+      if (isNew) { var a=this.discounts(); a.unshift(d); write(K.disc,a); }
+      else { write(K.disc, this.discounts().map(function(x){ return x.id===d.id?d:x; })); }
+      this.postToSheet({ action: isNew?"addDiscount":"saveDiscount", data: d }, onDone);
+    },
+
+    deleteDiscountFromSheet: function (id, onDone) {
+      write(K.disc, this.discounts().filter(function(d){ return d.id!==id; }));
+      this.postToSheet({ action: "deleteDiscount", data: { id: id } }, onDone);
+    },
+
+    saveGuideToSheet: function (g, onDone) {
+      var isNew = !this.guides().some(function(x){ return x.id===g.id; });
+      if (isNew) { var a=this.guides(); a.unshift(g); write(K.guide,a); }
+      else { write(K.guide, this.guides().map(function(x){ return x.id===g.id?g:x; })); }
+      this.postToSheet({ action: isNew?"addGuide":"saveGuide", data: g }, onDone);
+    },
+
+    deleteGuideFromSheet: function (id, onDone) {
+      write(K.guide, this.guides().filter(function(g){ return g.id!==id; }));
+      this.postToSheet({ action: "deleteGuide", data: { id: id } }, onDone);
+    },
+
     syncSheet: function (onDone) {
       fetch(SHEET_URL)
         .then(function(r){ return r.json(); })

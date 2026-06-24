@@ -137,9 +137,10 @@
     <div class="a-pane" id="pane-disc">
       <div class="admin-grid">
         <div class="form-card">
-          <h3>הוספת הטבה</h3>
+          <h3 id="discFormTitle">הוספת הטבה</h3>
           <p class="hint">קודי הנחה ושיתופי פעולה למאזינים.</p>
           <div class="saved" id="savedDisc"></div>
+          <div class="edit-banner" id="editBannerDisc">✏️ מצב עריכת הטבה קיימת <button id="cancelEditDisc">ביטול עריכה</button></div>
           <form id="formDisc">
             <div class="field"><label>שם ההטבה</label><input name="title" required placeholder="eSIM גלובלי לכל העולם"></div>
             <div class="row2">
@@ -151,9 +152,10 @@
               <div class="field"><label>קוד קופון</label><input name="code" placeholder="PAPERPLANES"></div>
               <div class="field"><label>קישור</label><input name="url" placeholder="https://..."></div>
             </div>
-            <div class="field"><label>לוגו / תמונה</label>
-              <label class="file-drop" id="dropDisc"><span>לחצו להעלאת תמונה (אופציונלי)</span><input type="file" accept="image/*" hidden></label></div>
-            <button class="btn btn--primary" type="submit" style="width:100%;justify-content:center;margin-top:6px">פרסום ההטבה</button>
+            <div class="field"><label>קישור תמונה / לוגו (Google Drive)</label>
+              <input name="imageUrl" id="discImageUrl" placeholder="https://drive.google.com/file/d/..." style="margin-bottom:8px">
+              <label class="file-drop" id="dropDisc"><span>או העלו קובץ (לתצוגה מקומית בלבד)</span><input type="file" accept="image/*" hidden></label></div>
+            <button class="btn btn--primary" type="submit" id="discSubmitBtn" style="width:100%;justify-content:center;margin-top:6px">פרסום ההטבה</button>
           </form>
         </div>
         <div>
@@ -167,9 +169,10 @@
     <div class="a-pane" id="pane-guide">
       <div class="admin-grid">
         <div class="form-card">
-          <h3>הוספת מדריך</h3>
+          <h3 id="guideFormTitle">הוספת מדריך</h3>
           <p class="hint">מדריכים דיגיטליים למכירה.</p>
           <div class="saved" id="savedGuide"></div>
+          <div class="edit-banner" id="editBannerGuide">✏️ מצב עריכת מדריך קיים <button id="cancelEditGuide">ביטול עריכה</button></div>
           <form id="formGuide">
             <div class="field"><label>שם המדריך</label><input name="title" required placeholder="מדריך יפן המלא — 3 שבועות"></div>
             <div class="field"><label>מדינה</label><select name="country" id="guideCountry" required></select></div>
@@ -178,9 +181,10 @@
               <div class="field"><label>קישור לרכישה</label><input name="url" placeholder="https://..."></div>
             </div>
             <div class="field"><label>תיאור</label><textarea name="desc" required placeholder="מה כולל המדריך?"></textarea></div>
-            <div class="field"><label>תמונת כריכה</label>
-              <label class="file-drop" id="dropGuide"><span>לחצו להעלאת תמונה (אופציונלי)</span><input type="file" accept="image/*" hidden></label></div>
-            <button class="btn btn--primary" type="submit" style="width:100%;justify-content:center;margin-top:6px">פרסום המדריך</button>
+            <div class="field"><label>קישור תמונת כריכה (Google Drive)</label>
+              <input name="imageUrl" id="guideImageUrl" placeholder="https://drive.google.com/file/d/..." style="margin-bottom:8px">
+              <label class="file-drop" id="dropGuide"><span>או העלו קובץ (לתצוגה מקומית בלבד)</span><input type="file" accept="image/*" hidden></label></div>
+            <button class="btn btn--primary" type="submit" id="guideSubmitBtn" style="width:100%;justify-content:center;margin-top:6px">פרסום המדריך</button>
           </form>
         </div>
         <div>
@@ -363,17 +367,101 @@
       resetEpForm(); flash("savedEp"); renderEp();
     }
   });
+  /* ---------- discount edit state ---------- */
+  var editDiscId = null;
+
+  function resetDiscForm(){
+    editDiscId = null;
+    document.getElementById("formDisc").reset();
+    discImg.value = "";
+    document.getElementById("dropDisc").innerHTML='<span>או העלו קובץ (לתצוגה מקומית בלבד)</span><input type="file" accept="image/*" hidden>';
+    wireDrop("dropDisc", discImg);
+    document.getElementById("editBannerDisc").style.display = "none";
+    document.getElementById("discSubmitBtn").textContent = "פרסום ההטבה";
+    document.getElementById("discFormTitle").textContent = "הוספת הטבה";
+  }
+  document.getElementById("cancelEditDisc").addEventListener("click", resetDiscForm);
+
+  function loadDiscForEdit(id){
+    var d = PP.discounts().filter(function(x){return x.id===id;})[0];
+    if(!d) return;
+    editDiscId = id;
+    var f = document.getElementById("formDisc");
+    f.title.value = d.title||""; f.headline.value = d.headline||"";
+    f.vendor.value = d.vendor||""; f.desc.value = d.desc||"";
+    f.code.value = d.code||""; f.url.value = d.url||"";
+    document.getElementById("discImageUrl").value = d.image||"";
+    discImg.value = d.image||"";
+    document.getElementById("dropDisc").innerHTML = d.image
+      ? '<span>תמונה קיימת ✓</span><img src="'+d.image+'">'
+      : '<span>או העלו קובץ (לתצוגה מקומית בלבד)</span><input type="file" accept="image/*" hidden>';
+    wireDrop("dropDisc", discImg);
+    document.getElementById("editBannerDisc").style.display = "flex";
+    document.getElementById("discSubmitBtn").textContent = "שמירת שינויים";
+    document.getElementById("discFormTitle").textContent = "עריכת הטבה";
+    document.querySelector("#pane-disc .form-card").scrollIntoView({behavior:"smooth"});
+  }
+
   document.getElementById("formDisc").addEventListener("submit",function(e){
     e.preventDefault(); var f=this;
-    PP.addDiscount({id:PP.uid("disc"),title:f.title.value,headline:f.headline.value,vendor:f.vendor.value,desc:f.desc.value,code:f.code.value,url:f.url.value,image:discImg.value});
-    f.reset(); discImg.value=""; document.getElementById("dropDisc").innerHTML='<span>לחצו להעלאת תמונה (אופציונלי)</span><input type="file" accept="image/*" hidden>';
-    wireDrop("dropDisc",discImg); flash("savedDisc"); renderDisc();
+    var imgVal = document.getElementById("discImageUrl").value.trim() || discImg.value;
+    var btn = document.getElementById("discSubmitBtn");
+    btn.disabled = true; btn.textContent = "...שומר";
+    var d = {id:editDiscId||PP.uid("disc"),title:f.title.value,headline:f.headline.value,
+              vendor:f.vendor.value,desc:f.desc.value,code:f.code.value,url:f.url.value,image:imgVal};
+    PP.saveDiscountToSheet(d, function(err){
+      btn.disabled = false;
+      resetDiscForm(); flash("savedDisc"); renderDisc();
+      if(err) console.warn("Sheet sync error:", err);
+    });
   });
+
+  /* ---------- guide edit state ---------- */
+  var editGuideId = null;
+
+  function resetGuideForm(){
+    editGuideId = null;
+    document.getElementById("formGuide").reset();
+    guideImg.value = "";
+    document.getElementById("dropGuide").innerHTML='<span>או העלו קובץ (לתצוגה מקומית בלבד)</span><input type="file" accept="image/*" hidden>';
+    wireDrop("dropGuide", guideImg);
+    document.getElementById("editBannerGuide").style.display = "none";
+    document.getElementById("guideSubmitBtn").textContent = "פרסום המדריך";
+    document.getElementById("guideFormTitle").textContent = "הוספת מדריך";
+  }
+  document.getElementById("cancelEditGuide").addEventListener("click", resetGuideForm);
+
+  function loadGuideForEdit(id){
+    var g = PP.guides().filter(function(x){return x.id===id;})[0];
+    if(!g) return;
+    editGuideId = id;
+    var f = document.getElementById("formGuide");
+    f.title.value = g.title||""; f.country.value = g.country||"";
+    f.price.value = g.price||""; f.url.value = g.url||""; f.desc.value = g.desc||"";
+    document.getElementById("guideImageUrl").value = g.image||"";
+    guideImg.value = g.image||"";
+    document.getElementById("dropGuide").innerHTML = g.image
+      ? '<span>תמונה קיימת ✓</span><img src="'+g.image+'">'
+      : '<span>או העלו קובץ (לתצוגה מקומית בלבד)</span><input type="file" accept="image/*" hidden>';
+    wireDrop("dropGuide", guideImg);
+    document.getElementById("editBannerGuide").style.display = "flex";
+    document.getElementById("guideSubmitBtn").textContent = "שמירת שינויים";
+    document.getElementById("guideFormTitle").textContent = "עריכת מדריך";
+    document.querySelector("#pane-guide .form-card").scrollIntoView({behavior:"smooth"});
+  }
+
   document.getElementById("formGuide").addEventListener("submit",function(e){
     e.preventDefault(); var f=this;
-    PP.addGuide({id:PP.uid("guide"),title:f.title.value,country:f.country.value,price:f.price.value,url:f.url.value,desc:f.desc.value,image:guideImg.value});
-    f.reset(); guideImg.value=""; document.getElementById("dropGuide").innerHTML='<span>לחצו להעלאת תמונה (אופציונלי)</span><input type="file" accept="image/*" hidden>';
-    wireDrop("dropGuide",guideImg); flash("savedGuide"); renderGuide();
+    var imgVal = document.getElementById("guideImageUrl").value.trim() || guideImg.value;
+    var btn = document.getElementById("guideSubmitBtn");
+    btn.disabled = true; btn.textContent = "...שומר";
+    var g = {id:editGuideId||PP.uid("guide"),title:f.title.value,country:f.country.value,
+              price:f.price.value,url:f.url.value,desc:f.desc.value,image:imgVal};
+    PP.saveGuideToSheet(g, function(err){
+      btn.disabled = false;
+      resetGuideForm(); flash("savedGuide"); renderGuide();
+      if(err) console.warn("Sheet sync error:", err);
+    });
   });
 
   /* ---------- lists ---------- */
@@ -400,10 +488,21 @@
     document.getElementById("listDisc").innerHTML = items.map(function(d){
       var thumb=d.image?'<img class="item__thumb" src="'+d.image+'">':'<div class="item__thumb">🏷️</div>';
       return '<div class="item">'+thumb+'<div class="item__main"><b>'+d.title+'</b><span>'+(d.vendor||"")+(d.code?' · '+d.code:'')+'</span></div>'+
+        '<button class="item__edit" data-id="'+d.id+'" title="עריכה">'+I.edit+'</button>'+
         '<button class="item__del" data-id="'+d.id+'">'+I.trash+'</button></div>';
     }).join("") || '<p class="hint">אין הטבות עדיין.</p>';
+    document.querySelectorAll("#listDisc .item__edit").forEach(function(b){
+      b.onclick=function(){loadDiscForEdit(b.getAttribute("data-id"));};
+    });
     document.querySelectorAll("#listDisc .item__del").forEach(function(b){
-      b.onclick=function(){if(confirm("למחוק את ההטבה?")){PP.deleteDiscount(b.getAttribute("data-id"));renderDisc();}};
+      b.onclick=function(){
+        if(confirm("למחוק את ההטבה?")){
+          PP.deleteDiscountFromSheet(b.getAttribute("data-id"), function(err){
+            renderDisc();
+            if(err) console.warn("Sheet sync error:", err);
+          });
+        }
+      };
     });
   }
   function renderGuide(){
@@ -413,10 +512,21 @@
       var c=PP.countryByCode(g.country)||{flag:"📘"};
       var thumb=g.image?'<img class="item__thumb" src="'+g.image+'">':'<div class="item__thumb">'+(c.flag||"📘")+'</div>';
       return '<div class="item">'+thumb+'<div class="item__main"><b>'+g.title+'</b><span>'+(c.he||"")+(g.price?' · '+g.price:'')+'</span></div>'+
+        '<button class="item__edit" data-id="'+g.id+'" title="עריכה">'+I.edit+'</button>'+
         '<button class="item__del" data-id="'+g.id+'">'+I.trash+'</button></div>';
     }).join("") || '<p class="hint">אין מדריכים עדיין.</p>';
+    document.querySelectorAll("#listGuide .item__edit").forEach(function(b){
+      b.onclick=function(){loadGuideForEdit(b.getAttribute("data-id"));};
+    });
     document.querySelectorAll("#listGuide .item__del").forEach(function(b){
-      b.onclick=function(){if(confirm("למחוק את המדריך?")){PP.deleteGuide(b.getAttribute("data-id"));renderGuide();}};
+      b.onclick=function(){
+        if(confirm("למחוק את המדריך?")){
+          PP.deleteGuideFromSheet(b.getAttribute("data-id"), function(err){
+            renderGuide();
+            if(err) console.warn("Sheet sync error:", err);
+          });
+        }
+      };
     });
   }
   function renderAll(){renderEp();renderDisc();renderGuide();}
