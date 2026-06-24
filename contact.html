@@ -85,9 +85,28 @@
 
   document.getElementById("cForm").addEventListener("submit",function(ev){
     ev.preventDefault();
-    this.querySelector("#cSubmit").style.display="none";
-    var d = document.getElementById("cDone");
-    d.style.display="flex"; d.innerHTML = I.check + " " + t("contact_done");
+    var form = this;
+    var btn = document.getElementById("cSubmit");
+    var done = document.getElementById("cDone");
+    btn.disabled = true; btn.textContent = "...שולח";
+    fetch("https://formspree.io/f/mdaragne", {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" }
+    }).then(function(r){ return r.json().then(function(d){ return {ok:r.ok,d:d}; }); })
+      .then(function(res){
+        if(res.ok){
+          form.reset();
+          btn.style.display="none";
+          done.style.display="flex"; done.innerHTML = I.check + " " + t("contact_done");
+        } else {
+          throw new Error((res.d.errors||[]).map(function(e){return e.message;}).join(", ")||"שגיאה בשליחה");
+        }
+      })
+      .catch(function(err){
+        btn.disabled = false; btn.textContent = t("f_send");
+        done.style.display="flex"; done.innerHTML = "⚠️ " + err.message;
+      });
   });
 })();
 </script>
