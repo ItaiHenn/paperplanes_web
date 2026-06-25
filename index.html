@@ -64,6 +64,10 @@
   .episodes-wrap{display:grid;gap:24px;}
   .ep-date{font-size:13px;color:var(--muted);}
 
+  .ep-search-wrap{margin-bottom:22px;}
+  .ep-search-input{width:100%;padding:12px 16px;font-size:16px;font-family:var(--body);border:1.5px solid var(--line);border-radius:var(--r-lg);background:#fff;color:var(--teal-900);outline:none;transition:.16s;box-sizing:border-box;}
+  .ep-search-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(21,122,139,.12);}
+
   .cta-band{background:linear-gradient(140deg,#5FC9B4,#157A8B);color:#fff;border-radius:var(--r-lg);
     padding:clamp(34px,5vw,60px);display:grid;grid-template-columns:1.4fr auto;gap:30px;align-items:center;}
   .cta-band h2{font-size:clamp(26px,3.4vw,40px);}
@@ -148,6 +152,9 @@
       <span class="eyebrow" id="epEyebrow" style="font-size:20px"></span>
       <h2 class="h-sec" data-i18n="eplist_title"></h2>
     </div>
+    <div class="ep-search-wrap">
+      <input id="epSearch" type="search" class="ep-search-input" placeholder="חיפוש פרק לפי שם או מדינה...">
+    </div>
     <div class="grid-cards" id="latestEpisodes"></div>
   </div>
 </section>
@@ -226,29 +233,55 @@
       '<span><span class="listen__t">'+x.t+'</span><br><span class="listen__s">'+x.s+'</span></span></a>';
   }).join("");
 
-  // country chips
+  // country chips (with כללי chip for episodes without country)
   var counts = PP.countriesWithEpisodes();
+  var genCount = eps.filter(function(e){ return !e.country; }).length;
   document.getElementById("countryChips").innerHTML = PP.countries.map(function(c){
     var n = counts[c.code]||0;
     return '<a class="country-chip'+(n?'':' soon')+'" href="country.html?c='+c.code+'">'+
       c.flag+' '+nm(c)+ (n?'<span class="n">'+n+'</span>':'<span class="n">'+t("soon")+'</span>')+'</a>';
-  }).join("");
+  }).join("") + (genCount ? '<a class="country-chip" href="country.html?c=general">🎙️ כללי<span class="n">'+genCount+'</span></a>' : '');
 
-  // latest episodes (up to 3)
-  document.getElementById("latestEpisodes").innerHTML = eps.slice(0,3).map(function(e){
+  // episode card renderer (used for both default + search)
+  function epCard(e){
     var c = PP.countryByCode(e.country)||{};
     var cover = e.cover || "assets/logo.jpg";
     var ttl = (T.lang==="en" && e.title_en) ? e.title_en : e.title;
     return '<a class="card" href="episode.html?id='+e.id+'">'+
       '<div class="card__media"><img src="'+cover+'" alt="'+ttl+'">'+
-        '<span class="card__tag">'+(c.flag||"")+' '+nm(c)+'</span></div>'+
+        '<span class="card__tag">'+(c.flag||"🎙️")+' '+(c.flag ? nm(c) : "כללי")+'</span></div>'+
       '<div class="card__body">'+
         '<span class="ep-date">'+fmtDate(e.date)+' · '+(e.duration||"")+' </span>'+
         '<h3 class="card__title">'+ttl+'</h3>'+
         '<p class="card__desc">'+(e.description||"")+' </p>'+
         '<span class="card__foot"><span class="chip">'+I.play+' '+t("listen_chip")+'</span></span>'+
       '</div></a>';
-  }).join("");
+  }
+
+  // latest episodes (up to 3 by default)
+  var epBox = document.getElementById("latestEpisodes");
+  function renderEps(query){
+    var q = (query||"").trim().toLowerCase();
+    var list = q
+      ? eps.filter(function(e){
+          var ttl = ((T.lang==="en" && e.title_en) ? e.title_en : e.title).toLowerCase();
+          var ctry = PP.countryByCode(e.country);
+          var cname = ctry ? (ctry.he+" "+ctry.en).toLowerCase() : "";
+          return ttl.indexOf(q)!==-1 || cname.indexOf(q)!==-1;
+        })
+      : eps.slice(0,3);
+    epBox.innerHTML = list.length ? list.map(epCard).join("") :
+      '<p style="color:var(--muted);padding:20px 0">לא נמצאו פרקים תואמים.</p>';
+  }
+  renderEps();
+
+  // wire search input
+  var searchEl = document.getElementById("epSearch");
+  var searchTimer;
+  searchEl.addEventListener("input", function(){
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function(){ renderEps(searchEl.value); }, 200);
+  });
 
   // JSON-LD
   document.getElementById("ldjson").textContent = JSON.stringify({

@@ -68,6 +68,34 @@
   document.getElementById("cPlane").innerHTML = I.planeFill;
 
   var code = q("c");
+
+  // Special "general" category — episodes with no country
+  if (code === "general") {
+    var genTitle = T.lang==="he" ? "פרקים כלליים" : "General Episodes";
+    document.title = genTitle + " · " + (T.lang==="he"?"מטוסי נייר":"Paper Planes");
+    document.getElementById("cFlag").textContent = "🎙️";
+    document.getElementById("cName").textContent = genTitle;
+    document.getElementById("cTitle").textContent = genTitle;
+    var genEps = PP.episodes().filter(function(e){ return !e.country; });
+    document.getElementById("cMetaRow").innerHTML =
+      '<span>'+I.play+' '+genEps.length+' '+(T.lang==="he"?"פרקים":"episodes")+'</span>';
+    var genBox = document.getElementById("cContent");
+    genBox.innerHTML = '<div class="grid-cards">'+ genEps.map(function(e){
+      var cover = e.cover || "assets/logo.jpg";
+      var ttl = (T.lang==="en" && e.title_en) ? e.title_en : e.title;
+      return '<a class="card" href="episode.html?id='+e.id+'">'+
+        '<div class="card__media"><img src="'+cover+'" alt="'+ttl+'">'+
+          '<span class="card__tag">🎙️ '+genTitle+'</span></div>'+
+        '<div class="card__body">'+
+          '<span class="ep-date">'+fmtDate(e.date)+' · '+(e.duration||"")+'</span>'+
+          '<h3 class="card__title">'+ttl+'</h3>'+
+          '<p class="card__desc">'+(e.description||"")+'</p>'+
+          '<span class="card__foot"><span class="chip">'+I.play+' '+t("listen_chip")+'</span></span>'+
+        '</div></a>';
+    }).join("") + '</div>';
+    return;
+  }
+
   var c = PP.countryByCode(code);
   if (!c) {
     document.getElementById("cTitle").textContent = t("country_nf_title");
