@@ -36,7 +36,7 @@
   .disc__logo img{max-height:80%;max-width:78%;object-fit:contain;position:relative;z-index:1;}
   .disc__logo .vendor-mark{font-family:var(--head);font-size:30px;color:var(--teal);letter-spacing:.01em;text-align:center;}
   .disc__ribbon{position:absolute;inset-block-start:14px;inset-inline-start:14px;background:var(--sun);color:#5a3c00;font-weight:700;
-    font-size:14px;padding:6px 14px;border-radius:var(--r-pill);box-shadow:var(--shadow-sm);}
+    font-size:20px;padding:6px 14px;border-radius:var(--r-pill);box-shadow:var(--shadow-sm);z-index:2;}
   .disc__body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1;}
   .disc__vendor{font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mint);}
   .disc__headline{font-family:var(--head);font-size:36px;font-weight:700;color:var(--teal-900);line-height:1;}
@@ -120,10 +120,9 @@
       var code = d.code ? '<div class="disc__code"><span class="disc__code-label">'+t("disc_copy_label")+'</span><code>'+d.code+'</code>'+
         '<button class="copy-btn" data-code="'+d.code+'">'+I.tag+' '+t("disc_copy")+'</button></div>' : '';
       return '<div class="card disc">'+
-        '<div class="disc__logo">'+logo+'</div>'+
+        '<div class="disc__logo">'+(hl?'<span class="disc__ribbon">'+hl+'</span>':'')+logo+'</div>'+
         '<div class="disc__body">'+
           '<span class="disc__vendor">'+(d.vendor||"")+'</span>'+
-          (hl?'<div class="disc__headline">'+hl+'</div>':'')+
           '<h3 class="disc__title">'+d.title+'</h3>'+
           '<p class="disc__desc">'+(d.desc||"")+'</p>'+
           code+
