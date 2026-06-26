@@ -35,8 +35,8 @@
   .disc__logo image-slot{position:absolute;inset:0;width:100%!important;height:100%!important;opacity:.45;}
   .disc__logo img{max-height:80%;max-width:78%;object-fit:contain;position:relative;z-index:1;}
   .disc__logo .vendor-mark{font-family:var(--head);font-size:30px;color:var(--teal);letter-spacing:.01em;text-align:center;}
-  .disc__ribbon{position:absolute;inset-block-start:14px;inset-inline-start:14px;background:var(--sun);color:#5a3c00;font-weight:700;
-    font-size:20px;padding:6px 14px;border-radius:var(--r-pill);box-shadow:var(--shadow-sm);z-index:2;}
+  .disc__ribbon{position:absolute;inset-block-start:12px;inset-inline-start:12px;background:var(--sun);color:#5a3c00;font-weight:700;
+    font-size:13px;padding:5px 12px;border-radius:var(--r-pill);box-shadow:var(--shadow-sm);z-index:2;max-width:calc(100% - 24px);white-space:normal;line-height:1.3;}
   .disc__body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1;}
   .disc__vendor{font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mint);}
   .disc__headline{font-family:var(--head);font-size:36px;font-weight:700;color:var(--teal-900);line-height:1;}
@@ -96,7 +96,7 @@
   function driveImg(url) {
     if (!url) return '';
     var m = String(url).match(/\/d\/([a-zA-Z0-9_-]+)/);
-    return m ? 'https://lh3.googleusercontent.com/d/' + m[1] : url;
+    return m ? 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w400' : url;
   }
   function fmtHeadline(hl) {
     if (!hl && hl !== 0) return '';
@@ -119,13 +119,13 @@
       var hl = fmtHeadline(d.headline);
       var code = d.code ? '<div class="disc__code"><span class="disc__code-label">'+t("disc_copy_label")+'</span><code>'+d.code+'</code>'+
         '<button class="copy-btn" data-code="'+d.code+'">'+I.tag+' '+t("disc_copy")+'</button></div>' : '';
+      var desc = d.desc ? '<span class="disc__ribbon">'+d.desc+'</span>' : '';
       return '<div class="card disc">'+
-        '<div class="disc__logo">'+logo+'</div>'+
+        '<div class="disc__logo">'+desc+logo+'</div>'+
         '<div class="disc__body">'+
           '<span class="disc__vendor">'+(d.vendor||"")+'</span>'+
           (hl?'<div class="disc__headline">'+hl+'</div>':'')+
           '<h3 class="disc__title">'+d.title+'</h3>'+
-          '<p class="disc__desc">'+(d.desc||"")+'</p>'+
           code+
           '<div class="disc__foot">'+
             '<a class="btn btn--primary btn--sm" href="'+(d.url||"#")+'" target="_blank" rel="noopener">'+t("disc_redeem")+'</a>'+
