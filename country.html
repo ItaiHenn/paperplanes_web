@@ -2,9 +2,23 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<link rel="alternate" hreflang="he" href="https://paperplanes.co.il/">
+<link rel="alternate" hreflang="en" href="https://paperplanes.co.il/">
+<link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>פרקים לפי מדינה · מטוסי נייר</title>
 <meta name="description" content="כל הפרקים של פודקאסט מטוסי נייר לפי מדינה — טיולים, הרפתקאות וסיפורים מהיעד.">
+<link rel="canonical" href="https://paperplanes.co.il/country.html">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="מטוסי נייר · Paper Planes">
+<meta property="og:title" content="פרקים לפי מדינה · מטוסי נייר">
+<meta property="og:description" content="כל הפרקים של פודקאסט מטוסי נייר לפי מדינה — טיולים, הרפתקאות וסיפורים מהיעד.">
+<meta property="og:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
+<meta property="og:url" content="https://paperplanes.co.il/country.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -104,6 +118,15 @@
   }
 
   document.title = nm(c) + " · " + (T.lang==="he"?"מטוסי נייר":"Paper Planes");
+  // Dynamic og: tags for SEO
+  var cUrl = 'https://paperplanes.co.il/country.html?c=' + code;
+  var cDesc = 'כל פרקי הפודקאסט מטוסי נייר על ' + c.he + ' — טיולים, הרפתקאות וסיפורים מהיעד.';
+  var setM = function(sel,val){var el=document.querySelector(sel);if(el)el.setAttribute('content',val);};
+  document.querySelector('meta[name="description"]').setAttribute('content', cDesc);
+  setM('meta[property="og:title"]', nm(c)+' · מטוסי נייר');
+  setM('meta[property="og:description"]', cDesc);
+  setM('meta[property="og:url"]', cUrl);
+  var canon=document.querySelector('link[rel="canonical"]');if(canon)canon.setAttribute('href',cUrl);
   document.getElementById("cFlag").textContent = c.flag;
   document.getElementById("cName").textContent = nm(c);
   document.getElementById("cTitle").textContent = nm(c);

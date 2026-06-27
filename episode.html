@@ -2,9 +2,25 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<link rel="alternate" hreflang="he" href="https://paperplanes.co.il/">
+<link rel="alternate" hreflang="en" href="https://paperplanes.co.il/">
+<link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>פרק · מטוסי נייר</title>
 <meta name="description" content="האזינו לפרק של מטוסי נייר, קראו את התיאור והתמלול המלא.">
+<link rel="canonical" href="https://paperplanes.co.il/episode.html">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="מטוסי נייר · Paper Planes">
+<meta property="og:title" content="פרק · מטוסי נייר">
+<meta property="og:description" content="האזינו לפרק של מטוסי נייר, קראו את התיאור והתמלול המלא.">
+<meta property="og:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
+<meta property="og:url" content="https://paperplanes.co.il/episode.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="פרק · מטוסי נייר">
+<meta name="twitter:description" content="האזינו לפרק של מטוסי נייר, קראו את התיאור והתמלול המלא.">
+<meta name="twitter:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -115,6 +131,20 @@
   var c = PP.countryByCode(e.country) || {he:"",flag:"",code:""};
 
   document.title = e.title + " · מטוסי נייר";
+  // Update meta tags for SEO + social previews
+  var epUrl = 'https://paperplanes.co.il/episode.html?id=' + encodeURIComponent(e.id);
+  var epImg = e.cover || 'https://paperplanes.co.il/assets/podcast-cover.jpg';
+  var epDesc = (e.description || '').substring(0, 200);
+  document.querySelector('meta[name="description"]').setAttribute('content', epDesc);
+  var setMeta = function(sel, val){ var el=document.querySelector(sel); if(el) el.setAttribute('content',val); };
+  setMeta('meta[property="og:title"]',       e.title + ' · מטוסי נייר');
+  setMeta('meta[property="og:description"]', epDesc);
+  setMeta('meta[property="og:image"]',       epImg);
+  setMeta('meta[property="og:url"]',         epUrl);
+  setMeta('meta[name="twitter:title"]',      e.title + ' · מטוסי נייר');
+  setMeta('meta[name="twitter:description"]',epDesc);
+  setMeta('meta[name="twitter:image"]',      epImg);
+  var canon = document.querySelector('link[rel="canonical"]'); if(canon) canon.setAttribute('href', epUrl);
   document.getElementById("eCrumb").innerHTML =
     '<a href="index.html">בית</a> '+I.arrow+' <a href="country.html?c='+c.code+'">'+c.flag+' '+c.he+'</a> '+I.arrow+' <span>'+e.title+'</span>';
   document.getElementById("eCover").src = e.cover || "assets/logo.jpg";
