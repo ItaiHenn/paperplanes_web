@@ -12,10 +12,20 @@ const DISCLAIMER =
   "This document is a travel itinerary prepared for visa application and planning purposes only. " +
   "It is not a valid ticket for boarding or official immigration use.";
 
+const PNR_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
 function randomDigits(n: number): string {
   let s = "";
   for (let i = 0; i < n; i++) s += Math.floor(Math.random() * 10);
   return s;
+}
+
+export function generatePnr(): string {
+  let pnr = "";
+  for (let i = 0; i < 6; i++) {
+    pnr += PNR_CHARS[Math.floor(Math.random() * PNR_CHARS.length)];
+  }
+  return pnr;
 }
 
 export function pdfFilename(passengerName: string): string {
@@ -47,22 +57,50 @@ export async function generateFlightTicketPdf(data: FlightTicketData): Promise<B
       .fontSize(11)
       .text("Flight Ticket Confirmation", 40, 54);
 
-    // Booking ref (top right)
-    doc
-      .fillColor(GOLD)
-      .font("Helvetica-Bold")
-      .fontSize(10)
-      .text(`REF: ${data.bookingRef}`, W - 200, 30, { width: 160, align: "right" });
+    // Booking ref + PNR (top right)
     doc
       .fillColor(WHITE)
       .font("Helvetica")
-      .fontSize(9)
-      .text(`Issued: ${data.issuedAt}`, W - 200, 48, { width: 160, align: "right" });
+      .fontSize(8)
+      .text("BOOKING REF", W - 200, 18, { width: 160, align: "right" });
+    doc
+      .fillColor(GOLD)
+      .font("Helvetica-Bold")
+      .fontSize(11)
+      .text(data.bookingRef, W - 200, 29, { width: 160, align: "right" });
+    doc
+      .fillColor(WHITE)
+      .font("Helvetica")
+      .fontSize(8)
+      .text(`Issued: ${data.issuedAt}`, W - 200, 46, { width: 160, align: "right" });
 
     // Gold accent line
     doc.rect(0, 90, W, 4).fill(GOLD);
 
+    const pnr = data.pnr || generatePnr();
     let y = 114;
+
+    // ── PNR banner ────────────────────────────────────────────────────────────
+    doc.rect(40, y, W - 80, 48).fill(GOLD);
+    doc
+      .fillColor(NAVY)
+      .font("Helvetica")
+      .fontSize(9)
+      .text("PNR / BOOKING CODE", 56, y + 8);
+    doc
+      .fillColor(NAVY)
+      .font("Helvetica-Bold")
+      .fontSize(26)
+      .text(pnr, 56, y + 18);
+    doc
+      .fillColor(NAVY)
+      .font("Helvetica")
+      .fontSize(8)
+      .text("Present this code at the airport check-in counter", W - 280, y + 26, {
+        width: 224,
+        align: "right",
+      });
+    y += 60;
 
     // ── Passenger section ─────────────────────────────────────────────────────
     doc.rect(40, y, W - 80, 70).fillAndStroke(LIGHT_GRAY, LIGHT_GRAY);

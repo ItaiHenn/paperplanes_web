@@ -2,6 +2,7 @@ import type { FlightTicketData, HotelBookingData, VisaTripPlanData } from "@/typ
 
 export const dummyFlight: FlightTicketData = {
   bookingRef: "DPT-DEMO-FLT",
+  pnr: "XK7R2M",
   passengerName: "Alex Traveler",
   passengerEmail: "alex@example.com",
   passengerPhone: "+1 555-0123",
@@ -51,6 +52,7 @@ export const dummyFlight: FlightTicketData = {
 
 export const dummyHotel: HotelBookingData = {
   bookingRef: "DPT-DEMO-HTL",
+  hotelConfirmationNumber: "MOB-8392847",
   guestName: "Alex Traveler",
   guestEmail: "alex@example.com",
   guestPhone: "+1 555-0123",

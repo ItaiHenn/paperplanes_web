@@ -13,6 +13,17 @@ const DISCLAIMER =
   "This document is a travel itinerary prepared for visa application and planning purposes only. " +
   "It is not a valid ticket for boarding or official immigration use.";
 
+const CONF_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+
+export function generateHotelConfNum(): string {
+  // Format: XXX-NNNNNNN  (3 letters dash 7 digits — looks like hotel systems)
+  let prefix = "";
+  for (let i = 0; i < 3; i++) prefix += CONF_CHARS[Math.floor(Math.random() * CONF_CHARS.length)];
+  let digits = "";
+  for (let i = 0; i < 7; i++) digits += Math.floor(Math.random() * 10);
+  return `${prefix}-${digits}`;
+}
+
 export async function generateHotelBookingPdf(data: HotelBookingData): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const doc = new PDFDocument({ size: "A4", margin: 0 });
@@ -29,18 +40,46 @@ export async function generateHotelBookingPdf(data: HotelBookingData): Promise<B
     doc.fillColor(GOLD).font("Helvetica-Bold").fontSize(26).text("DEPARTO", 40, 22);
     doc.fillColor(WHITE).font("Helvetica").fontSize(11).text("Hotel Booking Confirmation", 40, 54);
     doc
+      .fillColor(WHITE)
+      .font("Helvetica")
+      .fontSize(8)
+      .text("BOOKING REF", W - 200, 18, { width: 160, align: "right" });
+    doc
       .fillColor(GOLD)
       .font("Helvetica-Bold")
-      .fontSize(10)
-      .text(`REF: ${data.bookingRef}`, W - 200, 30, { width: 160, align: "right" });
+      .fontSize(11)
+      .text(data.bookingRef, W - 200, 29, { width: 160, align: "right" });
+    doc
+      .fillColor(WHITE)
+      .font("Helvetica")
+      .fontSize(8)
+      .text(`Issued: ${data.issuedAt}`, W - 200, 46, { width: 160, align: "right" });
+    doc.rect(0, 90, W, 4).fill(GOLD);
+
+    let y = 114;
+
+    // ── Confirmation number banner ────────────────────────────────────────────
+    const confirmNum = data.hotelConfirmationNumber || generateHotelConfNum();
+    doc.rect(40, y, W - 80, 48).fill(GREEN);
     doc
       .fillColor(WHITE)
       .font("Helvetica")
       .fontSize(9)
-      .text(`Issued: ${data.issuedAt}`, W - 200, 48, { width: 160, align: "right" });
-    doc.rect(0, 90, W, 4).fill(GOLD);
-
-    let y = 114;
+      .text("HOTEL CONFIRMATION NUMBER", 56, y + 8);
+    doc
+      .fillColor(WHITE)
+      .font("Helvetica-Bold")
+      .fontSize(24)
+      .text(confirmNum, 56, y + 20);
+    doc
+      .fillColor("#ffffff99")
+      .font("Helvetica")
+      .fontSize(8)
+      .text("Quote this number when contacting the hotel", W - 280, y + 26, {
+        width: 224,
+        align: "right",
+      });
+    y += 60;
 
     // ── Guest info ────────────────────────────────────────────────────────────
     doc.rect(40, y, W - 80, 60).fillAndStroke(LIGHT_GRAY, LIGHT_GRAY);

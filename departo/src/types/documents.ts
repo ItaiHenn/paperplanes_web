@@ -17,6 +17,7 @@ export interface FlightSegment {
 
 export interface FlightTicketData {
   bookingRef: string;
+  pnr: string;
   passengerName: string;
   passengerEmail: string;
   passengerPhone: string;
@@ -39,6 +40,7 @@ export interface HotelRoom {
 
 export interface HotelBookingData {
   bookingRef: string;
+  hotelConfirmationNumber: string;
   guestName: string;
   guestEmail: string;
   guestPhone: string;
