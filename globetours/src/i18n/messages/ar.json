@@ -1,0 +1,53 @@
+{
+  "common": {
+    "brand": "GlobeTours",
+    "tagline": "عالمك، رحلتك"
+  },
+  "search": {
+    "title": "البحث عن رحلات",
+    "origin": "المغادرة (رمز IATA)",
+    "destination": "الوجهة (رمز IATA)",
+    "date": "تاريخ المغادرة",
+    "searchBtn": "البحث عن رحلات",
+    "searching": "جارٍ البحث...",
+    "placeholder_origin": "مثال: DXB",
+    "placeholder_destination": "مثال: JFK",
+    "example": "أمثلة: DXB, JFK, LHR, FRA, TLV"
+  },
+  "results": {
+    "title": "الرحلات المتاحة",
+    "noResults": "لم يتم العثور على رحلات. جرب تواريخ أو مطارات مختلفة.",
+    "selectBtn": "اختر هذه الرحلة",
+    "duration": "مدة الرحلة",
+    "stops": "رحلة مباشرة",
+    "price": "السعر الإجمالي"
+  },
+  "passenger": {
+    "title": "بيانات المسافر",
+    "subtitle": "أدخل بياناتك لإنشاء خط السير",
+    "name": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "placeholder_name": "محمد أحمد",
+    "placeholder_email": "mohammed@example.com",
+    "placeholder_phone": "+971 50 000 0000",
+    "generateBtn": "إنشاء خط السير",
+    "generating": "جارٍ الإنشاء..."
+  },
+  "itinerary": {
+    "title": "خط السير جاهز",
+    "bookingRef": "رقم الحجز",
+    "downloadBtn": "تنزيل PDF",
+    "downloading": "جارٍ إنشاء PDF...",
+    "newSearch": "البحث عن رحلة أخرى",
+    "generatedAt": "تم الإنشاء في"
+  },
+  "errors": {
+    "required": "هذا الحقل مطلوب",
+    "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
+    "searchFailed": "فشل البحث. يرجى المحاولة مرة أخرى.",
+    "createFailed": "تعذر إنشاء خط السير. يرجى المحاولة مرة أخرى.",
+    "notFound": "لم يتم العثور على خط السير.",
+    "rateLimited": "عمليات بحث كثيرة جداً. انتظر دقيقة وحاول مرة أخرى."
+  }
+}

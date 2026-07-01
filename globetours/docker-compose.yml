@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://globetours:globetours@db:5432/globetours
+      REDIS_URL: redis://redis:6379
+      AMADEUS_CLIENT_ID: ${AMADEUS_CLIENT_ID:-mock}
+      AMADEUS_CLIENT_SECRET: ${AMADEUS_CLIENT_SECRET:-mock}
+      NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL:-http://localhost:3000}
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/chromium
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: globetours
+      POSTGRES_PASSWORD: globetours
+      POSTGRES_DB: globetours
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U globetours"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redisdata:/data
+
+volumes:
+  pgdata:
+  redisdata:
