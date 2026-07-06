@@ -131,6 +131,8 @@
         '</div></div>'+
         '<div><h4>'+T.t("foot_more")+'</h4><div class="footer__links">'+
           '<a href="about.html">'+T.t("nav_about")+'</a><a href="contact.html">'+T.t("nav_contact")+'</a>'+
+          '<a href="terms.html">'+(T.lang==="he"?"תנאי שימוש":"Terms of Use")+'</a>'+
+          '<a href="accessibility.html">'+(T.lang==="he"?"הצהרת נגישות":"Accessibility")+'</a>'+
           '<a href="admin.html">'+T.t("foot_admin")+'</a>'+
         '</div></div>'+
       '</div>'+

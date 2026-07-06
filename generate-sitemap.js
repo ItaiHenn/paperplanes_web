@@ -46,6 +46,8 @@ const statics = [
   { loc: '/discounts.html', priority: '0.8', freq: 'weekly' },
   { loc: '/guides.html',    priority: '0.8', freq: 'weekly' },
   { loc: '/contact.html',   priority: '0.6', freq: 'yearly' },
+  { loc: '/terms.html',     priority: '0.5', freq: 'yearly' },
+  { loc: '/accessibility.html', priority: '0.5', freq: 'yearly' },
 ];
 
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;

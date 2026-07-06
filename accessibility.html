@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<link rel="alternate" hreflang="he" href="https://paperplanes.co.il/accessibility.html">
+<link rel="alternate" hreflang="en" href="https://paperplanes.co.il/accessibility.html">
+<link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/accessibility.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הצהרת נגישות · מטוסי נייר</title>
+<meta name="description" content="הצהרת נגישות באתר מטוסי נייר בהתאם לתקן WCAG 2.1 ותקן IS 5568 הישראלי.">
+<link rel="canonical" href="https://paperplanes.co.il/accessibility.html">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paperplanes.co.il/accessibility.html">
+<meta property="og:site_name" content="מטוסי נייר · Paper Planes">
+<meta property="og:title" content="הצהרת נגישות · מטוסי נייר">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  section{padding-block:clamp(40px,5vw,70px);}
+  .legal-hero{background:linear-gradient(155deg,#157A8B,#0A3F49);color:#fff;padding-block:clamp(40px,6vw,68px);}
+  .legal-hero h1{font-size:clamp(32px,5vw,52px);margin-top:8px;}
+  .legal-body{max-width:820px;margin:0 auto;}
+  .legal-body h2{font-size:24px;color:var(--teal-900);margin-top:32px;margin-bottom:14px;}
+  .legal-body h3{font-size:18px;color:var(--teal-900);margin-top:24px;margin-bottom:10px;}
+  .legal-body p{font-size:16px;color:#33585f;line-height:1.85;margin-bottom:16px;}
+  .legal-body li{font-size:16px;color:#33585f;line-height:1.85;margin-left:24px;margin-bottom:12px;}
+  .a11y-box{background:var(--sky);border-left:4px solid var(--teal);padding:20px;border-radius:var(--r-md);margin:20px 0;}
+</style>
+</head>
+<body data-page="accessibility">
+<div id="site-header"></div>
+
+<section class="legal-hero">
+  <div class="wrap">
+    <h1 id="a11yTitle"></h1>
+  </div>
+</section>
+
+<section>
+  <div class="wrap legal-body" id="a11yContent"></div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/chrome.js"></script>
+<script>
+(function () {
+  var T = window.T;
+  var isHe = T.lang === "he";
+
+  var heContent = `
+    <h2>הצהרת נגישות</h2>
+
+    <p>אתר הבית של הפודקאסט <strong>מטוסי נייר</strong> מחויב לתקנים בנגישות דיגיטלית בהתאם לחוק הישראלי ותקנים בינלאומיים.</p>
+
+    <div class="a11y-box">
+      <strong>מטוסי נייר מחויבת לתקן WCAG 2.1 Level AA</strong> ותקן IS 5568 הישראלי, המגנים על זכויות המשתמשים עם מוגבלויות.
+    </div>
+
+    <h2>מה אנחנו עושים להנגשה</h2>
+
+    <h3>תמיכה בנווט מקלדת</h3>
+    <p>כל הכפתורים, הקישורים וחלקי הממשק ניתנים לשימוש באמצעות מקלדת בלבד (Tab, Enter, Escape, חצים).</p>
+
+    <h3>תמיכה בקוראים מסך</h3>
+    <p>עמודי האתר מכילים קוד סמנטי (heading tags, labels, ARIA attributes) המאפשר לתוכנות סייעת כמו NVDA, JAWS ו-VoiceOver לקרוא את תוכן הדף בצורה מובנת.</p>
+
+    <h3>ניגודיות צבעים</h3>
+    <p>כל טקסט בעל ניגודיות צבע הולמת (לפחות 4.5:1 עבור טקסט רגיל, 3:1 עבור טקסט גדול) בהתאם לתקן WCAG AA.</p>
+
+    <h3>תוכן דינמי נגיש</h3>
+    <p>כאשר תוכן משתנה ללא טעינת עמוד (כמו סינון פרקים או חיפוש) — קוראי המסך מקבלים הודעה בזמן אמת (aria-live regions).</p>
+
+    <h3>טפסים וטעויות</h3>
+    <p>כל שדה בטופס מקושר בבירור לתווית שלו (label). טעויות מתקבלות באופן ברור וקוראי המסך מודיעים על בעיות בזמן אמת.</p>
+
+    <h2>בעיות נגישות? צרו קשר</h2>
+    <p>אם נתקלתם בבעיה בנגישות או שחלק מהאתר לא עובד כראוי עם סייעה שלכם — אנא <a href="contact.html">צרו קשר</a> וספרו לנו פרטים.</p>
+
+    <h3>מה להכלול בהודעה שלכם:</h3>
+    <ul>
+      <li>איזה דף זקוק לעזרה</li>
+      <li>איזו סייעה אתם משתמשים (screen reader, מקלדת בלבד, וכו')</li>
+      <li>איזו בעיה בדיוק אתם חוויים</li>
+    </ul>
+
+    <h2>כלים נוספים</h2>
+    <p><strong>כפתור "דילוג לתוכן ראשי":</strong> חץ Tab בשלוש הפעמים הראשונות בעמוד ותמצאו קישור להדלגה ישירה לתוכן הראשי (לא לתפריט או כותרת).</p>
+
+    <p style="margin-top:40px;font-size:15px;color:var(--muted);">
+      הצהרה זו עודכנה בחודש יולי 2026.
+    </p>
+  `;
+
+  var enContent = `
+    <h2>Accessibility Statement</h2>
+
+    <p>The Paper Planes podcast website is committed to digital accessibility standards in accordance with Israeli law and international standards.</p>
+
+    <div class="a11y-box">
+      <strong>Paper Planes commits to WCAG 2.1 Level AA</strong> and Israeli Standard IS 5568, which protect the rights of users with disabilities.
+    </div>
+
+    <h2>What We Do for Accessibility</h2>
+
+    <h3>Keyboard Navigation</h3>
+    <p>All buttons, links, and interface components can be used with a keyboard only (Tab, Enter, Escape, Arrow keys).</p>
+
+    <h3>Screen Reader Support</h3>
+    <p>Web pages contain semantic code (heading tags, labels, ARIA attributes) that allow assistive technologies like NVDA, JAWS, and VoiceOver to read page content clearly and logically.</p>
+
+    <h3>Color Contrast</h3>
+    <p>All text has sufficient color contrast (at least 4.5:1 for regular text, 3:1 for large text) per WCAG AA standards.</p>
+
+    <h3>Dynamic Content</h3>
+    <p>When content changes without a page reload (such as filtering episodes or search results) — screen readers receive real-time notifications (aria-live regions).</p>
+
+    <h3>Forms & Error Messages</h3>
+    <p>Every form field is clearly associated with its label. Errors are presented clearly and screen readers announce issues in real-time.</p>
+
+    <h2>Found an Accessibility Issue? Contact Us</h2>
+    <p>If you encountered an accessibility problem or something doesn't work properly with your assistive technology — please <a href="contact.html">contact us</a> with details.</p>
+
+    <h3>What to include in your message:</h3>
+    <ul>
+      <li>Which page needs help</li>
+      <li>Which assistive technology you use (screen reader, keyboard-only, etc.)</li>
+      <li>The specific problem you encountered</li>
+    </ul>
+
+    <h2>Additional Tools</h2>
+    <p><strong>"Skip to Main Content" Link:</strong> Press Tab three times at the top of the page and you'll find a link to skip directly to the main content (not the menu or header).</p>
+
+    <p style="margin-top:40px;font-size:15px;color:var(--muted);">
+      This statement was last updated in July 2026.
+    </p>
+  `;
+
+  document.getElementById("a11yTitle").textContent = isHe ? "הצהרת נגישות" : "Accessibility Statement";
+  document.getElementById("a11yContent").innerHTML = isHe ? heContent : enContent;
+
+  document.documentElement.lang = isHe ? "he" : "en";
+  document.documentElement.dir = isHe ? "rtl" : "ltr";
+})();
+</script>
+</body>
+</html>
