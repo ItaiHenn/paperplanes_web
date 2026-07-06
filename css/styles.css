@@ -185,3 +185,43 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .country-chip:hover{border-color:var(--teal);transform:translateY(-2px);color:var(--teal);}
 .country-chip .n{background:var(--sky);color:var(--teal);font-size:12px;font-weight:700;padding:1px 8px;border-radius:var(--r-pill);}
 .country-chip.soon{opacity:.62;}
+
+/* ===== Accessibility Widget ===== */
+.a11y-widget{position:fixed;bottom:20px;left:20px;z-index:9999;font-family:var(--body);}
+.a11y-toggle{background:var(--teal);color:#fff;border:none;padding:12px 16px;border-radius:var(--r-md);
+  font-weight:600;font-size:14px;cursor:pointer;box-shadow:var(--shadow-md);transition:.2s;}
+.a11y-toggle:hover{background:var(--teal-700);transform:scale(1.05);}
+.a11y-toggle:focus{outline:3px solid var(--sun);outline-offset:2px;}
+
+.a11y-panel{position:absolute;bottom:50px;left:0;background:#fff;border:2px solid var(--teal);
+  border-radius:var(--r-md);padding:16px;width:240px;box-shadow:var(--shadow-lg);
+  direction:rtl;text-align:right;}
+.a11y-control{margin-bottom:14px;display:flex;flex-direction:column;gap:8px;}
+.a11y-control label{font-size:14px;font-weight:500;color:var(--teal-900);}
+.a11y-slider{width:100%;cursor:pointer;accent-color:var(--teal);}
+.a11y-check{width:18px;height:18px;cursor:pointer;margin-inline-start:8px;}
+.a11y-btn-reset{background:var(--sky);color:var(--teal-900);border:1px solid var(--teal);
+  padding:8px 12px;border-radius:var(--r-md);font-weight:600;font-size:13px;cursor:pointer;
+  width:100%;transition:.2s;}
+.a11y-btn-reset:hover{background:var(--teal);color:#fff;}
+.a11y-btn-reset:focus{outline:3px solid var(--sun);outline-offset:2px;}
+
+/* High Contrast */
+.pp-high-contrast{--line:#000!important;--muted:#333!important;--teal-900:#000!important;}
+.pp-high-contrast body{color:#000!important;background:#fff!important;}
+.pp-high-contrast a{color:#0000ee!important;text-decoration:underline!important;}
+.pp-high-contrast button,.pp-high-contrast .btn{border:2px solid #000!important;}
+
+/* Dark Mode */
+.pp-dark-mode{--bg:#1a1a1a;--text:#e0e0e0;}
+.pp-dark-mode body{background:#1a1a1a!important;color:#e0e0e0!important;}
+.pp-dark-mode #site-header{background:#0d0d0d!important;}
+.pp-dark-mode .footer{background:#0d0d0d!important;}
+.pp-dark-mode [class*="hero"]{background-color:#1a1a1a!important;}
+.pp-dark-mode .card,.pp-dark-mode .aside-card,.pp-dark-mode .a11y-panel{background:#2a2a2a!important;border-color:#444!important;}
+.pp-dark-mode p,.pp-dark-mode li,.pp-dark-mode .lead{color:#d0d0d0!important;}
+
+/* Dyslexia Font */
+.pp-dyslexia-font{font-weight:600;letter-spacing:.05em;}
+.pp-dyslexia-font body{font-weight:500;}
+.pp-dyslexia-font p,.pp-dyslexia-font li{line-height:1.8!important;}

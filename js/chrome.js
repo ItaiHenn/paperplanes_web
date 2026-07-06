@@ -1,4 +1,11 @@
-/* ===== Paper Planes — shared header + footer (i18n) ===== */
+/* ===== Paper Planes — shared header + footer (i18n) + accessibility widget ===== */
+// Load accessibility widget
+(function(){
+  var script = document.createElement('script');
+  script.src = 'js/accessibility-widget.js';
+  script.async = true;
+  document.head.appendChild(script);
+})();
 (function () {
   /* ---- Google Analytics 4 ---- */
   var GA_ID = "G-CBYGT3Q5G6";
