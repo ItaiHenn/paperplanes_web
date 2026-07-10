@@ -247,8 +247,9 @@
   document.getElementById("hp2").innerHTML = I.planeFill;
 
   // stats
+  var eps = PP.episodes();  // ← declared globally so renderEps() can use it
   function updateStats(){
-    var eps = PP.episodes();
+    eps = PP.episodes();  // ← update reference
     document.getElementById("statEpisodes").textContent = eps.length;
     document.getElementById("statCountries").textContent = PP.countries.length;
   }

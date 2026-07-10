@@ -72,7 +72,9 @@
     { code:"gh", he:"אפריקה",        en:"Africa",          flag:"🌍",   lat:8.0,   lng:1.0,   geo:[] },
     { code:"ls", he:"לסוטו",         en:"Lesotho",         flag:"🇱🇸", lat:-29.6, lng:28.2,  geo:["Lesotho"] },
     { code:"sz", he:"אסוואטיני",     en:"Eswatini",        flag:"🇸🇿", lat:-26.5, lng:31.5,  geo:["Swaziland"] },
-    { code:"aq", he:"אנטארקטיקה",    en:"Antarctica",      flag:"🇦🇶", lat:-75.0, lng:0.0,   geo:["Antarctica"] }
+    { code:"aq", he:"אנטארקטיקה",    en:"Antarctica",      flag:"🇦🇶", lat:-75.0, lng:0.0,   geo:["Antarctica"] },
+    { code:"vu", he:"ונואטו",        en:"Vanuatu",         flag:"🇻🇺", lat:-16.0, lng:167.5, geo:["Vanuatu"] },
+    { code:"pw", he:"פלאו",          en:"Palau",           flag:"🇵🇼", lat:7.3,   lng:134.5, geo:["Palau"] }
   ];
 
   /* ---- seed episodes (imported from RSS — 178 episodes) ---- */
