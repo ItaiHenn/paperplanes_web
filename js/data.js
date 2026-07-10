@@ -282,7 +282,15 @@
   function write(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch(e){} }
 
   var Store = {
-    countries: COUNTRIES,
+    get countries() {
+      var codes = {}, eps = this.episodes();
+      eps.forEach(function(e) {
+        if (e.country) e.country.split(", ").forEach(function(c) { if (c) codes[c] = true; });
+      });
+      var result = [];
+      for (var i = 0; i < COUNTRIES.length; i++) if (codes[COUNTRIES[i].code]) result.push(COUNTRIES[i]);
+      return result;
+    },
     social:    SOCIAL,
 
     countryByCode: function (c) {
