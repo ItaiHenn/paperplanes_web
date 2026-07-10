@@ -247,9 +247,17 @@
   document.getElementById("hp2").innerHTML = I.planeFill;
 
   // stats
-  var eps = PP.episodes();
-  document.getElementById("statEpisodes").textContent = eps.length;
-  document.getElementById("statCountries").textContent = PP.countries.length;
+  function updateStats(){
+    var eps = PP.episodes();
+    document.getElementById("statEpisodes").textContent = eps.length;
+    document.getElementById("statCountries").textContent = PP.countries.length;
+  }
+  updateStats();
+
+  // Listen for updates from Google Sheet
+  if (PP.onChange) PP.onChange(function(key){
+    if (key === 'pp_episodes_v3') updateStats();
+  });
 
   // listen grid
   var L = [
@@ -266,13 +274,21 @@
   }).join("");
 
   // country chips (with כללי chip for episodes without country)
-  var counts = PP.countriesWithEpisodes();
-  var genCount = eps.filter(function(e){ return !e.country; }).length;
-  document.getElementById("countryChips").innerHTML = PP.countries.map(function(c){
-    var n = counts[c.code]||0;
-    return '<a class="country-chip'+(n?'':' soon')+'" href="country.html?c='+c.code+'">'+
-      c.flag+' '+nm(c)+ (n?'<span class="n">'+n+'</span>':'<span class="n">'+t("soon")+'</span>')+'</a>';
-  }).join("") + (genCount ? '<a class="country-chip" href="country.html?c=general">🎙️ כללי<span class="n">'+genCount+'</span></a>' : '');
+  function renderCountryChips(){
+    var counts = PP.countriesWithEpisodes();
+    var genCount = PP.episodes().filter(function(e){ return !e.country; }).length;
+    document.getElementById("countryChips").innerHTML = PP.countries.map(function(c){
+      var n = counts[c.code]||0;
+      return '<a class="country-chip'+(n?'':' soon')+'" href="country.html?c='+c.code+'">'+
+        c.flag+' '+nm(c)+ (n?'<span class="n">'+n+'</span>':'<span class="n">'+t("soon")+'</span>')+'</a>';
+    }).join("") + (genCount ? '<a class="country-chip" href="country.html?c=general">🎙️ כללי<span class="n">'+genCount+'</span></a>' : '');
+  }
+  renderCountryChips();
+
+  // Listen for updates from Google Sheet
+  if (PP.onChange) PP.onChange(function(key){
+    if (key === 'pp_episodes_v3') renderCountryChips();
+  });
 
   // episode card renderer (used for both default + search)
   function epCard(e){

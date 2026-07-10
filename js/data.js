@@ -409,4 +409,22 @@
   } catch(e){}
 
   global.PP = Store;
+
+  // Monitor localStorage for changes (from Sheet sync) and notify listeners
+  var listeners = [];
+  window.addEventListener('storage', function(e) {
+    if (e.key && (e.key === K.ep || e.key === K.disc || e.key === K.guide)) {
+      listeners.forEach(function(cb) { cb(e.key); });
+    }
+  });
+  Store.onChange = function(callback) {
+    listeners.push(callback);
+  };
+
+  // Also fire changes when syncing from Sheet (setInterval in data fetch)
+  var origWrite = write;
+  write = function(key, val) {
+    origWrite(key, val);
+    listeners.forEach(function(cb) { cb(key); });
+  };
 })(window);
