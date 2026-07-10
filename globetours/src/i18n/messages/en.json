@@ -1,0 +1,53 @@
+{
+  "common": {
+    "brand": "GlobeTours",
+    "tagline": "Your world, your journey"
+  },
+  "search": {
+    "title": "Search Flights",
+    "origin": "From (IATA code)",
+    "destination": "To (IATA code)",
+    "date": "Departure Date",
+    "searchBtn": "Search Flights",
+    "searching": "Searching...",
+    "placeholder_origin": "e.g. TLV",
+    "placeholder_destination": "e.g. JFK",
+    "example": "Examples: TLV, JFK, LHR, FRA, DXB"
+  },
+  "results": {
+    "title": "Available Flights",
+    "noResults": "No flights found. Try different dates or airports.",
+    "selectBtn": "Select this flight",
+    "duration": "Duration",
+    "stops": "Non-stop",
+    "price": "Total price"
+  },
+  "passenger": {
+    "title": "Passenger Details",
+    "subtitle": "Enter your details to generate the itinerary",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "placeholder_name": "John Doe",
+    "placeholder_email": "john@example.com",
+    "placeholder_phone": "+1 555 000 0000",
+    "generateBtn": "Generate Itinerary",
+    "generating": "Generating..."
+  },
+  "itinerary": {
+    "title": "Itinerary Ready",
+    "bookingRef": "Booking Reference",
+    "downloadBtn": "Download PDF",
+    "downloading": "Generating PDF...",
+    "newSearch": "Search another flight",
+    "generatedAt": "Generated on"
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email",
+    "searchFailed": "Flight search failed. Please try again.",
+    "createFailed": "Could not create itinerary. Please try again.",
+    "notFound": "Itinerary not found.",
+    "rateLimited": "Too many searches. Please wait a minute and try again."
+  }
+}
