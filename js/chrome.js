@@ -8,7 +8,7 @@
 })();
 (function () {
   /* ---- Google Analytics 4 ---- */
-  var GA_ID = "G-CBYGT3Q5G6";
+  var GA_ID = "G-GKNN4RTH2F";
   (function(){
     var s = document.createElement("script");
     s.async = true;
