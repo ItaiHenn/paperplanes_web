@@ -41,6 +41,25 @@
   .pillar .ic svg{width:26px;height:26px;}
   .pillar h3{font-size:21px;color:var(--teal-900);margin-bottom:8px;}
   .pillar p{color:var(--muted);font-size:15.5px;}
+
+  /* Articles Section */
+  .articles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:20px;}
+  .article-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;transition:transform .3s, box-shadow .3s;box-shadow:var(--shadow-sm);}
+  .article-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(21,122,139,.15);}
+  .article-img{width:100%;height:200px;object-fit:cover;display:block;}
+  .article-body{padding:20px;}
+  .article-title-he{font-size:18px;font-weight:600;color:var(--teal-900);margin-bottom:6px;line-height:1.4;}
+  .article-title-en{font-size:13px;color:var(--teal);font-weight:500;margin-bottom:10px;display:block;}
+  .article-desc{font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+  .article-link{color:var(--teal);font-weight:600;text-decoration:none;transition:color .2s;}
+  .article-link:hover{color:var(--teal-900);}
+
+  /* Collaborations Section */
+  .collaborations-carousel{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px;align-items:center;}
+  .collab-item{background:#fff;border-radius:var(--r-lg);padding:20px;text-align:center;box-shadow:var(--shadow-sm);transition:transform .3s;}
+  .collab-item:hover{transform:scale(1.05);}
+  .collab-logo{max-width:100%;height:80px;object-fit:contain;margin-bottom:12px;}
+  .collab-name{font-size:15px;font-weight:500;color:var(--teal-900);}
 </style>
 </head>
 <body data-page="about">
@@ -67,11 +86,60 @@
     <p style="font-weight:400;font-family:Rubik">מטוסי נייר הוא פודקסט שונה, אנחנו לא מספרים לכם רק לאן ללכת. אנחנו מספרים את הסיפורים שמאחורי המקומות: האנשים שפגשנו, הטעויות שעשינו, והרגעים הקטנים שהפכו טיול להרפתקה. כי בסוף, הזיכרון הכי טוב הוא תמיד הסיפור.<br>אני מזמין אתכם להצטרף אלי למסע, בכל פרק נחקור ונגלה מקום חדש, נשמע על הרפתקה מיוחדת ונצלול לסיפורים וחוויות.<br><br>נקפוץ על הקרחונים של אנטרטיקה, נצלול בגלפגוס, נטפס לאוורסט אבל גם לא נשכח לטייל בארץ.<br><br><span style="font-size:18px;font-weight:500;font-family:'Noto Sans'">״טיול הוא הדבר היחיד שאתה יכול לקנות שעושה אותך יותר עשיר״</span><br><br><span style="font-size:25px;font-weight:700">״מצב טיסה״</span><br><span style="font-weight:400">בשנתיים האחרונות אני בטיול הגדול שלי, חוקר כל פינה שאני מגיע אליה.</span><br><span style="font-weight:400">טועם מאכלים משונים, פוגש אנשים מיוחדים ובעיקר לומד על העולם שסביבנו.</span><br><span style="font-weight:400">לקחתי את המיקרופון איתי למסע, וביחד איתכם אני עוברים את האתגרים, החוויות והסיפורים השונים בדרך<br>הפודקסט הנודד הראשון בישראל!</span></p>
     <p data-i18n-html="story_p3"></p>
 
+    <!-- Articles Section -->
+    <div style="margin-top:60px;margin-bottom:60px;">
+      <span class="eyebrow" style="display:block;margin-bottom:16px;">📰 כתבות</span>
+      <h2 class="h-sec" style="margin-bottom:28px;">כתבו עלינו</h2>
+      <div class="articles-grid">
+        <article class="article-card">
+          <img src="assets/articles/article1.jpg" alt="South Korea" class="article-img">
+          <div class="article-body">
+            <h3 class="article-title-he">עושים סדר: איתי חן מסביר מה קרה בדרום קוריאה</h3>
+            <p class="article-title-en">Setting the Record Straight: Itai Chen on South Korea</p>
+            <p class="article-desc">מסביר בדיווח מיוחד ל-V1 מה קרה עם ניסיון ההפיכה.</p>
+            <a href="https://www.v-1.co.il/news-magazine/2024-m12_w01/shorts-05471a87a7d8391026.htm" target="_blank" rel="noopener" class="article-link">קרא עוד →</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="assets/articles/article2.jpg" alt="Fiji" class="article-img">
+          <div class="article-body">
+            <h3 class="article-title-he">בלי כלוב, מול 40 כרישים: פיג'י שמעבר לריזורטים</h3>
+            <p class="article-title-en">Cage-Free, Facing 40 Sharks: Fiji Beyond Resorts</p>
+            <p class="article-desc">אירוח אצל משפחה מקומית, משחקי רוגבי וחופים שנראים כמו גלויה.</p>
+            <a href="https://www.israelhayom.co.il/travel/travel-abroad/article/21046694" target="_blank" rel="noopener" class="article-link">קרא עוד →</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="assets/articles/article3.jpg" alt="Solomon Islands" class="article-img">
+          <div class="article-body">
+            <h3 class="article-title-he">הישראלי שביקר באי המבודד: גילוי היסטוריה סודית</h3>
+            <p class="article-title-en">The Israeli Who Visited an Isolated Island</p>
+            <p class="article-desc">איתי חן יצא למסע באיי שלמה וגילה היסטוריה אפלה וכמעט שכחה.</p>
+            <a href="https://www.israelhayom.co.il/travel/travel-abroad/article/20655328" target="_blank" rel="noopener" class="article-link">קרא עוד →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
     <div class="pillars">
       <div class="pillar"><div class="ic" id="ic1"></div><h3 data-i18n="pillar1_t"></h3><p data-i18n="pillar1_d"></p></div>
       <div class="pillar"><div class="ic" id="ic2"></div><h3 data-i18n="pillar2_t"></h3><p data-i18n="pillar2_d"></p></div>
       <div class="pillar"><div class="ic" id="ic3"></div><h3 data-i18n="pillar3_t"></h3><p data-i18n="pillar3_d"></p></div>
       <div class="pillar"><div class="ic" id="ic4"></div><h3 data-i18n="pillar4_t"></h3><p data-i18n="pillar4_d"></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Collaborations Section -->
+<section style="background:var(--sky);border-radius:0;">
+  <div class="wrap">
+    <span class="eyebrow" id="collabEyebrow"></span>
+    <h2 class="h-sec" style="margin-bottom:32px;">שותפינו לדרך</h2>
+    <div class="collaborations-carousel" id="collabCarousel">
+      <!-- Company logos will be added here -->
+      <p style="text-align:center;color:var(--muted);padding:40px;">אנחנו שמחים לעבוד עם שותפים מדהימים</p>
     </div>
   </div>
 </section>
@@ -88,6 +156,8 @@
   document.getElementById("aPlane").innerHTML = I.planeFill;
   document.getElementById("aEyebrow").innerHTML = I.planeFill + " " + t("about_eyebrow");
   document.getElementById("storyEyebrow").innerHTML = I.book + " " + t("story_eyebrow");
+  var T = window.T;
+  document.getElementById("collabEyebrow").innerHTML = "🤝 " + (T.lang === "he" ? "שותפות" : "Partnerships");
   document.getElementById("ic1").innerHTML = I.pin;
   document.getElementById("ic2").innerHTML = I.planeFill;
   document.getElementById("ic3").innerHTML = I.book;
