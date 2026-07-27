@@ -29,6 +29,7 @@
     { code:"ph", he:"הפיליפינים",    en:"Philippines",     flag:"🇵🇭", lat:12.9,  lng:121.8, geo:["Philippines"] },
     { code:"sg", he:"סינגפור",       en:"Singapore",       flag:"🇸🇬", lat:1.35,  lng:103.8, geo:["Singapore"] },
     { code:"my", he:"מלזיה",         en:"Malaysia",        flag:"🇲🇾", lat:4.2,   lng:109.0, geo:["Malaysia"] },
+    { code:"id", he:"אינדונזיה",     en:"Indonesia",       flag:"🇮🇩", lat:-2.0,  lng:113.0, geo:["Indonesia"] },
     { code:"hk", he:"הונג קונג",     en:"Hong Kong",       flag:"🇭🇰", lat:22.3,  lng:114.2, geo:[] },
     { code:"np", he:"נפאל",          en:"Nepal",           flag:"🇳🇵", lat:28.4,  lng:84.1,  geo:["Nepal"] },
     { code:"mv", he:"מלדיביים",      en:"Maldives",        flag:"🇲🇻", lat:3.2,   lng:73.2,  geo:["Maldives"] },
