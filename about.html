@@ -54,12 +54,16 @@
   .article-link{color:var(--teal);font-weight:600;text-decoration:none;transition:color .2s;}
   .article-link:hover{color:var(--teal-900);}
 
-  /* Collaborations Section */
-  .collaborations-carousel{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px;align-items:center;}
-  .collab-item{background:#fff;border-radius:var(--r-lg);padding:20px;text-align:center;box-shadow:var(--shadow-sm);transition:transform .3s;}
-  .collab-item:hover{transform:scale(1.05);}
-  .collab-logo{max-width:100%;height:80px;object-fit:contain;margin-bottom:12px;}
-  .collab-name{font-size:15px;font-weight:500;color:var(--teal-900);}
+  /* Collaborations Section — infinite scroll carousel */
+  .collab-track-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+  .collab-track{display:flex;align-items:center;gap:28px;width:max-content;animation:collabScroll 28s linear infinite;}
+  .collab-track-wrap:hover .collab-track{animation-play-state:paused;}
+  .collab-item{background:#fff;border-radius:var(--r-lg);padding:20px 28px;box-shadow:var(--shadow-sm);flex-shrink:0;display:grid;place-items:center;width:200px;height:110px;transition:transform .25s;}
+  .collab-item:hover{transform:scale(1.06);}
+  .collab-logo{max-width:100%;max-height:70px;object-fit:contain;}
+  @keyframes collabScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  [dir="ltr"] .collab-track{animation-name:collabScrollLtr;}
+  @keyframes collabScrollLtr{from{transform:translateX(0);}to{transform:translateX(50%);}}
 </style>
 </head>
 <body data-page="about">
@@ -102,7 +106,7 @@
         </article>
 
         <article class="article-card">
-          <img src="assets/articles/article2.jpg" alt="Fiji" class="article-img">
+          <img src="assets/articles/article2.webp" alt="Fiji" class="article-img">
           <div class="article-body">
             <h3 class="article-title-he">בלי כלוב, מול 40 כרישים: פיג'י שמעבר לריזורטים</h3>
             <p class="article-title-en">Cage-Free, Facing 40 Sharks: Fiji Beyond Resorts</p>
@@ -112,7 +116,7 @@
         </article>
 
         <article class="article-card">
-          <img src="assets/articles/article3.jpg" alt="Solomon Islands" class="article-img">
+          <img src="assets/articles/article3.webp" alt="Solomon Islands" class="article-img">
           <div class="article-body">
             <h3 class="article-title-he">הישראלי שביקר באי המבודד: גילוי היסטוריה סודית</h3>
             <p class="article-title-en">The Israeli Who Visited an Isolated Island</p>
@@ -137,9 +141,20 @@
   <div class="wrap">
     <span class="eyebrow" id="collabEyebrow"></span>
     <h2 class="h-sec" style="margin-bottom:32px;">שותפינו לדרך</h2>
-    <div class="collaborations-carousel" id="collabCarousel">
-      <!-- Company logos will be added here -->
-      <p style="text-align:center;color:var(--muted);padding:40px;">אנחנו שמחים לעבוד עם שותפים מדהימים</p>
+    <div class="collab-track-wrap">
+      <div class="collab-track" id="collabTrack">
+        <div class="collab-item"><img src="assets/collaborations/ayala.jpeg" alt="איילה גיאוגרפית" class="collab-logo"></div>
+        <div class="collab-item"><img src="assets/collaborations/images.png" alt="Magnus International Search & Rescue" class="collab-logo"></div>
+        <div class="collab-item"><img src="assets/collaborations/east.png" alt="East Card" class="collab-logo"></div>
+        <div class="collab-item"><img src="assets/collaborations/safe4you-horizontal-logo.png" alt="Safe4You" class="collab-logo"></div>
+        <div class="collab-item"><img src="assets/collaborations/wander-nz-logo-trans.jpeg" alt="Wander New Zealand" class="collab-logo"></div>
+        <!-- duplicate set for seamless loop -->
+        <div class="collab-item"><img src="assets/collaborations/ayala.jpeg" alt="איילה גיאוגרפית" class="collab-logo"></div>
+        <div class="collab-item"><img src="assets/collaborations/images.png" alt="Magnus International Search & Rescue" class="collab-logo"></div>
+        <div class="collab-item"><img src="assets/collaborations/east.png" alt="East Card" class="collab-logo"></div>
+        <div class="collab-item"><img src="assets/collaborations/safe4you-horizontal-logo.png" alt="Safe4You" class="collab-logo"></div>
+        <div class="collab-item"><img src="assets/collaborations/wander-nz-logo-trans.jpeg" alt="Wander New Zealand" class="collab-logo"></div>
+      </div>
     </div>
   </div>
 </section>
