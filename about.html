@@ -55,8 +55,11 @@
   .article-link:hover{color:var(--teal-900);}
 
   /* Collaborations Section — infinite scroll carousel */
-  .collab-track-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
-  .collab-track{direction:ltr;display:flex;align-items:center;gap:28px;width:max-content;animation:collabScroll 28s linear infinite;}
+  .collab-track-wrap{position:relative;overflow:hidden;}
+  .collab-track-wrap::before,.collab-track-wrap::after{content:"";position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
+  .collab-track-wrap::before{left:0;background:linear-gradient(90deg,var(--sky),transparent);}
+  .collab-track-wrap::after{right:0;background:linear-gradient(270deg,var(--sky),transparent);}
+  .collab-track{direction:ltr;display:flex;align-items:center;gap:28px;width:max-content;animation:collabScroll 28s linear infinite;will-change:transform;transform:translateZ(0);backface-visibility:hidden;}
   .collab-track-wrap:hover .collab-track{animation-play-state:paused;}
   .collab-item{background:#fff;border-radius:var(--r-lg);padding:20px 28px;box-shadow:var(--shadow-sm);flex-shrink:0;display:grid;place-items:center;width:200px;height:110px;transition:transform .25s;}
   .collab-item:hover{transform:scale(1.06);}
