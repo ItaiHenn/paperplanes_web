@@ -125,7 +125,7 @@
     document.title = 'Travel Insurance Abroad — What to Check & How to Save · Paper Planes';
   }
 
-  var d = PP.discounts().find(function(x){ return /insurance/i.test(x.id) || /ביטוח/.test(x.title) || /safe4u/i.test(x.vendor||""); });
+  var d = PP.discounts().find(function(x){ return /insurance|ביטוח|safe4u|סייף\s*פור\s*יו|passportcard/i.test([x.id,x.title,x.vendor,x.desc].join(" ")); });
   if (d) {
     document.getElementById("insCtaBtn").href = d.url || "discounts.html";
     if (d.url) document.getElementById("insCtaBtn").setAttribute("target","_blank");

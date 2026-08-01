@@ -46,6 +46,7 @@ const statics = [
   { loc: '/discounts.html', priority: '0.8', freq: 'weekly' },
   { loc: '/esim.html',      priority: '0.7', freq: 'monthly' },
   { loc: '/insurance.html', priority: '0.7', freq: 'monthly' },
+  { loc: '/dummy-ticket.html', priority: '0.7', freq: 'monthly' },
   { loc: '/guides.html',    priority: '0.8', freq: 'weekly' },
   { loc: '/contact.html',   priority: '0.6', freq: 'yearly' },
   { loc: '/terms.html',     priority: '0.5', freq: 'yearly' },
