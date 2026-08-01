@@ -2,9 +2,13 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<link rel="alternate" hreflang="he" href="https://paperplanes.co.il/">
+<link rel="alternate" hreflang="en" href="https://paperplanes.co.il/">
+<link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>מטוסי נייר · פודקאסט טיולים והרפתקאות מסביב לעולם</title>
 <meta name="description" content="מטוסי נייר — פודקאסט על טיולים, הרפתקאות, סיפורים ומקומות מכל העולם, עם איתי חן. גלו את כל המדינות שביקרנו בהן על גבי גלובוס אינטראקטיבי והאזינו לפרקים.">
+<meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://paperplanes.co.il/">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
@@ -73,6 +77,18 @@
   .cta-band h2{font-size:clamp(26px,3.4vw,40px);}
   .cta-band p{color:#e6f7f3;margin-top:12px;font-size:17px;}
   @media(max-width:740px){.cta-band{grid-template-columns:1fr;}}
+
+  .disc-band{display:flex;align-items:center;gap:24px;background:linear-gradient(120deg,#157A8B,#0A3F49);
+    border-radius:var(--r-lg);padding:clamp(24px,4vw,40px) clamp(24px,4vw,48px);
+    text-decoration:none;color:#fff;position:relative;overflow:hidden;transition:.2s;box-shadow:var(--shadow-md);}
+  .disc-band:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+  .disc-band__plane{position:absolute;left:2%;color:rgba(167,230,216,.18);width:100px;transform:rotate(-12deg);pointer-events:none;}
+  .disc-band__body{flex:1;position:relative;z-index:1;}
+  .disc-band__eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.16em;color:var(--mint-300);text-transform:uppercase;}
+  .disc-band h2{font-size:clamp(22px,3vw,34px);color:#fff;margin-top:6px;}
+  .disc-band p{color:#bfe0e6;font-size:16px;margin-top:4px;}
+  .disc-band__btn{flex-shrink:0;font-size:16px;padding:13px 26px;position:relative;z-index:1;}
+  @media(max-width:600px){.disc-band{flex-direction:column;text-align:center;gap:18px;} .disc-band__btn{width:100%;justify-content:center;}}
 
   .quiz-band{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--r-lg);overflow:hidden;
     box-shadow:var(--shadow-lg);background:var(--teal-900);}
@@ -159,6 +175,21 @@
   </div>
 </section>
 
+<!-- DISCOUNTS BAND -->
+<section id="disc-band" style="padding-block:0 clamp(40px,5vw,68px)">
+  <div class="wrap">
+    <a class="disc-band" href="discounts.html">
+      <span class="disc-band__plane" id="discPlane"></span>
+      <div class="disc-band__body">
+        <span class="disc-band__eyebrow">✦ בלעדי למאזינים</span>
+        <h2>הטבות והנחות שוות למאזינים!</h2>
+        <p>כל מה שצריך לקראת הטיול הבא שלכם</p>
+      </div>
+      <span class="btn btn--sun disc-band__btn">לכל ההטבות ←</span>
+    </a>
+  </div>
+</section>
+
 <!-- QUIZ BAND -->
 <section id="quiz-section" style="padding-block:clamp(40px,5vw,68px)">
   <div class="wrap">
@@ -212,12 +243,22 @@
   document.getElementById("epEyebrow").innerHTML = I.play + " " + t("eplist_eyebrow");
   document.getElementById("globeHint").innerHTML = I.pin + " " + t("globe_hint");
   document.getElementById("hp1").innerHTML = I.planeFill;
+  document.getElementById("discPlane").innerHTML = I.planeFill;
   document.getElementById("hp2").innerHTML = I.planeFill;
 
   // stats
-  var eps = PP.episodes();
-  document.getElementById("statEpisodes").textContent = eps.length;
-  document.getElementById("statCountries").textContent = PP.countries.length;
+  var eps = PP.episodes();  // ← declared globally so renderEps() can use it
+  function updateStats(){
+    eps = PP.episodes();  // ← update reference
+    document.getElementById("statEpisodes").textContent = eps.length;
+    document.getElementById("statCountries").textContent = PP.countries.length;
+  }
+  updateStats();
+
+  // Listen for updates from Google Sheet
+  if (PP.onChange) PP.onChange(function(key){
+    if (key === 'pp_episodes_v3') updateStats();
+  });
 
   // listen grid
   var L = [
@@ -234,13 +275,21 @@
   }).join("");
 
   // country chips (with כללי chip for episodes without country)
-  var counts = PP.countriesWithEpisodes();
-  var genCount = eps.filter(function(e){ return !e.country; }).length;
-  document.getElementById("countryChips").innerHTML = PP.countries.map(function(c){
-    var n = counts[c.code]||0;
-    return '<a class="country-chip'+(n?'':' soon')+'" href="country.html?c='+c.code+'">'+
-      c.flag+' '+nm(c)+ (n?'<span class="n">'+n+'</span>':'<span class="n">'+t("soon")+'</span>')+'</a>';
-  }).join("") + (genCount ? '<a class="country-chip" href="country.html?c=general">🎙️ כללי<span class="n">'+genCount+'</span></a>' : '');
+  function renderCountryChips(){
+    var counts = PP.countriesWithEpisodes();
+    var genCount = PP.episodes().filter(function(e){ return !e.country; }).length;
+    document.getElementById("countryChips").innerHTML = PP.countries.map(function(c){
+      var n = counts[c.code]||0;
+      return '<a class="country-chip'+(n?'':' soon')+'" href="country.html?c='+c.code+'">'+
+        c.flag+' '+nm(c)+ (n?'<span class="n">'+n+'</span>':'<span class="n">'+t("soon")+'</span>')+'</a>';
+    }).join("") + (genCount ? '<a class="country-chip" href="country.html?c=general">🎙️ כללי<span class="n">'+genCount+'</span></a>' : '');
+  }
+  renderCountryChips();
+
+  // Listen for updates from Google Sheet
+  if (PP.onChange) PP.onChange(function(key){
+    if (key === 'pp_episodes_v3') renderCountryChips();
+  });
 
   // episode card renderer (used for both default + search)
   function epCard(e){

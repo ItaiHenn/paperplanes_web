@@ -29,6 +29,7 @@
     { code:"ph", he:"הפיליפינים",    en:"Philippines",     flag:"🇵🇭", lat:12.9,  lng:121.8, geo:["Philippines"] },
     { code:"sg", he:"סינגפור",       en:"Singapore",       flag:"🇸🇬", lat:1.35,  lng:103.8, geo:["Singapore"] },
     { code:"my", he:"מלזיה",         en:"Malaysia",        flag:"🇲🇾", lat:4.2,   lng:109.0, geo:["Malaysia"] },
+    { code:"id", he:"אינדונזיה",     en:"Indonesia",       flag:"🇮🇩", lat:-2.0,  lng:113.0, geo:["Indonesia"] },
     { code:"hk", he:"הונג קונג",     en:"Hong Kong",       flag:"🇭🇰", lat:22.3,  lng:114.2, geo:[] },
     { code:"np", he:"נפאל",          en:"Nepal",           flag:"🇳🇵", lat:28.4,  lng:84.1,  geo:["Nepal"] },
     { code:"mv", he:"מלדיביים",      en:"Maldives",        flag:"🇲🇻", lat:3.2,   lng:73.2,  geo:["Maldives"] },
@@ -72,7 +73,9 @@
     { code:"gh", he:"אפריקה",        en:"Africa",          flag:"🌍",   lat:8.0,   lng:1.0,   geo:[] },
     { code:"ls", he:"לסוטו",         en:"Lesotho",         flag:"🇱🇸", lat:-29.6, lng:28.2,  geo:["Lesotho"] },
     { code:"sz", he:"אסוואטיני",     en:"Eswatini",        flag:"🇸🇿", lat:-26.5, lng:31.5,  geo:["Swaziland"] },
-    { code:"aq", he:"אנטארקטיקה",    en:"Antarctica",      flag:"🇦🇶", lat:-75.0, lng:0.0,   geo:["Antarctica"] }
+    { code:"aq", he:"אנטארקטיקה",    en:"Antarctica",      flag:"🇦🇶", lat:-75.0, lng:0.0,   geo:["Antarctica"] },
+    { code:"vu", he:"ונואטו",        en:"Vanuatu",         flag:"🇻🇺", lat:-16.0, lng:167.5, geo:["Vanuatu"] },
+    { code:"pw", he:"פלאו",          en:"Palau",           flag:"🇵🇼", lat:7.3,   lng:134.5, geo:["Palau"] }
   ];
 
   /* ---- seed episodes (imported from RSS — 178 episodes) ---- */
@@ -259,7 +262,8 @@
 
   var SEED_DISCOUNTS = [
     { id:"disc-esim",      title:"eSIM גלובלי לכל העולם",  headline:"15% הנחה", vendor:"Airalo",       image:"", desc:"כרטיס SIM דיגיטלי שעובד ב-200 מדינות.", code:"PAPERPLANES", url:"#" },
-    { id:"disc-insurance", title:"ביטוח נסיעות למטיילים",  headline:"10% הנחה", vendor:"PassportCard", image:"", desc:"כיסוי רפואי בלי השתתפות עצמית.",         code:"PLANES10",    url:"#" },
+    { id:"disc-insurance", title:"ביטוח נסיעות דרך סוכן — טל, Safe4U",  headline:"עד 30% הנחה", vendor:"Safe4U", image:"", desc:"ליווי אישי צמוד של סוכן, לא מוקד טלפוני.", code:"paperplanes", url:"#" },
+    { id:"disc-dummy-ticket", title:"כרטיס טיסה פיקטיבי (Onward Ticket)", headline:"", vendor:"Departo", image:"", desc:"הוכחת יציאה עם PNR אמיתי, תוך דקות.", code:"", url:"https://www.departo.world/he" },
     { id:"disc-tours",     title:"סיורים מודרכים בעברית", headline:"10% הנחה", vendor:"GetYourGuide", image:"", desc:"הנחה על אטרקציות וסיורים ברחבי העולם.",  code:"",            url:"#" }
   ];
 
@@ -282,7 +286,15 @@
   function write(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch(e){} }
 
   var Store = {
-    countries: COUNTRIES,
+    get countries() {
+      var codes = {}, eps = this.episodes();
+      eps.forEach(function(e) {
+        if (e.country) e.country.split(", ").forEach(function(c) { if (c) codes[c] = true; });
+      });
+      var result = [];
+      for (var i = 0; i < COUNTRIES.length; i++) if (codes[COUNTRIES[i].code]) result.push(COUNTRIES[i]);
+      return result;
+    },
     social:    SOCIAL,
 
     countryByCode: function (c) {
@@ -401,4 +413,22 @@
   } catch(e){}
 
   global.PP = Store;
+
+  // Monitor localStorage for changes (from Sheet sync) and notify listeners
+  var listeners = [];
+  window.addEventListener('storage', function(e) {
+    if (e.key && (e.key === K.ep || e.key === K.disc || e.key === K.guide)) {
+      listeners.forEach(function(cb) { cb(e.key); });
+    }
+  });
+  Store.onChange = function(callback) {
+    listeners.push(callback);
+  };
+
+  // Also fire changes when syncing from Sheet (setInterval in data fetch)
+  var origWrite = write;
+  write = function(key, val) {
+    origWrite(key, val);
+    listeners.forEach(function(cb) { cb(key); });
+  };
 })(window);

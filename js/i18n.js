@@ -25,7 +25,7 @@
     /* home */
     hero_eyebrow:{he:"טיולים · הרפתקאות · סיפורים · מקומות",en:"Travel · Adventures · Stories · Places"},
     hero_h1:{he:"העולם הוא<br><span class='accent'>סיפור אחד גדול.</span>",en:"The world is<br><span class='accent'>one big story.</span>"},
-    hero_tag:{he:"פודקאסט על <b>טיולים, הרפתקאות, סיפורים ומקומות</b> מכל קצוות העולם<br>בהגשת עם איתי חן",en:"A podcast about <b>travel, adventures, stories and places</b> from every corner of the world. With Itay Chen — coming along?"},
+    hero_tag:{he:"פודקאסט על <b>טיולים, הרפתקאות, סיפורים ומקומות</b> מכל קצוות העולם<br>בהגשת איתי חן",en:"A podcast about <b>travel, adventures, stories and places</b> from every corner of the world. With Itay Chen — coming along?"},
     hero_cta_globe:{he:"למפה האינטראקטיבי",en:"Explore the globe"},
     hero_cta_listen:{he:"איפה להאזין",en:"Where to listen"},
     stat_countries:{he:"מדינות",en:"Countries"},

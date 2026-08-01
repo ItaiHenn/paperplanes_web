@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<link rel="alternate" hreflang="he" href="https://paperplanes.co.il/esim.html">
+<link rel="alternate" hreflang="en" href="https://paperplanes.co.il/esim.html">
+<link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/esim.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eSIM לנסיעות לחו"ל — מחירים, המלצות והטבה בלעדית · מטוסי נייר</title>
+<meta name="description" content="כל מה שצריך לדעת על eSIM לנסיעות לחו״ל: איך זה עובד, כמה זה עולה, איך מתקינים, והטבה בלעדית של 15% הנחה למאזיני מטוסי נייר.">
+<link rel="canonical" href="https://paperplanes.co.il/esim.html">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paperplanes.co.il/esim.html">
+<meta property="og:site_name" content="מטוסי נייר · Paper Planes">
+<meta property="og:title" content="eSIM לנסיעות לחו&quot;ל — מחירים, המלצות והטבה בלעדית · מטוסי נייר">
+<meta property="og:description" content="כל מה שצריך לדעת על eSIM לנסיעות לחו״ל: איך זה עובד, כמה זה עולה, איך מתקינים, והטבה בלעדית של 15% הנחה למאזיני מטוסי נייר.">
+<meta property="og:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .p-hero{background:linear-gradient(150deg,#157A8B,#0A3F49);color:#fff;padding-block:clamp(40px,6vw,68px);position:relative;overflow:hidden;}
+  .p-hero .wrap{position:relative;z-index:2;}
+  .p-hero .eyebrow{color:var(--mint-300);}
+  .p-hero h1{font-size:clamp(30px,4.4vw,50px);margin-top:8px;}
+  .p-hero p{font-size:18px;color:#d6eef2;margin-top:12px;max-width:60ch;}
+  .p-plane{position:absolute;width:130px;color:rgba(167,230,216,.28);top:16%;left:6%;transform:rotate(-12deg);z-index:2;}
+  @media(max-width:640px){.p-plane{width:60px;}}
+  section{padding-block:clamp(36px,5vw,60px);}
+  .esim-body{max-width:800px;margin:0 auto;}
+  .esim-body h2{font-size:24px;color:var(--teal-900);margin-top:36px;margin-bottom:14px;}
+  .esim-body p{font-size:16.5px;color:#33585f;line-height:1.85;margin-bottom:14px;}
+  .esim-body ul{margin:0 0 16px;padding-inline-start:22px;}
+  .esim-body li{font-size:16.5px;color:#33585f;line-height:1.85;margin-bottom:8px;}
+  .esim-cta{background:var(--sky-50);border:1.5px dashed var(--teal);border-radius:var(--r-lg);padding:26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:28px 0;}
+  .esim-cta .code{font-family:var(--head);font-size:20px;color:var(--teal-900);letter-spacing:.06em;}
+  .esim-faq{border-top:1px solid var(--line);padding-top:16px;margin-top:16px;}
+  .esim-faq h3{font-size:18px;color:var(--teal-900);margin-bottom:6px;}
+</style>
+</head>
+<body data-page="esim">
+<div id="site-header"></div>
+
+<section class="p-hero">
+  <span class="p-plane" id="pPlane"></span>
+  <div class="clouds" data-clouds></div>
+  <div class="wrap">
+    <span class="eyebrow" id="pEyebrow"></span>
+    <h1 id="esimH1"></h1>
+    <p id="esimLead"></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap esim-body" id="esimContent"></div>
+</section>
+
+<div id="site-footer"></div>
+<script type="application/ld+json" id="esimLd"></script>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/chrome.js"></script>
+<script>
+(function () {
+  var I = PPIcons, PP = window.PP, T = window.T;
+  var isHe = T.lang === "he";
+  document.getElementById("pPlane").innerHTML = I.planeFill;
+
+  document.getElementById("pEyebrow").textContent = isHe ? "📶 eSIM לטיולים" : "📶 eSIM for Travelers";
+  document.getElementById("esimH1").textContent = isHe
+    ? 'eSIM לנסיעות לחו"ל — כל מה שצריך לדעת'
+    : "eSIM for Travel Abroad — Everything You Need to Know";
+  document.getElementById("esimLead").textContent = isHe
+    ? "מה זה eSIM, כמה זה עולה, איך מתקינים, ומאיפה משיגים את ההטבה הכי משתלמת למאזיני מטוסי נייר."
+    : "What an eSIM is, how much it costs, how to install it, and where to get the best deal for Paper Planes listeners.";
+  document.title = isHe
+    ? 'eSIM לנסיעות לחו"ל — מחירים, המלצות והטבה בלעדית · מטוסי נייר'
+    : 'eSIM for Travel Abroad — Prices, Tips & an Exclusive Deal · Paper Planes';
+
+  var heContent = `
+    <h2>מה זה בכלל eSIM?</h2>
+    <p>eSIM (electronic SIM) הוא כרטיס סים דיגיטלי שמותקן ישירות בטלפון שלכם בלי צורך בכרטיס פיזי. במקום לחפש דוכן סים בשדה התעופה או לשלם על נדידה בין־לאומית (רומינג) יקרה, אתם סורקים קוד QR עוד לפני הטיסה — והחבילה מופעלת ברגע שאתם נוחתים.</p>
+
+    <h2>כמה עולה eSIM לנסיעה לחו"ל?</h2>
+    <p>המחיר תלוי ביעד, בכמות הנתונים (GB) ובמספר הימים. באופן כללי, חבילת eSIM בסיסית ליעד אירופי נעה סביב $4-8, ואילו יעדים רחוקים יותר (אסיה, אוקיאניה, דרום אמריקה) יכולים לנוע בין $10-25 לחבילה של כמה ג'יגה לשבוע-שבועיים. זה כמעט תמיד משתלם משמעותית יותר מרומינג של חברות הסלולר הישראליות.</p>
+
+    <h2>האם eSIM עובד בישראל ובחו"ל?</h2>
+    <p>כן — eSIM זמין כיום ברוב מדינות העולם, כולל ישראל עצמה. היתרון האמיתי הוא כשטסים לחו"ל: קונים חבילה ליעד הספציפי (או חבילה גלובלית שעובדת ב-200+ מדינות) ומתחברים לאינטרנט מהרגע הראשון, בלי לחפש רשת Wi-Fi או להסתכן בחיוב רומינג מפתיע.</p>
+
+    <h2>איך מתקינים eSIM בטלפון?</h2>
+    <ul>
+      <li>ודאו שהמכשיר שלכם תומך ב-eSIM (רוב הדגמים מ-2019 ואילך, כולל iPhone XS ומעלה ואנדרואיד דגלים).</li>
+      <li>רוכשים חבילה מתאימה ליעד הטיול.</li>
+      <li>סורקים את קוד ה-QR שמתקבל במייל — ההתקנה לוקחת פחות מדקה.</li>
+      <li>מפעילים את קו הנתונים הנייד (Data Roaming) של ה-eSIM החדש ברגע שנוחתים ביעד.</li>
+    </ul>
+
+    <div class="esim-cta">
+      <div>
+        <strong>ההטבה שלנו:</strong> 15% הנחה על eSIM גלובלי דרך Airalo, עובד ב-200+ מדינות.<br>
+        <span class="code">קוד קופון: PAPERPLANES</span>
+      </div>
+      <a class="btn btn--primary" href="discounts.html" id="esimCtaBtn">למימוש ההטבה →</a>
+    </div>
+
+    <h2>שאלות נפוצות</h2>
+    <div class="esim-faq">
+      <h3>האם צריך eSIM נפרד לכל מדינה?</h3>
+      <p>לא בהכרח — יש חבילות אזוריות (למשל כל אירופה) וגם חבילות גלובליות שעובדות בעשרות מדינות בקוד אחד, נוחות במיוחד לטיול שכולל כמה יעדים.</p>
+    </div>
+    <div class="esim-faq">
+      <h3>מה קורה אם נגמרים הנתונים באמצע הטיול?</h3>
+      <p>אפשר לרכוש חבילת טופ-אפ (הטענה נוספת) ישירות דרך האפליקציה של הספק, בלי לצאת מהבית ובלי לחפש חנות סלולר.</p>
+    </div>
+    <div class="esim-faq">
+      <h3>האם ה-eSIM משפיע על מספר הטלפון הישראלי שלי?</h3>
+      <p>לא. ה-eSIM מוסיף קו נתונים נוסף למכשיר, ומספר הטלפון הרגיל שלכם (עם קו הסים הפיזי) ממשיך לפעול במקביל להתקבלות שיחות ו-SMS.</p>
+    </div>
+  `;
+
+  var enContent = `
+    <h2>What exactly is an eSIM?</h2>
+    <p>An eSIM (electronic SIM) is a digital SIM card built directly into your phone — no physical card required. Instead of hunting for a SIM kiosk at the airport or paying for expensive international roaming, you scan a QR code before your flight, and the plan activates the moment you land.</p>
+
+    <h2>How much does an eSIM cost for travel abroad?</h2>
+    <p>Pricing depends on the destination, the amount of data (GB), and the number of days. A basic eSIM plan for a European destination typically runs around $4–8, while farther destinations (Asia, Oceania, South America) can range from $10–25 for a few gigabytes over one to two weeks. This is almost always significantly cheaper than roaming with an Israeli carrier.</p>
+
+    <h2>Does an eSIM work in Israel and abroad?</h2>
+    <p>Yes — eSIM is now available in most countries worldwide, including Israel itself. The real advantage kicks in when flying abroad: you buy a plan for your specific destination (or a global plan that works in 200+ countries) and you're connected from the moment you land, with no need to hunt for Wi-Fi or risk a surprise roaming bill.</p>
+
+    <h2>How do you install an eSIM on your phone?</h2>
+    <ul>
+      <li>Make sure your device supports eSIM (most models from 2019 onward, including iPhone XS and up, and flagship Android phones).</li>
+      <li>Buy a plan suited to your destination.</li>
+      <li>Scan the QR code you receive by email — installation takes under a minute.</li>
+      <li>Turn on mobile data roaming for the new eSIM the moment you land at your destination.</li>
+    </ul>
+
+    <div class="esim-cta">
+      <div>
+        <strong>Our deal:</strong> 15% off a global eSIM through Airalo, working in 200+ countries.<br>
+        <span class="code">Coupon code: PAPERPLANES</span>
+      </div>
+      <a class="btn btn--primary" href="discounts.html" id="esimCtaBtn">Redeem the deal →</a>
+    </div>
+
+    <h2>Frequently asked questions</h2>
+    <div class="esim-faq">
+      <h3>Do I need a separate eSIM for every country?</h3>
+      <p>Not necessarily — there are regional plans (for example, all of Europe) as well as global plans that work in dozens of countries under a single code, especially convenient for multi-destination trips.</p>
+    </div>
+    <div class="esim-faq">
+      <h3>What happens if I run out of data mid-trip?</h3>
+      <p>You can buy a top-up package directly through the provider's app, without leaving your hotel or hunting for a phone store.</p>
+    </div>
+    <div class="esim-faq">
+      <h3>Does the eSIM affect my Israeli phone number?</h3>
+      <p>No. The eSIM adds an extra data line to your device, and your regular phone number (on the physical SIM) keeps working in parallel for calls and SMS.</p>
+    </div>
+  `;
+
+  document.getElementById("esimContent").innerHTML = isHe ? heContent : enContent;
+  document.documentElement.lang = isHe ? "he" : "en";
+  document.documentElement.dir = isHe ? "rtl" : "ltr";
+
+  var d = PP.discounts().find(function(x){ return /esim|e-sim|סים|איירלו|airalo/i.test([x.id,x.title,x.vendor,x.desc].join(" ")); });
+  var ctaBtn = document.getElementById("esimCtaBtn");
+  if (d && ctaBtn) {
+    ctaBtn.href = d.url || "discounts.html";
+    if (d.url) ctaBtn.setAttribute("target","_blank");
+  }
+
+  document.getElementById("esimLd").textContent = JSON.stringify({
+    "@context":"https://schema.org","@type":"FAQPage",
+    "mainEntity": isHe ? [
+      {"@type":"Question","name":"האם צריך eSIM נפרד לכל מדינה?","acceptedAnswer":{"@type":"Answer","text":"לא בהכרח — יש חבילות אזוריות וגם חבילות גלובליות שעובדות בעשרות מדינות בקוד אחד."}},
+      {"@type":"Question","name":"מה קורה אם נגמרים הנתונים באמצע הטיול?","acceptedAnswer":{"@type":"Answer","text":"אפשר לרכוש חבילת טופ-אפ ישירות דרך האפליקציה של הספק."}},
+      {"@type":"Question","name":"האם ה-eSIM משפיע על מספר הטלפון הישראלי שלי?","acceptedAnswer":{"@type":"Answer","text":"לא. ה-eSIM מוסיף קו נתונים נוסף, ומספר הטלפון הרגיל ממשיך לפעול במקביל."}}
+    ] : [
+      {"@type":"Question","name":"Do I need a separate eSIM for every country?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily — there are regional plans as well as global plans that work in dozens of countries under a single code."}},
+      {"@type":"Question","name":"What happens if I run out of data mid-trip?","acceptedAnswer":{"@type":"Answer","text":"You can buy a top-up package directly through the provider's app."}},
+      {"@type":"Question","name":"Does the eSIM affect my Israeli phone number?","acceptedAnswer":{"@type":"Answer","text":"No. The eSIM adds an extra data line, and your regular phone number keeps working in parallel."}}
+    ]
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,7 +1,14 @@
-/* ===== Paper Planes — shared header + footer (i18n) ===== */
+/* ===== Paper Planes — shared header + footer (i18n) + accessibility widget ===== */
+// Load accessibility widget
+(function(){
+  var script = document.createElement('script');
+  script.src = 'js/accessibility-widget.js';
+  script.async = true;
+  document.head.appendChild(script);
+})();
 (function () {
   /* ---- Google Analytics 4 ---- */
-  var GA_ID = "G-CBYGT3Q5G6";
+  var GA_ID = "G-GKNN4RTH2F";
   (function(){
     var s = document.createElement("script");
     s.async = true;
@@ -131,6 +138,8 @@
         '</div></div>'+
         '<div><h4>'+T.t("foot_more")+'</h4><div class="footer__links">'+
           '<a href="about.html">'+T.t("nav_about")+'</a><a href="contact.html">'+T.t("nav_contact")+'</a>'+
+          '<a href="terms.html">'+(T.lang==="he"?"תנאי שימוש":"Terms of Use")+'</a>'+
+          '<a href="accessibility.html">'+(T.lang==="he"?"הצהרת נגישות":"Accessibility")+'</a>'+
           '<a href="admin.html">'+T.t("foot_admin")+'</a>'+
         '</div></div>'+
       '</div>'+
