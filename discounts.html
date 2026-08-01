@@ -126,17 +126,19 @@
       var isEsim = /esim/i.test(d.id) || /esim/i.test(d.title);
       var isInsurance = /insurance/i.test(d.id) || /ביטוח/.test(d.title);
       var guideLink = isEsim ? 'esim.html' : (isInsurance ? 'insurance.html' : '');
-      var guideLabel = isEsim ? 'מדריך eSIM מלא →' : (isInsurance ? 'מדריך ביטוח נסיעות מלא →' : '');
+      var guideBtn = guideLink ? '<a class="btn btn--ghost btn--sm" href="'+guideLink+'">'+I.info+' מידע נוסף</a>' : '';
       return '<div class="card disc">'+
         '<div class="disc__logo">'+desc+logo+'</div>'+
         '<div class="disc__body">'+
           '<span class="disc__vendor">'+(d.vendor||"")+'</span>'+
           (hl?'<div class="disc__headline">'+hl+'</div>':'')+
           '<h3 class="disc__title">'+d.title+'</h3>'+
-          (guideLink ? '<a href="'+guideLink+'" style="font-size:13.5px;color:var(--teal);font-weight:600">'+guideLabel+'</a>' : '')+
           code+
           '<div class="disc__foot">'+
-            '<a class="btn btn--primary btn--sm" href="'+(d.url||"#")+'" target="_blank" rel="noopener">'+t("disc_redeem")+'</a>'+
+            '<div style="display:flex;gap:8px;flex-wrap:wrap">'+
+              guideBtn+
+              '<a class="btn btn--primary btn--sm" href="'+(d.url||"#")+'" target="_blank" rel="noopener">'+t("disc_redeem")+'</a>'+
+            '</div>'+
             (admin?'<button class="admin-del" data-id="'+d.id+'">'+I.trash+' '+t("del")+'</button>':'')+
           '</div>'+
         '</div></div>';
