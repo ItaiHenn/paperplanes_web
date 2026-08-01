@@ -2,6 +2,7 @@
   "framework": null,
   "outputDirectory": ".",
   "rewrites": [
-    { "source": "/esim", "destination": "/esim.html" }
+    { "source": "/esim", "destination": "/esim.html" },
+    { "source": "/insurance", "destination": "/insurance.html" }
   ]
 }
