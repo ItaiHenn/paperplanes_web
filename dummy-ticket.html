@@ -48,14 +48,41 @@
   <span class="p-plane" id="pPlane"></span>
   <div class="clouds" data-clouds></div>
   <div class="wrap">
-    <span class="eyebrow" id="pEyebrow">🎫 כרטיס טיסה פיקטיבי</span>
-    <h1 id="dtH1">כרטיס טיסה פיקטיבי (Onward Ticket) — מה זה ולמה צריך</h1>
-    <p id="dtLead">למה שדות תעופה ומדינות דורשים הוכחת יציאה, מתי זה קורה לכם בפועל, ואיך משיגים כרטיס כזה בקלות בלי לקנות טיסה אמיתית שלא תשתמשו בה.</p>
+    <span class="eyebrow" id="pEyebrow"></span>
+    <h1 id="dtH1"></h1>
+    <p id="dtLead"></p>
   </div>
 </section>
 
 <section>
-  <div class="wrap dt-body" id="dtContent">
+  <div class="wrap dt-body" id="dtContent"></div>
+</section>
+
+<div id="site-footer"></div>
+<script type="application/ld+json" id="dtLd"></script>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/chrome.js"></script>
+<script>
+(function () {
+  var I = PPIcons, T = window.T;
+  var isHe = T.lang === "he";
+  document.getElementById("pPlane").innerHTML = I.planeFill;
+
+  document.getElementById("pEyebrow").textContent = isHe ? "🎫 כרטיס טיסה פיקטיבי" : "🎫 Dummy Flight Ticket";
+  document.getElementById("dtH1").textContent = isHe
+    ? "כרטיס טיסה פיקטיבי (Onward Ticket) — מה זה ולמה צריך"
+    : "Dummy Flight Ticket (Onward Ticket) — What It Is & Why You Need One";
+  document.getElementById("dtLead").textContent = isHe
+    ? "למה שדות תעופה ומדינות דורשים הוכחת יציאה, מתי זה קורה לכם בפועל, ואיך משיגים כרטיס כזה בקלות בלי לקנות טיסה אמיתית שלא תשתמשו בה."
+    : "Why airports and countries require proof of onward travel, when you'll actually need it, and how to get one easily without buying a real flight you'll never use.";
+  document.title = isHe
+    ? "כרטיס טיסה פיקטיבי (Onward Ticket) — מה זה ולמה צריך · מטוסי נייר"
+    : "Dummy Flight Ticket (Onward Ticket) — What It Is & Why You Need It · Paper Planes";
+
+  var heContent = `
     <h2>מה זה בכלל כרטיס טיסה פיקטיבי?</h2>
     <p>כרטיס טיסה פיקטיבי (באנגלית: <strong>Onward Ticket</strong> או <strong>Dummy Ticket</strong>) הוא הזמנת טיסה זמנית עם מספר אישור (PNR) אמיתי וניתן לאימות, שנראית בדיוק כמו כרטיס טיסה רגיל — אבל לא שולמה במלואה ולא מיועדת לטיסה בפועל. המטרה שלה היא אחת בלבד: להוכיח שיש לכם תוכנית יציאה מהמדינה שאליה אתם נכנסים.</p>
 
@@ -98,33 +125,67 @@
       <h3>למי זה הכי רלוונטי?</h3>
       <p>למטיילי תרמילאות שטסים לכיוון אחד בלי תאריך חזרה קבוע, לכל מי שנכנס למדינה שדורשת הוכחת יציאה כתנאי כניסה, ולמי שמגיש בקשת ויזה שדורשת הוכחת המשך מסע.</p>
     </div>
-  </div>
-</section>
+  `;
 
-<div id="site-footer"></div>
-<script type="application/ld+json" id="dtLd"></script>
+  var enContent = `
+    <h2>What exactly is a dummy flight ticket?</h2>
+    <p>A dummy flight ticket (also called an <strong>Onward Ticket</strong>) is a temporary flight booking with a real, verifiable confirmation number (PNR) that looks exactly like a regular airline ticket — but hasn't been fully paid for and isn't meant for actual travel. It serves exactly one purpose: proving you have a plan to leave the country you're entering.</p>
 
-<script src="js/data.js"></script>
-<script src="js/icons.js"></script>
-<script src="js/i18n.js"></script>
-<script src="js/chrome.js"></script>
-<script>
-(function () {
-  var I = PPIcons, T = window.T;
-  document.getElementById("pPlane").innerHTML = I.planeFill;
+    <h2>Why do you even need an exit ticket?</h2>
+    <p>Many countries and immigration authorities require travelers to prove they intend to leave within their permitted stay (for example, on a tourist visa). This also applies before boarding — some airlines refuse to fly a passenger to a destination that requires an exit ticket without seeing proof in advance, so they don't risk having to fly the passenger back at their own expense.</p>
 
-  if (T.lang === "en") {
-    document.getElementById("dtH1").textContent = "Dummy Flight Ticket (Onward Ticket) — What It Is & Why You Need One";
-    document.getElementById("dtLead").textContent = "Why airports and countries require proof of onward travel, when you'll actually need it, and how to get one easily without buying a real flight you'll never use.";
-    document.title = 'Dummy Flight Ticket (Onward Ticket) — What It Is & Why You Need It · Paper Planes';
-  }
+    <div class="dt-note">
+      💡 Important: a dummy flight ticket is a legitimate, widely used tool among backpackers, especially when you don't yet know exactly when or where you're heading next — and it doesn't make sense to pay for a real ticket just to show it at border control.
+    </div>
+
+    <h2>When will you actually need one?</h2>
+    <ul>
+      <li><strong>At check-in</strong> — when flying one-way to a destination without a defined return ticket.</li>
+      <li><strong>At border control</strong> at your destination — an immigration officer may ask you to prove you intend to leave on time.</li>
+      <li><strong>When applying for a visa</strong> — many countries require "proof of onward travel" as part of the application process, even before the trip has started.</li>
+    </ul>
+    <p>Common destinations where this comes up in practice: Thailand, Indonesia, the Philippines, Brazil, the USA, and all Schengen countries, where an exit ticket is required as a condition of entry.</p>
+
+    <h2>How is it different from a regular flight ticket?</h2>
+    <p>A dummy flight ticket includes all the details you'd see on a real one — flight number, date, time, and a confirmation number (PNR) that can be checked directly on the airline's website. The difference is that the booking is usually valid for a short period (for example, 24–48 hours) and hasn't been paid for in full, so it's meant purely for display and not for actual travel.</p>
+
+    <div class="dt-cta">
+      <div>
+        <strong>Where do you get one?</strong><br>
+        Dedicated services issue a dummy flight ticket with a real PNR within minutes, at a price far lower than a full flight ticket.
+      </div>
+      <a class="btn btn--primary" href="https://www.departo.world/he" target="_blank" rel="noopener">Go to Departo →</a>
+    </div>
+
+    <h2>Frequently asked questions</h2>
+    <div class="dt-faq">
+      <h3>Is a dummy flight ticket legal?</h3>
+      <p>Yes. It's a common, legitimate tool for proving intent to leave, not a forged document — it includes real, verifiable flight details and a confirmation number, it just isn't meant for actual travel.</p>
+    </div>
+    <div class="dt-faq">
+      <h3>Can the country or airline tell it's a dummy ticket?</h3>
+      <p>In most cases, the check is limited to verifying the PNR against the airline's system at the time of the check, at which point it's valid and verifiable. It's important to choose a reliable service that issues a real PNR, not just an image of a ticket.</p>
+    </div>
+    <div class="dt-faq">
+      <h3>Who is this most relevant for?</h3>
+      <p>Backpackers flying one-way without a fixed return date, anyone entering a country that requires proof of exit as a condition of entry, and anyone applying for a visa that requires proof of onward travel.</p>
+    </div>
+  `;
+
+  document.getElementById("dtContent").innerHTML = isHe ? heContent : enContent;
+  document.documentElement.lang = isHe ? "he" : "en";
+  document.documentElement.dir = isHe ? "rtl" : "ltr";
 
   document.getElementById("dtLd").textContent = JSON.stringify({
     "@context":"https://schema.org","@type":"FAQPage",
-    "mainEntity":[
+    "mainEntity": isHe ? [
       {"@type":"Question","name":"האם כרטיס טיסה פיקטיבי חוקי?","acceptedAnswer":{"@type":"Answer","text":"כן. זהו כלי נפוץ ולגיטימי שמטרתו להוכיח כוונת יציאה, כולל פרטי טיסה ומספר אישור אמיתיים וניתנים לאימות, רק שאינו מיועד לטיסה בפועל."}},
       {"@type":"Question","name":"האם המדינה או חברת התעופה יכולה לגלות שזה כרטיס פיקטיבי?","acceptedAnswer":{"@type":"Answer","text":"ברוב המקרים הבדיקה מתמצה באימות ה-PNR מול מערכת חברת התעופה בזמן הבדיקה, ואז הוא תקף וניתן לאימות."}},
       {"@type":"Question","name":"למי זה הכי רלוונטי?","acceptedAnswer":{"@type":"Answer","text":"למטיילי תרמילאות שטסים לכיוון אחד, למי שנכנס למדינה שדורשת הוכחת יציאה, ולמי שמגיש בקשת ויזה שדורשת הוכחת המשך מסע."}}
+    ] : [
+      {"@type":"Question","name":"Is a dummy flight ticket legal?","acceptedAnswer":{"@type":"Answer","text":"Yes. It's a common, legitimate tool for proving intent to leave, including real, verifiable flight details and a confirmation number, it just isn't meant for actual travel."}},
+      {"@type":"Question","name":"Can the country or airline tell it's a dummy ticket?","acceptedAnswer":{"@type":"Answer","text":"In most cases, the check is limited to verifying the PNR against the airline's system at the time of the check, at which point it is valid and verifiable."}},
+      {"@type":"Question","name":"Who is this most relevant for?","acceptedAnswer":{"@type":"Answer","text":"Backpackers flying one-way, anyone entering a country that requires proof of exit, and anyone applying for a visa that requires proof of onward travel."}}
     ]
   });
 })();

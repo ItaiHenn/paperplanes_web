@@ -126,7 +126,8 @@
       var haystack = [d.id, d.title, d.vendor, d.desc].join(" ");
       var isEsim = /esim|e-sim|סים|איירלו|airalo/i.test(haystack);
       var isInsurance = /insurance|ביטוח|safe4u|סייף\s*פור\s*יו|passportcard/i.test(haystack);
-      var guideLink = isEsim ? 'esim.html' : (isInsurance ? 'insurance.html' : '');
+      var isDummyTicket = /פיקטיבי|departo|onward|dummy\s*ticket/i.test(haystack);
+      var guideLink = isEsim ? 'esim.html' : (isInsurance ? 'insurance.html' : (isDummyTicket ? 'dummy-ticket.html' : ''));
       var guideBtn = guideLink ? '<a class="btn btn--ghost btn--sm" href="'+guideLink+'">'+I.info+' מידע נוסף</a>' : '';
       return '<div class="card disc">'+
         '<div class="disc__logo">'+desc+logo+'</div>'+

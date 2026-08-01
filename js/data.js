@@ -263,6 +263,7 @@
   var SEED_DISCOUNTS = [
     { id:"disc-esim",      title:"eSIM גלובלי לכל העולם",  headline:"15% הנחה", vendor:"Airalo",       image:"", desc:"כרטיס SIM דיגיטלי שעובד ב-200 מדינות.", code:"PAPERPLANES", url:"#" },
     { id:"disc-insurance", title:"ביטוח נסיעות דרך סוכן — טל, Safe4U",  headline:"עד 30% הנחה", vendor:"Safe4U", image:"", desc:"ליווי אישי צמוד של סוכן, לא מוקד טלפוני.", code:"paperplanes", url:"#" },
+    { id:"disc-dummy-ticket", title:"כרטיס טיסה פיקטיבי (Onward Ticket)", headline:"", vendor:"Departo", image:"", desc:"הוכחת יציאה עם PNR אמיתי, תוך דקות.", code:"", url:"https://www.departo.world/he" },
     { id:"disc-tours",     title:"סיורים מודרכים בעברית", headline:"10% הנחה", vendor:"GetYourGuide", image:"", desc:"הנחה על אטרקציות וסיורים ברחבי העולם.",  code:"",            url:"#" }
   ];
 
