@@ -44,6 +44,7 @@ const statics = [
   { loc: '/',                priority: '1.0', freq: 'weekly' },
   { loc: '/about.html',     priority: '0.8', freq: 'monthly' },
   { loc: '/discounts.html', priority: '0.8', freq: 'weekly' },
+  { loc: '/esim.html',      priority: '0.7', freq: 'monthly' },
   { loc: '/guides.html',    priority: '0.8', freq: 'weekly' },
   { loc: '/contact.html',   priority: '0.6', freq: 'yearly' },
   { loc: '/terms.html',     priority: '0.5', freq: 'yearly' },

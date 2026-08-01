@@ -1,4 +1,7 @@
 {
   "framework": null,
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/esim", "destination": "/esim.html" }
+  ]
 }
