@@ -2,9 +2,9 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<link rel="alternate" hreflang="he" href="https://paperplanes.co.il/">
-<link rel="alternate" hreflang="en" href="https://paperplanes.co.il/">
-<link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/">
+<link rel="alternate" hreflang="he" href="https://paperplanes.co.il/episode.html" id="hreflangHe">
+<link rel="alternate" hreflang="en" href="https://paperplanes.co.il/episode.html" id="hreflangEn">
+<link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/episode.html" id="hreflangDefault">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>פרק · מטוסי נייר</title>
 <meta name="description" content="האזינו לפרק של מטוסי נייר, קראו את התיאור והתמלול המלא.">
@@ -112,6 +112,7 @@
 
 <div id="site-footer"></div>
 <script type="application/ld+json" id="epLd"></script>
+<script type="application/ld+json" id="epBreadcrumbLd"></script>
 
 <script src="js/data.js"></script>
 <script src="js/icons.js"></script>
@@ -145,6 +146,9 @@
   setMeta('meta[name="twitter:description"]',epDesc);
   setMeta('meta[name="twitter:image"]',      epImg);
   var canon = document.querySelector('link[rel="canonical"]'); if(canon) canon.setAttribute('href', epUrl);
+  ["hreflangHe","hreflangEn","hreflangDefault"].forEach(function(id){
+    var el = document.getElementById(id); if (el) el.setAttribute('href', epUrl);
+  });
   document.getElementById("eCrumb").innerHTML =
     '<a href="index.html">בית</a> '+I.arrow+' <a href="country.html?c='+c.code+'">'+c.flag+' '+c.he+'</a> '+I.arrow+' <span>'+e.title+'</span>';
   document.getElementById("eCover").src = e.cover || "assets/logo.jpg";
@@ -192,6 +196,14 @@
     "description":e.description,
     "partOfSeries":{"@type":"PodcastSeries","name":"מטוסי נייר · Paper Planes"},
     "transcript":e.transcript_he || e.transcript_en || ""
+  });
+  document.getElementById("epBreadcrumbLd").textContent = JSON.stringify({
+    "@context":"https://schema.org","@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"בית","item":"https://paperplanes.co.il/"},
+      {"@type":"ListItem","position":2,"name":c.he,"item":"https://paperplanes.co.il/country.html?c="+c.code},
+      {"@type":"ListItem","position":3,"name":e.title,"item":epUrl}
+    ]
   });
 })();
 </script>

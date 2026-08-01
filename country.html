@@ -2,9 +2,9 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<link rel="alternate" hreflang="he" href="https://paperplanes.co.il/">
-<link rel="alternate" hreflang="en" href="https://paperplanes.co.il/">
-<link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/">
+<link rel="alternate" hreflang="he" href="https://paperplanes.co.il/country.html" id="hreflangHe">
+<link rel="alternate" hreflang="en" href="https://paperplanes.co.il/country.html" id="hreflangEn">
+<link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/country.html" id="hreflangDefault">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>פרקים לפי מדינה · מטוסי נייר</title>
 <meta name="description" content="כל הפרקים של פודקאסט מטוסי נייר לפי מדינה — טיולים, הרפתקאות וסיפורים מהיעד.">
@@ -64,6 +64,7 @@
 </section>
 
 <div id="site-footer"></div>
+<script type="application/ld+json" id="cBreadcrumbLd"></script>
 
 <script src="js/data.js"></script>
 <script src="js/icons.js"></script>
@@ -87,6 +88,17 @@
   if (code === "general") {
     var genTitle = T.lang==="he" ? "פרקים כלליים" : "General Episodes";
     document.title = genTitle + " · " + (T.lang==="he"?"מטוסי נייר":"Paper Planes");
+    var genUrl = 'https://paperplanes.co.il/country.html?c=general';
+    var genDesc = T.lang==="he" ? "כל הפרקים הכלליים של פודקאסט מטוסי נייר — ראיונות, סיפורי מסע ותכנים שלא קשורים למדינה ספציפית." : "General episodes of the Paper Planes podcast — interviews and stories not tied to a specific country.";
+    var setMG = function(sel,val){var el=document.querySelector(sel);if(el)el.setAttribute('content',val);};
+    document.querySelector('meta[name="description"]').setAttribute('content', genDesc);
+    setMG('meta[property="og:title"]', genTitle+' · מטוסי נייר');
+    setMG('meta[property="og:description"]', genDesc);
+    setMG('meta[property="og:url"]', genUrl);
+    var genCanon=document.querySelector('link[rel="canonical"]');if(genCanon)genCanon.setAttribute('href',genUrl);
+    ["hreflangHe","hreflangEn","hreflangDefault"].forEach(function(id){
+      var el=document.getElementById(id); if(el)el.setAttribute('href',genUrl);
+    });
     document.getElementById("cFlag").textContent = "🎙️";
     document.getElementById("cName").textContent = genTitle;
     document.getElementById("cTitle").textContent = genTitle;
@@ -127,6 +139,16 @@
   setM('meta[property="og:description"]', cDesc);
   setM('meta[property="og:url"]', cUrl);
   var canon=document.querySelector('link[rel="canonical"]');if(canon)canon.setAttribute('href',cUrl);
+  ["hreflangHe","hreflangEn","hreflangDefault"].forEach(function(id){
+    var el=document.getElementById(id); if(el)el.setAttribute('href',cUrl);
+  });
+  document.getElementById("cBreadcrumbLd").textContent = JSON.stringify({
+    "@context":"https://schema.org","@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"בית","item":"https://paperplanes.co.il/"},
+      {"@type":"ListItem","position":2,"name":c.he,"item":cUrl}
+    ]
+  });
   document.getElementById("cFlag").textContent = c.flag;
   document.getElementById("cName").textContent = nm(c);
   document.getElementById("cTitle").textContent = nm(c);
