@@ -7,7 +7,7 @@
 <link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/dummy-ticket.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>כרטיס טיסה פיקטיבי (Onward Ticket) — מה זה ולמה צריך · מטוסי נייר</title>
-<meta name="description" content="מה זה כרטיס טיסה פיקטיבי, למה מדינות ושדות תעופה דורשים אותו, מתי צריך אותו בפועל, ואיך משיגים אחד בקלות ובזול לפני שממריאים.">
+<meta name="description" content="מה זה כרטיס טיסה פיקטיבי, למה מדינות ושדות תעופה דורשים אותו, מתי צריך אותו בפועל, ואיך משיגים אחד בחינם בקלות לפני שממריאים.">
 <link rel="canonical" href="https://paperplanes.co.il/dummy-ticket.html">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://paperplanes.co.il/dummy-ticket.html">
 <meta property="og:site_name" content="מטוסי נייר · Paper Planes">
 <meta property="og:title" content="כרטיס טיסה פיקטיבי (Onward Ticket) — מה זה ולמה צריך · מטוסי נייר">
-<meta property="og:description" content="מה זה כרטיס טיסה פיקטיבי, למה מדינות ושדות תעופה דורשים אותו, מתי צריך אותו בפועל, ואיך משיגים אחד בקלות ובזול לפני שממריאים.">
+<meta property="og:description" content="מה זה כרטיס טיסה פיקטיבי, למה מדינות ושדות תעופה דורשים אותו, מתי צריך אותו בפועל, ואיך משיגים אחד בחינם בקלות לפני שממריאים.">
 <meta property="og:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
@@ -29,6 +29,8 @@
   .p-hero .eyebrow{color:var(--mint-300);}
   .p-hero h1{font-size:clamp(30px,4.4vw,50px);margin-top:8px;}
   .p-hero p{font-size:18px;color:#d6eef2;margin-top:12px;max-width:60ch;}
+  .p-plane{position:absolute;width:130px;color:rgba(167,230,216,.28);top:16%;left:6%;transform:rotate(-12deg);z-index:2;}
+  @media(max-width:640px){.p-plane{width:60px;}}
   section{padding-block:clamp(36px,5vw,60px);}
   .dt-body{max-width:800px;margin:0 auto;}
   .dt-body h2{font-size:24px;color:var(--teal-900);margin-top:36px;margin-bottom:14px;}
@@ -76,8 +78,8 @@
     ? "כרטיס טיסה פיקטיבי (Onward Ticket) — מה זה ולמה צריך"
     : "Dummy Flight Ticket (Onward Ticket) — What It Is & Why You Need One";
   document.getElementById("dtLead").textContent = isHe
-    ? "למה שדות תעופה ומדינות דורשים הוכחת יציאה, מתי זה קורה לכם בפועל, ואיך משיגים כרטיס כזה בקלות בלי לקנות טיסה אמיתית שלא תשתמשו בה."
-    : "Why airports and countries require proof of onward travel, when you'll actually need it, and how to get one easily without buying a real flight you'll never use.";
+    ? "למה שדות תעופה ומדינות דורשים הוכחת יציאה, מתי זה קורה לכם בפועל, ואיך משיגים כרטיס כזה בחינם בקלות בלי לקנות טיסה אמיתית שלא תשתמשו בה."
+    : "Why airports and countries require proof of onward travel, when you'll actually need it, and how to get one for free without buying a real flight you'll never use.";
   document.title = isHe
     ? "כרטיס טיסה פיקטיבי (Onward Ticket) — מה זה ולמה צריך · מטוסי נייר"
     : "Dummy Flight Ticket (Onward Ticket) — What It Is & Why You Need It · Paper Planes";
@@ -106,10 +108,10 @@
 
     <div class="dt-cta">
       <div>
-        <strong>איפה משיגים כרטיס כזה?</strong><br>
-        שירותים ייעודיים מנפיקים כרטיס טיסה פיקטיבי עם PNR אמיתי תוך דקות, במחיר נמוך משמעותית מכרטיס טיסה מלא.
+        <strong>איפה משיגים כרטיס כזה — בחינם?</strong><br>
+        Departo הוא כלי <strong>חינמי לחלוטין</strong> ליצירת כרטיס טיסה פיקטיבי עם PNR אמיתי תוך דקות, בלי שום עלות — במקום לשלם על כרטיס טיסה מלא רק בשביל להראות אותו בביקורת הגבולות.
       </div>
-      <a class="btn btn--primary" href="https://www.departo.world/he" target="_blank" rel="noopener">למעבר ל-Departo →</a>
+      <a class="btn btn--primary" href="https://www.departo.world/he" target="_blank" rel="noopener">למעבר ל-Departo (חינם) →</a>
     </div>
 
     <h2>שאלות נפוצות</h2>
@@ -151,10 +153,10 @@
 
     <div class="dt-cta">
       <div>
-        <strong>Where do you get one?</strong><br>
-        Dedicated services issue a dummy flight ticket with a real PNR within minutes, at a price far lower than a full flight ticket.
+        <strong>Where do you get one — for free?</strong><br>
+        Departo is a <strong>completely free</strong> tool for generating a dummy flight ticket with a real PNR within minutes, at no cost at all — instead of paying for a full flight ticket just to show it at border control.
       </div>
-      <a class="btn btn--primary" href="https://www.departo.world/he" target="_blank" rel="noopener">Go to Departo →</a>
+      <a class="btn btn--primary" href="https://www.departo.world/he" target="_blank" rel="noopener">Go to Departo (free) →</a>
     </div>
 
     <h2>Frequently asked questions</h2>
