@@ -115,7 +115,7 @@
     document.title = 'eSIM for Travel Abroad — Prices, Tips & an Exclusive Deal · Paper Planes';
   }
 
-  var d = PP.discounts().find(function(x){ return /esim/i.test(x.id) || /esim/i.test(x.title); });
+  var d = PP.discounts().find(function(x){ return /esim/i.test(x.id) || /esim/i.test(x.title) || /airalo/i.test(x.vendor||""); });
   if (d) {
     document.getElementById("esimCtaBtn").href = d.url || "discounts.html";
     if (d.url) document.getElementById("esimCtaBtn").setAttribute("target","_blank");
