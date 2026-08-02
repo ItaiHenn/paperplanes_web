@@ -33,6 +33,11 @@
       var title = (el.querySelector(".card__title") || el.querySelector("h3") || {}).textContent || id;
       gtag("event", "episode_click", { episode_id: id, episode_title: title.trim() });
 
+    // "מידע נוסף" guide-page link on a discount card (must be checked before the generic .btn redeem check below)
+    } else if (el.closest(".disc") && href.match(/^(esim|insurance|dummy-ticket)\.html$/)) {
+      var guVendor = ((el.closest(".disc")||{}).querySelector(".disc__vendor")||{}).textContent || "";
+      gtag("event", "guide_info_click", { vendor: guVendor.trim(), page: href });
+
     // Discount "redeem" button
     } else if (el.closest(".disc") && el.classList.contains("btn")) {
       var vendor = ((el.closest(".disc")||{}).querySelector(".disc__vendor")||{}).textContent || "";
@@ -42,6 +47,10 @@
     } else if (el.classList.contains("copy-btn")) {
       var code = el.getAttribute("data-code") || "";
       gtag("event", "coupon_copy", { code: code });
+
+    // CTA box on the eSIM / insurance / dummy-ticket guide pages themselves
+    } else if (el.closest(".esim-cta, .ins-cta, .dt-cta")) {
+      gtag("event", "guide_cta_click", { page: document.body.getAttribute("data-page") || "", cta_url: href });
 
     // Guide buy button
     } else if (el.closest(".guide") && el.classList.contains("btn")) {
