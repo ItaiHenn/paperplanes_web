@@ -114,6 +114,9 @@
     });
   }
   render();
+  if (PP.onChange) PP.onChange(function(key){
+    if (key === "pp_guides_v1") render();
+  });
 })();
 </script>
 </body>
