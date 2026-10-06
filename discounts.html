@@ -161,6 +161,9 @@
     });
   }
   render();
+  if (PP.onChange) PP.onChange(function(key){
+    if (key === "pp_discounts_v2") render();
+  });
 })();
 </script>
 </body>

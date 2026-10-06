@@ -404,9 +404,9 @@
       .then(function(r){ return r.json(); })
       .then(function(d){
         try {
-          if (d.episodes  && d.episodes.length)  localStorage.setItem(K.ep,    JSON.stringify(d.episodes));
-          if (d.discounts && d.discounts.length) localStorage.setItem(K.disc,  JSON.stringify(d.discounts));
-          if (d.guides    && d.guides.length)    localStorage.setItem(K.guide, JSON.stringify(d.guides));
+          if (d.episodes  && d.episodes.length)  write(K.ep,    d.episodes);
+          if (d.discounts && d.discounts.length) write(K.disc,  d.discounts);
+          if (d.guides    && d.guides.length)    write(K.guide, d.guides);
         } catch(e){}
       })
       .catch(function(){});
