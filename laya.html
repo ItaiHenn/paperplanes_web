@@ -6,19 +6,19 @@
 <link rel="alternate" hreflang="en" href="https://paperplanes.co.il/laya.html">
 <link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/laya.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>חיסכון בכסף בטיול עם כרטיס ללא עמלות LAYA — 0% עמלות המרת מט"ח · מטוסי נייר</title>
-<meta name="description" content="איך לחסוך בכסף בטיול עם כרטיס ללא עמלות: מדריך מלא לכרטיס הנטען והארנק הדיגיטלי LAYA, 0% עמלת המרת מט״ח על 19 מטבעות, בלי עמלות משיכת כספומט נסתרות, והטבה בלעדית למאזיני מטוסי נייר.">
+<title>חיסכון בכסף בטיול — כרטיס LAYA ללא עמלות המרה · מטוסי נייר</title>
+<meta name="description" content="חיסכון בכסף בטיול עם כרטיס ללא עמלות: כרטיס LAYA הנטען, 0% עמלת המרת מט״ח על 19 מטבעות, בלי עמלות משיכה נסתרות, והטבה בלעדית למאזיני מטוסי נייר.">
 <link rel="canonical" href="https://paperplanes.co.il/laya.html">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://paperplanes.co.il/laya.html">
 <meta property="og:site_name" content="מטוסי נייר · Paper Planes">
-<meta property="og:title" content="חיסכון בכסף בטיול עם כרטיס ללא עמלות LAYA — 0% עמלות המרת מט&quot;ח · מטוסי נייר">
-<meta property="og:description" content="איך לחסוך בכסף בטיול עם כרטיס ללא עמלות: מדריך מלא לכרטיס הנטען והארנק הדיגיטלי LAYA, 0% עמלת המרת מט״ח על 19 מטבעות, בלי עמלות משיכת כספומט נסתרות, והטבה בלעדית למאזיני מטוסי נייר.">
-<meta property="og:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
+<meta property="og:title" content="חיסכון בכסף בטיול — כרטיס LAYA ללא עמלות המרה · מטוסי נייר">
+<meta property="og:description" content="חיסכון בכסף בטיול עם כרטיס ללא עמלות: כרטיס LAYA הנטען, 0% עמלת המרת מט״ח על 19 מטבעות, בלי עמלות משיכה נסתרות, והטבה בלעדית למאזיני מטוסי נייר.">
+<meta property="og:image" content="https://paperplanes.co.il/assets/laya/laya-banner-1.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
+<meta name="twitter:image" content="https://paperplanes.co.il/assets/laya/laya-banner-1.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -95,6 +95,7 @@
 <div id="site-footer"></div>
 <script type="application/ld+json" id="layaLd"></script>
 <script type="application/ld+json" id="layaVideoLd"></script>
+<script type="application/ld+json" id="layaBreadcrumbLd"></script>
 
 <script src="js/data.js"></script>
 <script src="js/icons.js"></script>
@@ -112,10 +113,10 @@
     : "Save Money While Traveling With a No-Fee Card — LAYA";
   document.getElementById("layaLead").textContent = isHe
     ? "איך לחסוך בכסף בטיול עם כרטיס ללא עמלות: 0% עמלות המרת מט״ח ובלי עמלות נסתרות על משיכת כספומט בחו״ל עם הארנק הדיגיטלי של LAYA, ואיך משיגים את ההטבה הבלעדית למאזיני מטוסי נייר."
-    : "How to save money while traveling with a no-fee card: 0% currency conversion fees and no hidden ATM withdrawal fees abroad with LAYA's digital wallet, and how to get the exclusive deal for Paper Planes listeners.";
+    : "How to save money while traveling with a no-fee prepaid card: 0% currency conversion fees with LAYA's digital wallet, plus an exclusive deal for Paper Planes listeners.";
   document.title = isHe
-    ? 'חיסכון בכסף בטיול עם כרטיס ללא עמלות LAYA — 0% עמלות המרת מט"ח · מטוסי נייר'
-    : 'Save Money While Traveling With a No-Fee Card — LAYA · Paper Planes';
+    ? 'חיסכון בכסף בטיול — כרטיס LAYA ללא עמלות המרה · מטוסי נייר'
+    : 'Save Money While Traveling — LAYA No-Fee Card · Paper Planes';
 
   var currencies = ["USD","EUR","GBP","THB","JPY","HUF","MXN","AED","ILS","AUD","CAD","CHF","NZD","CZK","RON","PLN","SGD","NOK","ZAR"];
   var currencyChips = currencies.map(function(c){ return '<div class="currency-chip">'+c+'</div>'; }).join("");
@@ -188,16 +189,6 @@
         <li>אל תשלחו לאף אחד צילום של כרטיס האשראי שלכם או את פרטיו.</li>
         <li>אם הכרטיס נגנב — צרו קשר מיידי עם LAYA, הם יחסמו אותו ויסייעו להוציא כרטיס חדש.</li>
       </ul>
-    </div>
-
-    <div class="deal-banner">
-      <div>
-        <div class="db-label">ההטבה שלנו</div>
-        <div class="db-amount" id="layaDealAmount2">🎁</div>
-        <div class="db-code" id="layaDealCode2"></div>
-        <div class="db-note" id="layaDealNote2"></div>
-      </div>
-      <a class="db-btn" id="layaDealBtn2" href="discounts.html">להרשמה ל-LAYA →</a>
     </div>
 
     <h2>🎬 סרטוני הדרכה</h2>
@@ -320,16 +311,6 @@
       </ul>
     </div>
 
-    <div class="deal-banner">
-      <div>
-        <div class="db-label">Our deal</div>
-        <div class="db-amount" id="layaDealAmount2En">🎁</div>
-        <div class="db-code" id="layaDealCode2En"></div>
-        <div class="db-note" id="layaDealNote2En"></div>
-      </div>
-      <a class="db-btn" id="layaDealBtn2En" href="discounts.html">Sign up for LAYA →</a>
-    </div>
-
     <h2>🎬 Tutorial videos</h2>
     <div class="videos-grid">
       <div class="video-card">
@@ -391,7 +372,7 @@
   var noteTxt = isHe ? "*בטעינה ושימוש של 100$ ראשוניים" : "*on an initial load and use of $100";
   var url = (d && d.url) || "discounts.html";
 
-  ["1","2","3"].forEach(function(n){
+  ["1","3"].forEach(function(n){
     [
       ["layaDealAmount"+n, "layaDealCode"+n, "layaDealNote"+n, "layaDealBtn"+n],
       ["layaDealAmount"+n+"En", "layaDealCode"+n+"En", "layaDealNote"+n+"En", "layaDealBtn"+n+"En"]
@@ -435,6 +416,15 @@
       };
     })
   );
+
+  document.getElementById("layaBreadcrumbLd").textContent = JSON.stringify({
+    "@context":"https://schema.org","@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name": isHe ? "בית" : "Home","item":"https://paperplanes.co.il/"},
+      {"@type":"ListItem","position":2,"name": isHe ? "הטבות" : "Discounts","item":"https://paperplanes.co.il/discounts.html"},
+      {"@type":"ListItem","position":3,"name":"LAYA","item":"https://paperplanes.co.il/laya.html"}
+    ]
+  });
 })();
 </script>
 </body>
