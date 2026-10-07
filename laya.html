@@ -6,16 +6,16 @@
 <link rel="alternate" hreflang="en" href="https://paperplanes.co.il/laya.html">
 <link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/laya.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LAYA — כרטיס נטען ללא עמלות המרת מט"ח לטיולים · מטוסי נייר</title>
-<meta name="description" content="מדריך מלא לכרטיס הנטען והארנק הדיגיטלי LAYA: איך לחסוך על עמלות המרת מט״ח ומשיכת כספומט בחו״ל, 0% עמלת המרה על 19 מטבעות, והטבה בלעדית למאזיני מטוסי נייר.">
+<title>חיסכון בכסף בטיול עם כרטיס ללא עמלות LAYA — 0% עמלות המרת מט"ח · מטוסי נייר</title>
+<meta name="description" content="איך לחסוך בכסף בטיול עם כרטיס ללא עמלות: מדריך מלא לכרטיס הנטען והארנק הדיגיטלי LAYA, 0% עמלת המרת מט״ח על 19 מטבעות, בלי עמלות משיכת כספומט נסתרות, והטבה בלעדית למאזיני מטוסי נייר.">
 <link rel="canonical" href="https://paperplanes.co.il/laya.html">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://paperplanes.co.il/laya.html">
 <meta property="og:site_name" content="מטוסי נייר · Paper Planes">
-<meta property="og:title" content="LAYA — כרטיס נטען ללא עמלות המרת מט&quot;ח לטיולים · מטוסי נייר">
-<meta property="og:description" content="מדריך מלא לכרטיס הנטען והארנק הדיגיטלי LAYA: איך לחסוך על עמלות המרת מט״ח ומשיכת כספומט בחו״ל, 0% עמלת המרה על 19 מטבעות, והטבה בלעדית למאזיני מטוסי נייר.">
+<meta property="og:title" content="חיסכון בכסף בטיול עם כרטיס ללא עמלות LAYA — 0% עמלות המרת מט&quot;ח · מטוסי נייר">
+<meta property="og:description" content="איך לחסוך בכסף בטיול עם כרטיס ללא עמלות: מדריך מלא לכרטיס הנטען והארנק הדיגיטלי LAYA, 0% עמלת המרת מט״ח על 19 מטבעות, בלי עמלות משיכת כספומט נסתרות, והטבה בלעדית למאזיני מטוסי נייר.">
 <meta property="og:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
@@ -43,13 +43,24 @@
   .stat-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;text-align:center;box-shadow:var(--shadow-sm);}
   .stat-card .num{font-family:var(--head);font-size:28px;color:var(--teal);font-weight:700;}
   .stat-card .lbl{font-size:13.5px;color:var(--muted);margin-top:4px;}
+  .stat-card--deal{background:var(--sky-50);border:1.5px solid var(--teal);}
+  .stat-card--deal .num{font-size:22px;}
+  .stats-note{font-size:12.5px;color:var(--muted);text-align:center;margin:0 0 20px;}
   .laya-cta{background:var(--sky-50);border:1.5px dashed var(--teal);border-radius:var(--r-lg);padding:26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:28px 0;}
   .laya-cta .code{font-family:var(--head);font-size:20px;color:var(--teal-900);letter-spacing:.06em;}
   .currency-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:16px 0 24px;}
   .currency-chip{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:14.5px;color:var(--teal-900);text-align:center;}
   .laya-faq{border-top:1px solid var(--line);padding-top:16px;margin-top:16px;}
   .laya-faq h3{font-size:18px;color:var(--teal-900);margin-bottom:6px;margin-top:0;}
+  .related-guides{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0 8px;}
+  .related-card{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;font-size:15px;font-weight:600;color:var(--teal-900);text-decoration:none;transition:transform .2s,box-shadow .2s;}
+  .related-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
   .laya-videos{background:var(--sky-50);border-radius:var(--r-lg);padding:26px;text-align:center;color:var(--muted);}
+  .videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:16px 0 8px;}
+  .video-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);}
+  .video-card .frame-wrap{position:relative;width:100%;aspect-ratio:9/16;background:#000;}
+  .video-card iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .video-card .v-title{padding:12px 14px;font-size:14.5px;font-weight:600;color:var(--teal-900);text-align:center;}
   .laya-safety{background:#fff8e8;border:1px solid #f0dca0;border-radius:var(--r-md);padding:18px 20px;margin:20px 0;}
   .laya-safety li{margin-bottom:6px;}
 </style>
@@ -73,6 +84,7 @@
 
 <div id="site-footer"></div>
 <script type="application/ld+json" id="layaLd"></script>
+<script type="application/ld+json" id="layaVideoLd"></script>
 
 <script src="js/data.js"></script>
 <script src="js/icons.js"></script>
@@ -86,14 +98,14 @@
 
   document.getElementById("pEyebrow").textContent = isHe ? "💳 כרטיס נטען לטיולים" : "💳 Prepaid Travel Card";
   document.getElementById("layaH1").textContent = isHe
-    ? 'LAYA — כרטיס נטען ללא עמלות המרת מט"ח'
-    : "LAYA — A Prepaid Card With No Currency Conversion Fees";
+    ? 'חיסכון בכסף בטיול עם כרטיס ללא עמלות — LAYA'
+    : "Save Money While Traveling With a No-Fee Card — LAYA";
   document.getElementById("layaLead").textContent = isHe
-    ? "איך לחסוך על עמלות המרת מט״ח ומשיכת כספומט בחו״ל עם הארנק הדיגיטלי של LAYA, ואיך משיגים את ההטבה הבלעדית למאזיני מטוסי נייר."
-    : "How to avoid currency conversion and ATM withdrawal fees abroad with LAYA's digital wallet, and how to get the exclusive deal for Paper Planes listeners.";
+    ? "איך לחסוך בכסף בטיול עם כרטיס ללא עמלות: 0% עמלות המרת מט״ח ובלי עמלות נסתרות על משיכת כספומט בחו״ל עם הארנק הדיגיטלי של LAYA, ואיך משיגים את ההטבה הבלעדית למאזיני מטוסי נייר."
+    : "How to save money while traveling with a no-fee card: 0% currency conversion fees and no hidden ATM withdrawal fees abroad with LAYA's digital wallet, and how to get the exclusive deal for Paper Planes listeners.";
   document.title = isHe
-    ? 'LAYA — כרטיס נטען ללא עמלות המרת מט"ח לטיולים · מטוסי נייר'
-    : 'LAYA — Prepaid Travel Card With No Conversion Fees · Paper Planes';
+    ? 'חיסכון בכסף בטיול עם כרטיס ללא עמלות LAYA — 0% עמלות המרת מט"ח · מטוסי נייר'
+    : 'Save Money While Traveling With a No-Fee Card — LAYA · Paper Planes';
 
   var currencies = ["USD","EUR","GBP","THB","JPY","HUF","MXN","AED","ILS","AUD","CAD","CHF","NZD","CZK","RON","PLN","SGD","NOK","ZAR"];
   var currencyChips = currencies.map(function(c){ return '<div class="currency-chip">'+c+'</div>'; }).join("");
@@ -105,8 +117,9 @@
     <div class="stats-bar">
       <div class="stat-card"><div class="num">0%</div><div class="lbl">עמלת המרת מט"ח</div></div>
       <div class="stat-card"><div class="num">19</div><div class="lbl">מטבעות נתמכים</div></div>
-      <div class="stat-card"><div class="num">0.9%</div><div class="lbl">עמלת טעינת שקלים</div></div>
+      <div class="stat-card stat-card--deal"><div class="num" id="layaDealNum">🎁</div><div class="lbl" id="layaDealLbl">ההטבה שלנו</div></div>
     </div>
+    <p class="stats-note" id="layaStatsNote"></p>
 
     <h2>⚙️ איך זה עובד בפועל?</h2>
     <p>אחרי פתיחת חשבון מהירה באפליקציה, טוענים את הארנק בסכום הרצוי — שקלים או ישירות במטבע היעד. יש כרטיס Mastercard דיגיטלי שאפשר להוסיף בקליק ל-Apple Pay ו-Google Pay, ואם רוצים, אפשר להזמין גם כרטיס פיזי שמגיע הביתה — כיסוי גם כשאין קליטה או כשהסוללה נגמרת.</p>
@@ -163,7 +176,20 @@
     </div>
 
     <h2>🎬 סרטוני הדרכה</h2>
-    <div class="laya-videos" id="layaVideos">בקרוב — סרטוני הדרכה על פתיחת חשבון, טעינה והמרה חכמה ב-LAYA.</div>
+    <div class="videos-grid">
+      <div class="video-card">
+        <div class="frame-wrap"><iframe src="https://www.youtube.com/embed/jseG5bakM5A" title="המרת מטבע ב-LAYA" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="v-title">איך ממירים מטבע ב-LAYA</div>
+      </div>
+      <div class="video-card">
+        <div class="frame-wrap"><iframe src="https://www.youtube.com/embed/GvxHVFLmW4E" title="טעינת כרטיס LAYA" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="v-title">איך טוענים את הכרטיס</div>
+      </div>
+      <div class="video-card">
+        <div class="frame-wrap"><iframe src="https://www.youtube.com/embed/0YEG5dewZaI" title="משיכת כסף עם LAYA" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="v-title">איך מושכים כסף מכספומט</div>
+      </div>
+    </div>
 
     <h2>❓ שאלות נפוצות</h2>
     <div class="laya-faq">
@@ -178,6 +204,13 @@
       <h3>מה קורה אם הכרטיס נגנב?</h3>
       <p>פונים מיד לשירות הלקוחות של LAYA באפליקציה, חוסמים את הכרטיס ומקבלים סיוע בהוצאת כרטיס חדש — בלי לחשוף סכומים מעבר למה שהיה טעון בפועל.</p>
     </div>
+
+    <h2>עוד דרכים לחסוך בכסף בטיול</h2>
+    <div class="related-guides">
+      <a href="esim.html" class="related-card">📶 <span>eSIM זול לנסיעות לחו"ל</span></a>
+      <a href="insurance.html" class="related-card">🩺 <span>ביטוח נסיעות דרך סוכן</span></a>
+      <a href="dummy-ticket.html" class="related-card">🎫 <span>כרטיס טיסה פיקטיבי בחינם</span></a>
+    </div>
   `;
 
   var enContent = `
@@ -187,8 +220,9 @@
     <div class="stats-bar">
       <div class="stat-card"><div class="num">0%</div><div class="lbl">conversion fee</div></div>
       <div class="stat-card"><div class="num">19</div><div class="lbl">supported currencies</div></div>
-      <div class="stat-card"><div class="num">0.9%</div><div class="lbl">shekel loading fee</div></div>
+      <div class="stat-card stat-card--deal"><div class="num" id="layaDealNumEn">🎁</div><div class="lbl" id="layaDealLblEn">Our deal</div></div>
     </div>
+    <p class="stats-note" id="layaStatsNoteEn"></p>
 
     <h2>⚙️ How does it actually work?</h2>
     <p>After a quick sign-up in the app, you load your wallet with the amount you want — shekels, or directly in your destination currency. You get a digital Mastercard that can be added to Apple Pay and Google Pay with one tap, and you can also order a physical card delivered to your home as backup for when there's no signal or your battery dies.</p>
@@ -245,7 +279,20 @@
     </div>
 
     <h2>🎬 Tutorial videos</h2>
-    <div class="laya-videos">Coming soon — tutorial videos on opening an account, loading funds, and smart currency conversion with LAYA.</div>
+    <div class="videos-grid">
+      <div class="video-card">
+        <div class="frame-wrap"><iframe src="https://www.youtube.com/embed/jseG5bakM5A" title="Currency conversion with LAYA" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="v-title">How to convert currency on LAYA</div>
+      </div>
+      <div class="video-card">
+        <div class="frame-wrap"><iframe src="https://www.youtube.com/embed/GvxHVFLmW4E" title="Loading your LAYA card" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="v-title">How to load your card</div>
+      </div>
+      <div class="video-card">
+        <div class="frame-wrap"><iframe src="https://www.youtube.com/embed/0YEG5dewZaI" title="Withdrawing cash with LAYA" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="v-title">How to withdraw cash from an ATM</div>
+      </div>
+    </div>
 
     <h2>❓ Frequently asked questions</h2>
     <div class="laya-faq">
@@ -259,6 +306,13 @@
     <div class="laya-faq">
       <h3>What happens if the card is stolen?</h3>
       <p>Contact LAYA's customer service in the app immediately, block the card, and get help issuing a new one — without exposing more than what was actually loaded.</p>
+    </div>
+
+    <h2>More ways to save money while traveling</h2>
+    <div class="related-guides">
+      <a href="esim.html" class="related-card">📶 <span>Cheap eSIM for travel abroad</span></a>
+      <a href="insurance.html" class="related-card">🩺 <span>Travel insurance through an agent</span></a>
+      <a href="dummy-ticket.html" class="related-card">🎫 <span>Free dummy flight ticket</span></a>
     </div>
   `;
 
@@ -279,6 +333,16 @@
     if (btnEl) { btnEl.href = url; if (d && d.url) btnEl.setAttribute("target","_blank"); }
   });
 
+  var dealNum = (d && d.headline) || (isHe ? "🎁" : "🎁");
+  var dealLbl = d ? (isHe ? "ההטבה שלנו" : "Our deal") : (isHe ? "ההטבה שלנו" : "Our deal");
+  var noteTxt = isHe ? "*בטעינה ושימוש של 100$ ראשוניים" : "*on an initial load and use of $100";
+  [["layaDealNum","layaDealLbl","layaStatsNote"], ["layaDealNumEn","layaDealLblEn","layaStatsNoteEn"]].forEach(function(ids){
+    var numEl = document.getElementById(ids[0]), lblEl = document.getElementById(ids[1]), noteEl = document.getElementById(ids[2]);
+    if (numEl) numEl.textContent = dealNum;
+    if (lblEl) lblEl.textContent = dealLbl;
+    if (noteEl) noteEl.textContent = noteTxt;
+  });
+
   document.getElementById("layaLd").textContent = JSON.stringify({
     "@context":"https://schema.org","@type":"FAQPage",
     "mainEntity": isHe ? [
@@ -291,6 +355,24 @@
       {"@type":"Question","name":"What happens if the card is stolen?","acceptedAnswer":{"@type":"Answer","text":"Contact LAYA's customer service in the app immediately, block the card, and get help issuing a new one."}}
     ]
   });
+
+  var videoDefs = [
+    { id:"jseG5bakM5A", nameHe:"איך ממירים מטבע ב-LAYA", nameEn:"How to convert currency on LAYA", descHe:"הדרכה קצרה איך להמיר מטבע חכם ב-0% עמלה באפליקציית LAYA.", descEn:"A short guide to smart 0%-fee currency conversion in the LAYA app." },
+    { id:"GvxHVFLmW4E", nameHe:"איך טוענים את כרטיס LAYA", nameEn:"How to load your LAYA card", descHe:"הדרכה קצרה איך טוענים כסף לארנק הדיגיטלי של LAYA.", descEn:"A short guide to loading funds into your LAYA digital wallet." },
+    { id:"0YEG5dewZaI", nameHe:"איך מושכים כסף מכספומט עם LAYA", nameEn:"How to withdraw cash with LAYA", descHe:"הדרכה קצרה למשיכת מזומן מכספומט בחו״ל עם כרטיס LAYA.", descEn:"A short guide to withdrawing cash from an ATM abroad with your LAYA card." }
+  ];
+  document.getElementById("layaVideoLd").textContent = JSON.stringify(
+    videoDefs.map(function(v){
+      return {
+        "@context":"https://schema.org","@type":"VideoObject",
+        "name": isHe ? v.nameHe : v.nameEn,
+        "description": isHe ? v.descHe : v.descEn,
+        "thumbnailUrl": "https://img.youtube.com/vi/"+v.id+"/hqdefault.jpg",
+        "embedUrl": "https://www.youtube.com/embed/"+v.id,
+        "contentUrl": "https://www.youtube.com/shorts/"+v.id
+      };
+    })
+  );
 })();
 </script>
 </body>

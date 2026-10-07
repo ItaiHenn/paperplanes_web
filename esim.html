@@ -41,6 +41,9 @@
   .esim-cta .code{font-family:var(--head);font-size:20px;color:var(--teal-900);letter-spacing:.06em;}
   .esim-faq{border-top:1px solid var(--line);padding-top:16px;margin-top:16px;}
   .esim-faq h3{font-size:18px;color:var(--teal-900);margin-bottom:6px;}
+  .related-guides{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0 8px;}
+  .related-card{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;font-size:15px;font-weight:600;color:var(--teal-900);text-decoration:none;transition:transform .2s,box-shadow .2s;}
+  .related-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
 </style>
 </head>
 <body data-page="esim">
@@ -123,6 +126,13 @@
       <h3>האם ה-eSIM משפיע על מספר הטלפון הישראלי שלי?</h3>
       <p>לא. ה-eSIM מוסיף קו נתונים נוסף למכשיר, ומספר הטלפון הרגיל שלכם (עם קו הסים הפיזי) ממשיך לפעול במקביל להתקבלות שיחות ו-SMS.</p>
     </div>
+
+    <h2>עוד דרכים לחסוך בכסף בטיול</h2>
+    <div class="related-guides">
+      <a href="laya.html" class="related-card">💳 <span>כרטיס LAYA ללא עמלות המרה</span></a>
+      <a href="insurance.html" class="related-card">🩺 <span>ביטוח נסיעות דרך סוכן</span></a>
+      <a href="dummy-ticket.html" class="related-card">🎫 <span>כרטיס טיסה פיקטיבי בחינם</span></a>
+    </div>
   `;
 
   var enContent = `
@@ -163,6 +173,13 @@
     <div class="esim-faq">
       <h3>Does the eSIM affect my Israeli phone number?</h3>
       <p>No. The eSIM adds an extra data line to your device, and your regular phone number (on the physical SIM) keeps working in parallel for calls and SMS.</p>
+    </div>
+
+    <h2>More ways to save money while traveling</h2>
+    <div class="related-guides">
+      <a href="laya.html" class="related-card">💳 <span>LAYA — a no-fee prepaid card</span></a>
+      <a href="insurance.html" class="related-card">🩺 <span>Travel insurance through an agent</span></a>
+      <a href="dummy-ticket.html" class="related-card">🎫 <span>Free dummy flight ticket</span></a>
     </div>
   `;
 

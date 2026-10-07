@@ -40,6 +40,9 @@
   .dt-cta{background:var(--sky-50);border:1.5px dashed var(--teal);border-radius:var(--r-lg);padding:26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:28px 0;}
   .dt-faq{border-top:1px solid var(--line);padding-top:16px;margin-top:16px;}
   .dt-faq h3{font-size:18px;color:var(--teal-900);margin-bottom:6px;}
+  .related-guides{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0 8px;}
+  .related-card{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;font-size:15px;font-weight:600;color:var(--teal-900);text-decoration:none;transition:transform .2s,box-shadow .2s;}
+  .related-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
   .dt-note{background:#fff8e8;border:1px solid #f0dca0;border-radius:var(--r-md);padding:14px 18px;font-size:15px;color:#6b5311;margin:20px 0;}
 </style>
 </head>
@@ -127,6 +130,13 @@
       <h3>למי זה הכי רלוונטי?</h3>
       <p>למטיילי תרמילאות שטסים לכיוון אחד בלי תאריך חזרה קבוע, לכל מי שנכנס למדינה שדורשת הוכחת יציאה כתנאי כניסה, ולמי שמגיש בקשת ויזה שדורשת הוכחת המשך מסע.</p>
     </div>
+
+    <h2>עוד דרכים לחסוך בכסף בטיול</h2>
+    <div class="related-guides">
+      <a href="laya.html" class="related-card">💳 <span>כרטיס LAYA ללא עמלות המרה</span></a>
+      <a href="esim.html" class="related-card">📶 <span>eSIM זול לנסיעות לחו"ל</span></a>
+      <a href="insurance.html" class="related-card">🩺 <span>ביטוח נסיעות דרך סוכן</span></a>
+    </div>
   `;
 
   var enContent = `
@@ -171,6 +181,13 @@
     <div class="dt-faq">
       <h3>Who is this most relevant for?</h3>
       <p>Backpackers flying one-way without a fixed return date, anyone entering a country that requires proof of exit as a condition of entry, and anyone applying for a visa that requires proof of onward travel.</p>
+    </div>
+
+    <h2>More ways to save money while traveling</h2>
+    <div class="related-guides">
+      <a href="laya.html" class="related-card">💳 <span>LAYA — a no-fee prepaid card</span></a>
+      <a href="esim.html" class="related-card">📶 <span>Cheap eSIM for travel abroad</span></a>
+      <a href="insurance.html" class="related-card">🩺 <span>Travel insurance through an agent</span></a>
     </div>
   `;
 
