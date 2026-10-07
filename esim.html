@@ -170,7 +170,7 @@
   document.documentElement.lang = isHe ? "he" : "en";
   document.documentElement.dir = isHe ? "rtl" : "ltr";
 
-  var d = PP.discounts().find(function(x){ return /esim|e-sim|סים|איירלו|airalo/i.test([x.id,x.title,x.vendor,x.desc].join(" ")); });
+  var d = PP.discounts().find(function(x){ return /esim|e-sim|airalo|איירלו|כרטיס\s*ה?סים|סים\s*גלובלי/i.test([x.id,x.title,x.vendor,x.desc].join(" ")); });
   var ctaBtn = document.getElementById("esimCtaBtn");
   if (d && ctaBtn) {
     ctaBtn.href = d.url || "discounts.html";
