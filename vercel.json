@@ -4,6 +4,7 @@
   "rewrites": [
     { "source": "/esim", "destination": "/esim.html" },
     { "source": "/insurance", "destination": "/insurance.html" },
-    { "source": "/dummy-ticket", "destination": "/dummy-ticket.html" }
+    { "source": "/dummy-ticket", "destination": "/dummy-ticket.html" },
+    { "source": "/laya", "destination": "/laya.html" }
   ]
 }

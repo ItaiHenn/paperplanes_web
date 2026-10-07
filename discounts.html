@@ -125,10 +125,11 @@
         '<button class="copy-btn" data-code="'+d.code+'">'+I.tag+' '+t("disc_copy")+'</button></div>' : '';
       var desc = d.desc ? '<span class="disc__ribbon">'+d.desc+'</span>' : '';
       var haystack = [d.id, d.title, d.vendor, d.desc].join(" ");
-      var isEsim = /esim|e-sim|סים|איירלו|airalo/i.test(haystack);
+      var isEsim = /esim|e-sim|airalo|איירלו|כרטיס\s*ה?סים|סים\s*גלובלי/i.test(haystack);
       var isInsurance = /insurance|ביטוח|safe4u|סייף\s*פור\s*יו|passportcard/i.test(haystack);
       var isDummyTicket = /פיקטיבי|departo|onward|dummy\s*ticket/i.test(haystack);
-      var guideLink = isEsim ? 'esim.html' : (isInsurance ? 'insurance.html' : (isDummyTicket ? 'dummy-ticket.html' : ''));
+      var isLaya = /laya|לאיה/i.test(haystack);
+      var guideLink = isEsim ? 'esim.html' : (isInsurance ? 'insurance.html' : (isDummyTicket ? 'dummy-ticket.html' : (isLaya ? 'laya.html' : '')));
       var guideBtn = guideLink ? '<a class="btn btn--ghost btn--sm" href="'+guideLink+'">'+I.info+' מידע נוסף</a>' : '';
       return '<div class="card disc">'+
         '<div class="disc__logo">'+desc+logo+'</div>'+
