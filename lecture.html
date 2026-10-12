@@ -48,6 +48,13 @@
   .related-eps h2{font-size:21px;color:var(--teal-900);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
   .related-eps h2 svg{width:22px;height:22px;flex-shrink:0;}
   .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+  .lect-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin:0 0 30px;}
+  .lect-gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-md);box-shadow:var(--shadow-sm);cursor:zoom-in;transition:.2s;}
+  .lect-gallery img:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+  .lect-lightbox{position:fixed;inset:0;background:rgba(10,30,34,.92);z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;}
+  .lect-lightbox.open{display:flex;}
+  .lect-lightbox img{max-width:92vw;max-height:88vh;border-radius:10px;box-shadow:0 10px 50px rgba(0,0,0,.5);}
+  .lect-lightbox-close{position:absolute;top:18px;inset-inline-end:22px;background:none;border:none;color:#fff;font-size:30px;cursor:pointer;line-height:1;}
   .back-link{display:inline-block;max-width:780px;margin:0 auto 6px;color:var(--teal);font-weight:600;}
   .back-wrap{max-width:780px;margin:0 auto;}
 </style>
@@ -69,6 +76,10 @@
     <div class="back-wrap"><a class="back-link" href="lectures.html" id="lBack"></a></div>
     <div class="lect-body" id="lDescription"></div>
 
+    <div class="lect-body" id="lGalleryWrap" style="display:none">
+      <div class="lect-gallery" id="lGallery"></div>
+    </div>
+
     <div class="lect-body">
       <h2 id="lHighlightsTitle"></h2>
       <ul class="lect-highlights" id="lHighlights"></ul>
@@ -86,6 +97,8 @@
     </div>
   </div>
 </section>
+
+<div class="lect-lightbox" id="lLightbox"><button class="lect-lightbox-close" id="lLightboxClose" aria-label="סגור">✕</button><img id="lLightboxImg" src="" alt=""></div>
 
 <div id="site-footer"></div>
 <script type="application/ld+json" id="lLd"></script>
@@ -115,11 +128,12 @@
 
   /* ---- SEO: title / meta / canonical / hreflang / OG ---- */
   var lUrl = 'https://paperplanes.co.il/lecture.html?id=' + encodeURIComponent(l.id);
-  var lImg = (function(){
-    if (!l.image) return 'https://paperplanes.co.il/assets/podcast-cover.jpg';
-    var m = String(l.image).match(/\/d\/([a-zA-Z0-9_-]+)/);
-    return m ? 'https://lh3.googleusercontent.com/d/' + m[1] : l.image;
-  })();
+  function driveImg(url) {
+    if (!url) return '';
+    var m = String(url).match(/\/d\/([a-zA-Z0-9_-]+)/);
+    return m ? 'https://lh3.googleusercontent.com/d/' + m[1] : url;
+  }
+  var lImg = l.image ? driveImg(l.image) : 'https://paperplanes.co.il/assets/podcast-cover.jpg';
   var seoTitle = l.title + (countryNames ? ' — הרצאה על ' + countryNames : ' — הרצאה') + ' | איתי חן · מטוסי נייר';
   var seoDesc = (l.summary || l.description || '').replace(/\n+/g," ").substring(0,190);
   document.title = seoTitle;
@@ -150,6 +164,23 @@
   document.getElementById("lMetaRow").innerHTML = metaChips.join("");
 
   document.getElementById("lDescription").innerHTML = paras(l.description || l.summary || "");
+
+  /* ---- image gallery ---- */
+  var galleryUrls = (l.images || "").split("|").map(function(s){ return s.trim(); }).filter(Boolean).map(driveImg);
+  if (galleryUrls.length) {
+    document.getElementById("lGalleryWrap").style.display = "";
+    document.getElementById("lGallery").innerHTML = galleryUrls.map(function(src){
+      return '<img src="'+src+'" alt="'+l.title+'" loading="lazy">';
+    }).join("");
+    var lightbox = document.getElementById("lLightbox"), lightboxImg = document.getElementById("lLightboxImg");
+    document.getElementById("lGallery").addEventListener("click", function(ev){
+      var img = ev.target.closest("img"); if (!img) return;
+      lightboxImg.src = img.src; lightboxImg.alt = img.alt; lightbox.classList.add("open");
+    });
+    function closeLightbox(){ lightbox.classList.remove("open"); lightboxImg.src = ""; }
+    document.getElementById("lLightboxClose").addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", function(ev){ if (ev.target === lightbox) closeLightbox(); });
+  }
 
   document.getElementById("lHighlightsTitle").textContent = T.t("lect_highlights_title");
   var hl = (l.highlights||"").split("|").map(function(s){ return s.trim(); }).filter(Boolean);
