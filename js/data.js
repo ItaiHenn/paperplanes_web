@@ -274,8 +274,57 @@
     { id:"guide-nz", title:"ניו זילנד ברכב — מהצפון לדרום", country:"nz", image:"", price:"₪79", desc:"מסלול רוד-טריפ של 18 יום.",               url:"#" }
   ];
 
+  /* ---- lectures (talks given following the podcast) ---- */
+  var SEED_LECTURES = [
+    {
+      id:"lect-china", order:"1", title:"להבין את סין", subtitle:"בפנים אסיה הענקית שרובנו לא מכירים",
+      country:"cn", image:"", duration:"45-60 דקות", audience:"ארגונים, בתי ספר ותיכונים, קהילות וקבוצות פרטיות",
+      summary:"מסע מרתק אל תוך התרבות, ההיסטוריה וההווה הסיני — איך סין באמת נראית מבפנים, מעבר לכותרות.",
+      description:"סין היא לא רק שם של מדינה בחדשות — היא ציוויליזציה בת אלפי שנים שמתפקדת היום בקצב הכי מהיר בעולם. בהרצאה אני לוקח את הקהל למסע אישי מתוך הזמן שביליתי בסין: איך נראים החיים היומיומיים של סינים רגילים, מה ההבדל בין התדמית המערבית של סין לבין המציאות בשטח, ואיך התרבות, ההיסטוריה הקומוניסטית והכלכלה המודרנית משתלבות יחד לכדי מדינה שמשפיעה על כולנו.\n\nההרצאה משלבת סיפורים אישיים, תמונות וקטעי וידאו מהטיול, ומזמינה את הקהל לשיחה פתוחה ולשאלות.",
+      highlights:"מפגש אישי עם תרבות וחברה הסינית המודרנית|סיפורים מהשטח שלא מגיעים לחדשות|התבוננות בהיסטוריה הסינית והקשר להווה|שיחה פתוחה ומענה על שאלות הקהל",
+      keywords:"הרצאה על סין, להבין את סין, הרצאות תרבות, איתי חן מטוסי נייר, הרצאות על טיולים",
+      url:""
+    },
+    {
+      id:"lect-korea", order:"2", title:"להבין את קוריאה", subtitle:"בין מסורת קונפוציאנית לקיי-פופ",
+      country:"kr", image:"", duration:"45-60 דקות", audience:"ארגונים, בתי ספר ותיכונים, קהילות וקבוצות פרטיות",
+      summary:"איך דרום קוריאה הפכה תוך דור אחד ממדינה ענייה למעצמת תרבות גלובלית — ומה זה אומר על החברה הקוריאנית.",
+      description:"דרום קוריאה היא אחת מסיפורי ההצלחה המדהימים ביותר של המאה ה-20, אבל מאחורי הברק של קיי-פופ, הטכנולוגיה והסדרות מסתתרת חברה עם לחצים חברתיים כבדים, מסורת קונפוציאנית עמוקה ויחסים מורכבים עם השכנות יפן וצפון קוריאה. בהרצאה אני משתף מהזמן שביליתי בקוריאה — התרבות, האוכל, קצב החיים המטורף, ואיך כל זה מתחבר להיסטוריה הסוערת של המדינה.",
+      highlights:"הסיפור מאחורי הגאות הכלכלית והתרבותית של קוריאה|מסורת קונפוציאנית מול חיי היום-יום המודרניים|חיי הלילה, האוכל ותרבות הצעירים|שיחה פתוחה ומענה על שאלות הקהל",
+      keywords:"הרצאה על קוריאה, להבין את קוריאה, הרצאות תרבות, איתי חן מטוסי נייר, הרצאות על טיולים",
+      url:""
+    },
+    {
+      id:"lect-pacific", order:"3", title:"קפיצה לפסיפיק — איי שלמה, פיג'י וסמואה", subtitle:"שלוש מדינות איים שכמעט אף ישראלי לא הגיע אליהן",
+      country:"sb, fj, ws", image:"", duration:"45-60 דקות", audience:"ארגונים, בתי ספר ותיכונים, קהילות וקבוצות פרטיות",
+      summary:"מסע אל הפינה הכי נידחת ופחות מוכרת של העולם — התרבות המלינזית והפולינזית של האוקיינוס השקט.",
+      description:"רוב האנשים לא יודעים להצביע על המפה איפה נמצאות איי שלמה, פיג'י וסמואה — ואני גר בהן כמה חודשים. בהרצאה אני מספר על החברות השבטיות הייחודיות של מלינזיה ופולינזיה, על המפגש בין המסורת העתיקה לבין העולם המערבי, ועל החוויות האישיות (לפעמים גם המאתגרות) של טיול וחיים בפינה הכי מרוחקת של כדור הארץ.",
+      highlights:"היכרות עם שלוש תרבויות איים שכמעט ולא מוכרות בישראל|שבטיות, מסורת והשפעת המיסיונרים על התרבות המקומית|חוויות אישיות מהשטח — הטוב, הרע והמצחיק|שיחה פתוחה ומענה על שאלות הקהל",
+      keywords:"הרצאה על האוקיינוס השקט, איי שלמה, פיג'י, סמואה, הרצאות תרבות, איתי חן מטוסי נייר",
+      url:""
+    },
+    {
+      id:"lect-hongkong", order:"4", title:"לא כל הנוצץ זהב — הונג קונג", subtitle:"מאחורי גורדי השחקים של אחת הערים הצפופות בעולם",
+      country:"hk", image:"", duration:"45-60 דקות", audience:"ארגונים, בתי ספר ותיכונים, קהילות וקבוצות פרטיות",
+      summary:"מבט מפוכח על הונג קונג — העיר שנראית כמו חלום קפיטליסטי, אך חיה בה מציאות הרבה יותר מורכבת.",
+      description:"הונג קונג מככבת בכל רשימת 'יעדים מרשימים' — גורדי שחקים, שוק הון עולמי וקו רקיע מדהים. אבל מאחורי הברק יש עיר עם פערים חברתיים עצומים, דיור צפוף ברמות קיצוניות, ומתח פוליטי מתמשך מול סין. בהרצאה אני חושף את הפן הפחות מצולם של הונג קונג — איך באמת נראים חיי היום-יום שם, ולמה 'לא כל הנוצץ זהב'.",
+      highlights:"המציאות שמאחורי קו הרקיע המפורסם של הונג קונג|פערים חברתיים ודיור צפוף — איך זה נראה בפועל|היחסים המורכבים מול סין והשפעתם על הזהות המקומית|שיחה פתוחה ומענה על שאלות הקהל",
+      keywords:"הרצאה על הונג קונג, הרצאות תרבות, איתי חן מטוסי נייר, הרצאות על טיולים",
+      url:""
+    },
+    {
+      id:"lect-trees", order:"5", title:"לדבר עם עצים", subtitle:"איך יוצרים שיחה אמיתית עם כל אדם בעולם",
+      country:"", image:"", duration:"60-75 דקות", audience:"ארגונים, אנשי מכירות ושירות, סטודנטים, קהילות",
+      summary:"הכלים הבסיסיים לראיונות ולשיחה פתוחה עם זרים גמורים — מה שלמדתי מאלפי שיחות עם אנשים ברחבי העולם.",
+      description:"אחד הדברים שלמדתי הכי טוב בטיולים ובעשייה של הפודקאסט הוא איך לפתוח בשיחה אמיתית עם כל אדם, בכל מקום, גם בלי שפה משותפת. בהרצאה הזו אני חולק את הכלים הפרקטיים שפיתחתי לאורך מאות ריאיונות — איך שוברים קרח, איך שואלים שאלות שמביאות לתשובות אמיתיות, איך מקשיבים באמת, ואיך הופכים כל שיחה — גם עם הזר הכי 'קשה' — לשיחה שאפשר ללמוד ממנה.",
+      highlights:"כלים פרקטיים לפתיחת שיחה עם כל אדם, גם זר גמור|איך שואלים שאלות שמביאות לתשובות אמיתיות ולא קלישאתיות|הקשבה אקטיבית וקריאת שפת גוף|תרגול חי מול הקהל",
+      keywords:"הרצאה על תקשורת, כלים לראיונות, הרצאות על שיחה והקשבה, איתי חן מטוסי נייר",
+      url:""
+    }
+  ];
+
   /* ---------- localStorage keys ---------- */
-  var K = { ep:"pp_episodes_v3", disc:"pp_discounts_v2", guide:"pp_guides_v1" };
+  var K = { ep:"pp_episodes_v3", disc:"pp_discounts_v2", guide:"pp_guides_v1", lect:"pp_lectures_v1" };
 
   function read(key, seed) {
     try {
@@ -327,8 +376,17 @@
     addGuide:      function (g)   { var a=this.guides(); a.unshift(g); write(K.guide,a); },
     deleteGuide:   function (id)  { write(K.guide, this.guides().filter(function(g){ return g.id!==id; })); },
 
+    lectures:      function ()    {
+      var a = read(K.lect, SEED_LECTURES).slice();
+      a.sort(function(x,y){ return (parseFloat(x.order)||0) - (parseFloat(y.order)||0); });
+      return a;
+    },
+    lectureById:   function (id)  { return this.lectures().filter(function(l){ return l.id===id; })[0]||null; },
+    addLecture:    function (l)   { var a=this.lectures(); a.unshift(l); write(K.lect,a); },
+    deleteLecture: function (id)  { write(K.lect, this.lectures().filter(function(l){ return l.id!==id; })); },
+
     exportJSON: function () {
-      return JSON.stringify({ episodes:this.episodes(), discounts:this.discounts(), guides:this.guides() }, null, 2);
+      return JSON.stringify({ episodes:this.episodes(), discounts:this.discounts(), guides:this.guides(), lectures:this.lectures() }, null, 2);
     },
 
     importJSON: function (str) {
@@ -336,12 +394,14 @@
       if (d.episodes)  write(K.ep,   d.episodes);
       if (d.discounts) write(K.disc,  d.discounts);
       if (d.guides)    write(K.guide, d.guides);
+      if (d.lectures)  write(K.lect,  d.lectures);
     },
 
     resetAll: function () {
       localStorage.removeItem(K.ep);
       localStorage.removeItem(K.disc);
       localStorage.removeItem(K.guide);
+      localStorage.removeItem(K.lect);
     },
 
     checkPassword: function (p)  { return p === ADMIN_PASSWORD; },
@@ -386,6 +446,18 @@
       this.postToSheet({ action: "deleteGuide", data: { id: id } }, onDone);
     },
 
+    saveLectureToSheet: function (l, onDone) {
+      var isNew = !this.lectures().some(function(x){ return x.id===l.id; });
+      if (isNew) { var a=this.lectures(); a.unshift(l); write(K.lect,a); }
+      else { write(K.lect, this.lectures().map(function(x){ return x.id===l.id?l:x; })); }
+      this.postToSheet({ action: isNew?"addLecture":"saveLecture", data: l }, onDone);
+    },
+
+    deleteLectureFromSheet: function (id, onDone) {
+      write(K.lect, this.lectures().filter(function(l){ return l.id!==id; }));
+      this.postToSheet({ action: "deleteLecture", data: { id: id } }, onDone);
+    },
+
     syncSheet: function (onDone) {
       fetch(SHEET_URL)
         .then(function(r){ return r.json(); })
@@ -393,6 +465,7 @@
           if (d.episodes  && d.episodes.length)  write(K.ep,    d.episodes);
           if (d.discounts && d.discounts.length) write(K.disc,  d.discounts);
           if (d.guides    && d.guides.length)    write(K.guide, d.guides);
+          if (d.lectures  && d.lectures.length)  write(K.lect,  d.lectures);
           if (onDone) onDone(null, (d.episodes||[]).length);
         })
         .catch(function(e){ if (onDone) onDone(e); });
@@ -408,6 +481,7 @@
           if (d.episodes  && d.episodes.length)  write(K.ep,    d.episodes);
           if (d.discounts && d.discounts.length) write(K.disc,  d.discounts);
           if (d.guides    && d.guides.length)    write(K.guide, d.guides);
+          if (d.lectures  && d.lectures.length)  write(K.lect,  d.lectures);
         } catch(e){}
       })
       .catch(function(){});
@@ -418,7 +492,7 @@
   // Monitor localStorage for changes (from Sheet sync) and notify listeners
   var listeners = [];
   window.addEventListener('storage', function(e) {
-    if (e.key && (e.key === K.ep || e.key === K.disc || e.key === K.guide)) {
+    if (e.key && (e.key === K.ep || e.key === K.disc || e.key === K.guide || e.key === K.lect)) {
       listeners.forEach(function(cb) { cb(e.key); });
     }
   });

@@ -12,6 +12,7 @@
     nav_where:{he:"איפה היינו?",en:"Where we've been"},
     nav_discounts:{he:"הטבות",en:"Discounts"},
     nav_guides:{he:"מדריכים",en:"Guides"},
+    nav_lectures:{he:"הרצאות",en:"Lectures"},
     nav_about:{he:"על הפודקאסט",en:"About"},
     nav_contact:{he:"צרו קשר",en:"Contact"},
     nav_admin:{he:"ניהול 🔒",en:"Admin 🔒"},
@@ -94,6 +95,21 @@
     guide_buy:{he:"לרכישה",en:"Buy"},
     guide_empty:{he:"אין מדריכים כרגע. בקרוב!",en:"No guides yet. Coming soon!"},
     admin_guide:{he:"מצב ניהול פעיל — אפשר למחוק מדריכים.",en:"Admin mode on — you can delete guides."},
+
+    /* lectures */
+    lect_eyebrow:{he:"הרצאות מפי איתי חן",en:"Talks by Itay Chen"},
+    lect_title:{he:"הרצאות על טיולים ותרבויות העולם",en:"Talks on travel and world cultures"},
+    lect_p:{he:"הרצאות חוויתיות המבוססות על הפודקאסט מטוסי נייר — לארגונים, בתי ספר וקהילות. כל הרצאה לוקחת את הקהל למסע אל תרבות, היסטוריה וסיפורים אמיתיים מהשטח.",en:"Experiential talks based on the Paper Planes podcast — for organizations, schools and communities. Each talk takes the audience on a journey into culture, history and real stories from the field."},
+    lect_empty:{he:"בקרוב יעלו כאן הרצאות.",en:"Lectures coming soon."},
+    lect_details_btn:{he:"לפרטי ההרצאה",en:"Lecture details"},
+    lect_duration:{he:"משך",en:"Duration"},
+    lect_audience:{he:"מתאים ל",en:"Suited for"},
+    lect_highlights_title:{he:"מה תקבלו בהרצאה",en:"What you'll get in this talk"},
+    lect_related_title:{he:"פרקי פודקאסט קשורים",en:"Related podcast episodes"},
+    lect_contact_title:{he:"רוצים לתאם את ההרצאה הזו?",en:"Want to book this talk?"},
+    lect_contact_p:{he:"אשמח להגיע לארגון, בית הספר או הקהילה שלכם. דברו איתי לתיאום פרטים ותאריך.",en:"I'd love to come speak at your organization, school or community. Reach out to arrange details and a date."},
+    lect_contact_btn:{he:"ליצירת קשר לתיאום הרצאה",en:"Contact to book a talk"},
+    lect_back:{he:"← כל ההרצאות",en:"← All lectures"},
     admin_add_guide:{he:"+ הוספת מדריך חדש",en:"+ Add new guide"},
 
     /* about */
