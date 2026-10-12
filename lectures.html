@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<link rel="alternate" hreflang="he" href="https://paperplanes.co.il/lectures.html">
+<link rel="alternate" hreflang="en" href="https://paperplanes.co.il/lectures.html">
+<link rel="alternate" hreflang="x-default" href="https://paperplanes.co.il/lectures.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הרצאות על טיולים ותרבויות העולם | איתי חן — מטוסי נייר</title>
+<meta name="description" content="הרצאות חוויתיות על טיולים, תרבויות ועולם בעקבות הפודקאסט מטוסי נייר — לארגונים, בתי ספר וקהילות. הרצאות על סין, קוריאה, הונג קונג, האוקיינוס השקט ועוד. תיאום הרצאה עם איתי חן.">
+<link rel="canonical" href="https://paperplanes.co.il/lectures.html">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paperplanes.co.il/lectures.html">
+<meta property="og:site_name" content="מטוסי נייר · Paper Planes">
+<meta property="og:title" content="הרצאות על טיולים ותרבויות העולם | איתי חן — מטוסי נייר">
+<meta property="og:description" content="הרצאות חוויתיות על טיולים, תרבויות ועולם בעקבות הפודקאסט מטוסי נייר — לארגונים, בתי ספר וקהילות. תיאום הרצאה עם איתי חן.">
+<meta property="og:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://paperplanes.co.il/assets/podcast-cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .p-hero{background:linear-gradient(150deg,#157A8B,#0A3F49);color:#fff;padding-block:clamp(40px,6vw,68px);position:relative;overflow:hidden;}
+  .p-hero .wrap{position:relative;z-index:2;}
+  .p-hero h1{font-size:clamp(30px,4.6vw,50px);margin-top:8px;}
+  .p-hero p{font-size:18px;color:#d6eef2;margin-top:12px;max-width:58ch;}
+  .p-plane{position:absolute;width:130px;color:rgba(167,230,216,.28);top:16%;left:6%;transform:rotate(-12deg);}
+  @media(max-width:640px){.p-plane{width:60px;}}
+  section{padding-block:clamp(40px,5vw,68px);}
+  .lect__media{height:180px;position:relative;background:linear-gradient(135deg,#5FC9B4,#157A8B);display:flex;align-items:center;justify-content:center;gap:6px;}
+  .lect__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .lect__flags{position:relative;z-index:2;font-size:46px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.25));}
+  .lect__duration{position:absolute;z-index:3;top:12px;inset-inline-start:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);color:var(--teal-900);font-weight:600;padding:6px 12px;border-radius:var(--r-pill);font-size:13px;}
+  .lect__body{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .lect__title{font-family:var(--head);font-size:20px;color:var(--teal-900);}
+  .lect__subtitle{font-size:14px;color:var(--teal);font-weight:600;}
+  .lect__desc{color:var(--muted);font-size:15px;flex:1;}
+  .lect__foot{margin-top:10px;}
+  .contact-banner{background:linear-gradient(135deg,#157A8B,#0A3F49);color:#fff;border-radius:var(--r-lg);padding:clamp(28px,4vw,42px);text-align:center;box-shadow:var(--shadow-md);margin-top:10px;}
+  .contact-banner h2{color:#fff;margin:0 0 10px;font-size:clamp(22px,3vw,30px);}
+  .contact-banner p{color:#d6eef2;max-width:56ch;margin:0 auto 22px;font-size:16px;}
+  .admin-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--teal-900);color:#cfe7ec;padding:13px 18px;border-radius:14px;margin-bottom:26px;font-size:14.5px;}
+  .admin-bar a{color:var(--sun);font-weight:600;}
+  .admin-del{display:inline-flex;align-items:center;gap:6px;background:#fff0ee;color:#c0392b;border:1px solid #f5c6c0;padding:7px 12px;border-radius:10px;font-weight:600;font-size:13.5px;margin-inline-start:8px;}
+  .admin-del:hover{background:#c0392b;color:#fff;} .admin-del svg{width:16px;height:16px;}
+  .lect__foot .btn svg{width:16px;height:16px;}
+</style>
+</head>
+<body data-page="lectures">
+<div id="site-header"></div>
+
+<section class="p-hero">
+  <span class="p-plane" id="pPlane"></span>
+  <div class="clouds" data-clouds></div>
+  <div class="wrap">
+    <span class="eyebrow" id="pEyebrow" style="color:var(--mint-300)"></span>
+    <h1 data-i18n="lect_title"></h1>
+    <p data-i18n="lect_p"></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div id="adminBar"></div>
+    <div class="grid-cards" id="lectGrid"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="contact-banner">
+      <h2 data-i18n="lect_contact_title"></h2>
+      <p data-i18n="lect_contact_p"></p>
+      <a class="btn btn--sun" id="lectContactBtn" href="contact.html" data-i18n="lect_contact_btn"></a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script type="application/ld+json" id="lectListLd"></script>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/chrome.js"></script>
+<script>
+(function () {
+  var I = PPIcons, PP = window.PP, T = window.T;
+  var isHe = T.lang === "he";
+  document.getElementById("pPlane").innerHTML = I.planeFill;
+  document.getElementById("pEyebrow").textContent = isHe ? "🎤 הרצאות מפי איתי חן" : "🎤 Talks by Itay Chen";
+
+  var admin = PP.isAdmin();
+  if (admin) document.getElementById("adminBar").innerHTML =
+    '<div class="admin-bar"><span>✦ מצב ניהול פעיל — ניתן למחוק הרצאות.</span><a href="admin.html">ניהול הרצאות</a></div>';
+
+  function driveImg(url) {
+    if (!url) return '';
+    var m = String(url).match(/\/d\/([a-zA-Z0-9_-]+)/);
+    return m ? 'https://lh3.googleusercontent.com/d/' + m[1] : url;
+  }
+
+  function flags(countryStr) {
+    if (!countryStr) return "🎤";
+    var codes = countryStr.split(",").map(function(c){ return c.trim(); }).filter(Boolean);
+    return codes.map(function(c){ var ct = PP.countryByCode(c); return ct ? ct.flag : ""; }).join(" ") || "🎤";
+  }
+
+  function render(){
+    var items = PP.lectures();
+    var box = document.getElementById("lectGrid");
+    if(!items.length){box.innerHTML='<p class="lead">'+T.t("lect_empty")+'</p>';return;}
+    box.innerHTML = items.map(function(l){
+      var imgSrc = driveImg(l.image);
+      var media = imgSrc ? '<img src="'+imgSrc+'" alt="'+l.title+'">' : '<span class="lect__flags">'+flags(l.country)+'</span>';
+      return '<a class="card lect" href="lecture.html?id='+encodeURIComponent(l.id)+'">'+
+        '<div class="lect__media">'+(l.duration?'<span class="lect__duration">'+l.duration+'</span>':'')+media+'</div>'+
+        '<div class="lect__body">'+
+          '<h3 class="lect__title">'+l.title+'</h3>'+
+          (l.subtitle?'<div class="lect__subtitle">'+l.subtitle+'</div>':'')+
+          '<p class="lect__desc">'+(l.summary||"")+'</p>'+
+          '<div class="lect__foot">'+
+            '<span class="btn btn--sun btn--sm">'+(I.book||"")+' '+T.t("lect_details_btn")+'</span>'+
+            (admin?'<button class="admin-del" data-id="'+l.id+'">'+I.trash+' '+T.t("del")+'</button>':'')+
+          '</div>'+
+        '</div></a>';
+    }).join("");
+    if(admin) box.querySelectorAll(".admin-del").forEach(function(b){
+      b.addEventListener("click",function(ev){ ev.preventDefault(); if(confirm("?")){PP.deleteLecture(b.getAttribute("data-id"));render();} });
+    });
+
+    document.getElementById("lectListLd").textContent = JSON.stringify({
+      "@context":"https://schema.org","@type":"ItemList",
+      "itemListElement": items.map(function(l,i){
+        return {"@type":"ListItem","position":i+1,"name":l.title,"url":"https://paperplanes.co.il/lecture.html?id="+encodeURIComponent(l.id)};
+      })
+    });
+  }
+  render();
+  if (PP.onChange) PP.onChange(function(key){ if (key === "pp_lectures_v1") render(); });
+
+  var contactBtn = document.getElementById("lectContactBtn");
+  if (contactBtn) contactBtn.href = "contact.html?subject=lecture";
+})();
+</script>
+</body>
+</html>

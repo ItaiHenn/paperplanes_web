@@ -79,6 +79,7 @@
     { key:"where",     href:"index.html#globe-section", label:T.t("nav_where") },
     { key:"discounts", href:"discounts.html",  label:T.t("nav_discounts") },
     { key:"guides",    href:"guides.html",     label:T.t("nav_guides") },
+    { key:"lectures",  href:"lectures.html",   label:T.t("nav_lectures") },
     { key:"about",     href:"about.html",      label:T.t("nav_about") },
     { key:"contact",   href:"contact.html",    label:T.t("nav_contact") }
   ];
@@ -144,6 +145,7 @@
         '<div><h4>'+T.t("foot_nav")+'</h4><div class="footer__links">'+
           '<a href="index.html">'+T.t("nav_home")+'</a><a href="index.html#globe-section">'+T.t("nav_where")+'</a>'+
           '<a href="discounts.html">'+T.t("nav_discounts")+'</a><a href="guides.html">'+T.t("nav_guides")+'</a>'+
+          '<a href="lectures.html">'+T.t("nav_lectures")+'</a>'+
         '</div></div>'+
         '<div><h4>'+T.t("foot_more")+'</h4><div class="footer__links">'+
           '<a href="about.html">'+T.t("nav_about")+'</a><a href="contact.html">'+T.t("nav_contact")+'</a>'+
