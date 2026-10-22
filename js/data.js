@@ -413,6 +413,10 @@
 
     uid: function (prefix) { return (prefix||"id")+"-"+Date.now().toString(36)+Math.random().toString(36).slice(2,6); },
 
+    _freshSheetUrl: function () {
+      return SHEET_URL + (SHEET_URL.indexOf("?") === -1 ? "?" : "&") + "_=" + Date.now();
+    },
+
     postToSheet: function (payload, onDone) {
       fetch(SHEET_URL, {
         method: "POST",
@@ -461,7 +465,7 @@
     },
 
     syncSheet: function (onDone) {
-      fetch(SHEET_URL)
+      fetch(this._freshSheetUrl(), { cache: "no-store" })
         .then(function(r){ return r.json(); })
         .then(function(d){
           if (d.episodes  && d.episodes.length)  write(K.ep,    d.episodes);
@@ -476,7 +480,7 @@
 
   /* Auto-sync from sheet in background on every page load */
   try {
-    fetch(SHEET_URL)
+    fetch(Store._freshSheetUrl(), { cache: "no-store" })
       .then(function(r){ return r.json(); })
       .then(function(d){
         try {
