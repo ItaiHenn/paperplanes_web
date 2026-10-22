@@ -150,7 +150,9 @@
     var el = document.getElementById(id); if (el) el.setAttribute('href', epUrl);
   });
   document.getElementById("eCrumb").innerHTML =
-    '<a href="index.html">בית</a> '+I.arrow+' <a href="country.html?c='+c.code+'">'+c.flag+' '+c.he+'</a> '+I.arrow+' <span>'+e.title+'</span>';
+    '<a href="index.html">בית</a> '+I.arrow+
+    (c.he ? ' <a href="country.html?c='+c.code+'">'+c.flag+' '+c.he+'</a> '+I.arrow : '') +
+    ' <span>'+e.title+'</span>';
   document.getElementById("eCover").src = e.cover || "assets/logo.jpg";
   document.getElementById("eCover").alt = e.title;
   var cc = document.getElementById("eCountry");
@@ -197,13 +199,13 @@
     "partOfSeries":{"@type":"PodcastSeries","name":"מטוסי נייר · Paper Planes"},
     "transcript":e.transcript_he || e.transcript_en || ""
   });
+  var epCrumbs = [{"@type":"ListItem","name":"בית","item":"https://paperplanes.co.il/"}];
+  if (c.he) epCrumbs.push({"@type":"ListItem","name":c.he,"item":"https://paperplanes.co.il/country.html?c="+c.code});
+  epCrumbs.push({"@type":"ListItem","name":e.title,"item":epUrl});
+  epCrumbs.forEach(function(item, i){ item.position = i + 1; });
   document.getElementById("epBreadcrumbLd").textContent = JSON.stringify({
     "@context":"https://schema.org","@type":"BreadcrumbList",
-    "itemListElement":[
-      {"@type":"ListItem","position":1,"name":"בית","item":"https://paperplanes.co.il/"},
-      {"@type":"ListItem","position":2,"name":c.he,"item":"https://paperplanes.co.il/country.html?c="+c.code},
-      {"@type":"ListItem","position":3,"name":e.title,"item":epUrl}
-    ]
+    "itemListElement": epCrumbs
   });
 })();
 </script>
