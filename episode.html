@@ -44,6 +44,8 @@
   @media(max-width:880px){.e-body{grid-template-columns:1fr;}}
   .prose h2{font-size:26px;color:var(--teal-900);margin:0 0 14px;}
   .prose p{font-size:17px;color:#33585f;margin-bottom:16px;line-height:1.85;}
+  .art-h2{font-size:21px;color:var(--teal-900);margin:26px 0 10px;font-weight:700;}
+  .tab-pane .art-h2:first-child{margin-top:0;}
   .transcript{margin-top:40px;border-top:1px solid var(--line);padding-top:34px;}
   .tabs{display:inline-flex;background:var(--sky);border-radius:var(--r-pill);padding:5px;gap:4px;margin-bottom:18px;}
   .tabs button{padding:8px 18px;border-radius:var(--r-pill);font-weight:600;font-size:14.5px;color:var(--teal-900);transition:.16s;}
@@ -125,7 +127,15 @@
   var loc = T.lang==="he" ? "he-IL" : "en-US";
   function q(n){return new URLSearchParams(location.search).get(n);}
   function fmtDate(d){ try{return new Date(d).toLocaleDateString(loc,{day:"numeric",month:"long",year:"numeric"});}catch(e){return d;} }
-  function paras(t){ return (t||"").split(/\n+/).map(function(s){return '<p>'+s.trim()+'</p>';}).join(""); }
+  function paras(t){
+    return (t||"").split(/\n+/).map(function(s){
+      s = s.trim();
+      if (!s) return "";
+      var m = s.match(/^#{2,3}\s+(.*)$/);
+      if (m) return '<h2 class="art-h2">'+m[1]+'</h2>';
+      return '<p>'+s+'</p>';
+    }).join("");
+  }
 
   var e = PP.episodeById(q("id"));
   if (!e) { document.querySelector("article").innerHTML = '<div class="wrap" style="padding:80px 0;text-align:center"><h1 class="h-sec">הפרק לא נמצא</h1><p class="lead" style="margin-inline:auto">אולי הקישור השתנה. חזרו לעמוד הבית.</p><div style="margin-top:20px"><a class="btn btn--primary" href="index.html">לעמוד הבית</a></div></div>'; return; }
