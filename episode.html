@@ -38,7 +38,7 @@
   .e-tagchip{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.14);padding:7px 14px;border-radius:var(--r-pill);font-weight:600;font-size:14px;color:#fff;}
   .player-wrap{margin-top:30px;}
   .player-wrap iframe{width:100%;border:0;border-radius:14px;}
-  @media(max-width:680px){.e-top{grid-template-columns:1fr;justify-items:center;text-align:center;}.e-cover{width:200px;height:200px;}}
+  @media(max-width:880px){.e-top{grid-template-columns:1fr;justify-items:center;text-align:center;}.e-cover{width:200px;height:200px;}}
 
   .e-body{display:grid;grid-template-columns:1fr 300px;gap:46px;padding-block:clamp(36px,5vw,60px);align-items:start;}
   @media(max-width:880px){.e-body{grid-template-columns:1fr;}}
@@ -127,6 +127,7 @@
   var loc = T.lang==="he" ? "he-IL" : "en-US";
   function q(n){return new URLSearchParams(location.search).get(n);}
   function fmtDate(d){ try{return new Date(d).toLocaleDateString(loc,{day:"numeric",month:"long",year:"numeric"});}catch(e){return d;} }
+  function isBareLink(t){ return !!t && /^https?:\/\/\S+$/.test(t.trim()); }
   function paras(t){
     return (t||"").split(/\n+/).map(function(s){
       s = s.trim();
@@ -180,8 +181,8 @@
 
   document.getElementById("eDesc").innerHTML = paras(e.description);
   document.getElementById("eSeoPill").innerHTML = I.check + " " + t("ep_seo");
-  document.getElementById("paneHe").innerHTML = paras(e.transcript_he || e.description);
-  document.getElementById("paneEn").innerHTML = paras(e.transcript_en || t("transcript_en_soon"));
+  document.getElementById("paneHe").innerHTML = paras(isBareLink(e.transcript_he) ? e.description : (e.transcript_he || e.description));
+  document.getElementById("paneEn").innerHTML = paras(isBareLink(e.transcript_en) ? t("transcript_en_soon") : (e.transcript_en || t("transcript_en_soon")));
 
   // tabs
   document.getElementById("eTabs").addEventListener("click", function(ev){
@@ -207,7 +208,7 @@
     "name":e.title,"inLanguage":"he","datePublished":e.date,
     "description":e.description,
     "partOfSeries":{"@type":"PodcastSeries","name":"מטוסי נייר · Paper Planes"},
-    "transcript":e.transcript_he || e.transcript_en || ""
+    "transcript":(!isBareLink(e.transcript_he) && e.transcript_he) || (!isBareLink(e.transcript_en) && e.transcript_en) || ""
   });
   var epCrumbs = [{"@type":"ListItem","name":"בית","item":"https://paperplanes.co.il/"}];
   if (c.he) epCrumbs.push({"@type":"ListItem","name":c.he,"item":"https://paperplanes.co.il/country.html?c="+c.code});
