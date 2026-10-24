@@ -1,0 +1,53 @@
+{
+  "common": {
+    "brand": "GlobeTours",
+    "tagline": "Tu mundo, tu viaje"
+  },
+  "search": {
+    "title": "Buscar Vuelos",
+    "origin": "Origen (código IATA)",
+    "destination": "Destino (código IATA)",
+    "date": "Fecha de salida",
+    "searchBtn": "Buscar vuelos",
+    "searching": "Buscando...",
+    "placeholder_origin": "ej. MAD",
+    "placeholder_destination": "ej. JFK",
+    "example": "Ejemplos: MAD, JFK, LHR, FRA, DXB"
+  },
+  "results": {
+    "title": "Vuelos Disponibles",
+    "noResults": "No se encontraron vuelos. Prueba otras fechas o aeropuertos.",
+    "selectBtn": "Seleccionar este vuelo",
+    "duration": "Duración",
+    "stops": "Sin escalas",
+    "price": "Precio total"
+  },
+  "passenger": {
+    "title": "Datos del Pasajero",
+    "subtitle": "Ingresa tus datos para generar el itinerario",
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "phone": "Número de teléfono",
+    "placeholder_name": "Juan García",
+    "placeholder_email": "juan@ejemplo.com",
+    "placeholder_phone": "+34 600 000 000",
+    "generateBtn": "Generar itinerario",
+    "generating": "Generando..."
+  },
+  "itinerary": {
+    "title": "Itinerario listo",
+    "bookingRef": "Referencia de reserva",
+    "downloadBtn": "Descargar PDF",
+    "downloading": "Generando PDF...",
+    "newSearch": "Buscar otro vuelo",
+    "generatedAt": "Generado el"
+  },
+  "errors": {
+    "required": "Este campo es obligatorio",
+    "invalidEmail": "Por favor ingresa un correo válido",
+    "searchFailed": "La búsqueda falló. Inténtalo de nuevo.",
+    "createFailed": "No se pudo crear el itinerario. Inténtalo de nuevo.",
+    "notFound": "Itinerario no encontrado.",
+    "rateLimited": "Demasiadas búsquedas. Espera un minuto e inténtalo de nuevo."
+  }
+}
