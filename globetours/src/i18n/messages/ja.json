@@ -1,0 +1,53 @@
+{
+  "common": {
+    "brand": "GlobeTours",
+    "tagline": "あなたの世界、あなたの旅"
+  },
+  "search": {
+    "title": "フライト検索",
+    "origin": "出発地（IATAコード）",
+    "destination": "目的地（IATAコード）",
+    "date": "出発日",
+    "searchBtn": "フライトを検索",
+    "searching": "検索中...",
+    "placeholder_origin": "例: NRT",
+    "placeholder_destination": "例: JFK",
+    "example": "例: NRT, JFK, LHR, FRA, DXB"
+  },
+  "results": {
+    "title": "利用可能なフライト",
+    "noResults": "フライトが見つかりませんでした。別の日程や空港をお試しください。",
+    "selectBtn": "このフライトを選択",
+    "duration": "飛行時間",
+    "stops": "直行便",
+    "price": "合計金額"
+  },
+  "passenger": {
+    "title": "乗客情報",
+    "subtitle": "旅程表を生成するために情報を入力してください",
+    "name": "氏名",
+    "email": "メールアドレス",
+    "phone": "電話番号",
+    "placeholder_name": "山田太郎",
+    "placeholder_email": "yamada@example.com",
+    "placeholder_phone": "+81 90 0000 0000",
+    "generateBtn": "旅程表を生成",
+    "generating": "生成中..."
+  },
+  "itinerary": {
+    "title": "旅程表の準備が整いました",
+    "bookingRef": "予約番号",
+    "downloadBtn": "PDFをダウンロード",
+    "downloading": "PDF生成中...",
+    "newSearch": "別のフライトを検索",
+    "generatedAt": "生成日時"
+  },
+  "errors": {
+    "required": "このフィールドは必須です",
+    "invalidEmail": "有効なメールアドレスを入力してください",
+    "searchFailed": "検索に失敗しました。もう一度お試しください。",
+    "createFailed": "旅程表を作成できませんでした。もう一度お試しください。",
+    "notFound": "旅程表が見つかりませんでした。",
+    "rateLimited": "検索回数が多すぎます。1分後にもう一度お試しください。"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "common": {
+    "brand": "GlobeTours",
+    "tagline": "העולם שלך, המסע שלך"
+  },
+  "search": {
+    "title": "חיפוש טיסות",
+    "origin": "מוצא (קוד IATA)",
+    "destination": "יעד (קוד IATA)",
+    "date": "תאריך יציאה",
+    "searchBtn": "חפש טיסות",
+    "searching": "מחפש...",
+    "placeholder_origin": "לדוגמה: TLV",
+    "placeholder_destination": "לדוגמה: JFK",
+    "example": "דוגמאות: TLV, JFK, LHR, FRA, DXB"
+  },
+  "results": {
+    "title": "טיסות זמינות",
+    "noResults": "לא נמצאו טיסות. נסה תאריכים או שדות תעופה אחרים.",
+    "selectBtn": "בחר טיסה זו",
+    "duration": "משך הטיסה",
+    "stops": "ישיר",
+    "price": "מחיר כולל"
+  },
+  "passenger": {
+    "title": "פרטי הנוסע",
+    "subtitle": "הזן את פרטיך ליצירת המסמך",
+    "name": "שם מלא",
+    "email": "כתובת אימייל",
+    "phone": "מספר טלפון",
+    "placeholder_name": "ישראל ישראלי",
+    "placeholder_email": "israel@example.com",
+    "placeholder_phone": "+972 50 000 0000",
+    "generateBtn": "צור מסמך טיסה",
+    "generating": "יוצר..."
+  },
+  "itinerary": {
+    "title": "מסמך הטיסה מוכן",
+    "bookingRef": "מספר הזמנה",
+    "downloadBtn": "הורד PDF",
+    "downloading": "יוצר PDF...",
+    "newSearch": "חפש טיסה נוספת",
+    "generatedAt": "נוצר בתאריך"
+  },
+  "errors": {
+    "required": "שדה זה הוא חובה",
+    "invalidEmail": "נא הזן כתובת אימייל תקינה",
+    "searchFailed": "החיפוש נכשל. נסה שוב.",
+    "createFailed": "לא ניתן ליצור מסמך. נסה שוב.",
+    "notFound": "המסמך לא נמצא.",
+    "rateLimited": "יותר מדי חיפושים. המתן דקה ונסה שוב."
+  }
+}
