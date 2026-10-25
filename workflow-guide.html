@@ -605,11 +605,30 @@
 השאר את עמודת המדינה ריקה — אמלא אותה ידנית בגיליון.</pre>
     </div>
 
-    <h3 style="font-size:16px;margin:22px 0 12px;color:var(--teal-dark)">3. עדכון מאגר כולל (לאחר שינויים בגיליון)</h3>
+    <h3 style="font-size:16px;margin:22px 0 12px;color:var(--teal-dark)">3. סנכרון פרקים חדשים מהגיליון (לאחר שינויים בגיליון)</h3>
     <div class="prompt-box">
       <div class="prompt-label">📋 העתיקו את הפרומפט הזה</div>
-      <pre>קרא את Google Sheets של מטוסי נייר ועדכן את data.js בהתאם.
-לאחר מכן פרסם לאתר דרך GitHub.</pre>
+      <pre>בדוק את לשונית Episodes בגיליון "מטוסי נייר — תוכן" מול data.js באתר,
+ומצא כל מספר פרק שקיים בגיליון אבל חסר ב-data.js
+(התאמה לפי מספר הפרק שבתחילת הכותרת, לא לפי עמודת id —
+בשורות ישנות עמודת ה-id לא תמיד תקינה).
+
+לכל פרק חסר, הוסף אותו ל-data.js עם השדות:
+id, country, title, title_en, cover, spotify, date, duration,
+description, transcript_he, transcript_en.
+- אם ה-id בגיליון לא תקין, בנה slug חדש מהכותרת.
+- המר את התאריך מפורמט DD-MM-YYYY (כמו בגיליון) לפורמט YYYY-MM-DD (כמו באתר).
+- מלא מדינה רק אם הקוד קיים במערך COUNTRIES ב-data.js, אחרת השאר ריק
+  (זה תקין — יש כבר עשרות פרקים בלי מדינה).
+- בתמלול (transcript_he/transcript_en): הסר את שורת הכותרת הכפולה ואת
+  קו המפריד "---" שאחריה, הסר את "מילות מפתח" וכל מה שאחריה, והסר כל
+  שורת "---" בודדת שנשארה.
+- הוסף את הפרקים החדשים בתחילת מערך SEED_EPISODES (המערך ממוין מהחדש לישן),
+  לפי סדר יורד של מספר הפרק.
+
+בסיום: הרץ node generate-sitemap.js (לעדכון sitemap.xml ו-episodes-meta.json),
+עדכן בהתאם גם את llms.txt, ודא ש-data.js תקין (node -c js/data.js),
+ואז פרסם לאתר דרך GitHub.</pre>
     </div>
 
     <h3 style="font-size:16px;margin:22px 0 12px;color:var(--teal-dark)">4. הוספת תמלול לפרק קיים</h3>

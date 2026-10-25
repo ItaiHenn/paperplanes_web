@@ -15,9 +15,24 @@
 - Sitemap (machine-readable, all URLs): https://paperplanes.co.il/sitemap.xml
 
 ## Transcripts
-56 of 178 episodes below have a full Hebrew/English transcript published on their episode page (look for "Transcript" / tabs on the page). Episodes without one yet show only the description below; check back as more are added.
+71 of 193 episodes below have a full Hebrew/English transcript published on their episode page (look for "Transcript" / tabs on the page). Episodes without one yet show only the description below; check back as more are added.
 
 ## Episodes
+- 191- להכיר את אוהד הנווד | אוהד נבון (191- Getting to Know Ohad HaNavad | Ohad Navon) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-191-getting-to-know-ohad-hanavad
+- 190- ויאטנם לעומק ולאורך | נמרוד עירון (190- Vietnam in Depth and Length | Nimrod Eron) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-190-vietnam-in-depth-and-length
+- 189- הכנה מנטלית לטיול הגדול | אוהד וונצ'רס (Mental Preparation for the Big Trip | Ohad Venturas) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-189-mental-preparation-for-big-trip
+- 188- משבר רבע החיים | נדב מרום (Quarter-Life Crisis) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-188-quarter-life-crisis
+- 187- מסע בעקבות התה | בקטנה (Chasing Tea Around the World) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-187-chasing-tea-around-the-world
+- 185- לדבר ספרדית בדרום אמריקה | יואב לבנת (185 - Speaking Spanish in South America) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-185-spanish-south-america
+- 184- סקאם ועקיצות בטיול | בקטנה (184 - Scams and Getting Ripped Off While Traveling) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-184-scams-travel
+- 183 - הואה - היעד החם החדש של ויאטנם | בקטנה (183 - Hue - Vietnam's New Hot Destination) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-183-hue-vietnam
+- 182- ויאטנם - כל מה שצריך לדעת לקראת הטיול הבא שלכם | מטוסי נייר בקטנה (182 - Vietnam - Everything You Need to Know Before Your Next Trip) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-182-vietnam-mini-guide
+- 181- כרטיס פתוח | פרק משותף עם רוני ואריק (181 - Open Ticket - Episode with Roni and Arik) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-181-open-ticket
+- 180- להתנדב ולהתאהב בויאטנם- רשמים ראשוניים | מצב טיסה (180 - Volunteering and Falling in Love in Vietnam - First Impressions) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-180-vietnam-volunteering
+- 179- כשכל החרא צף (הדברים הרעים שקורים בטיול) | מצב טיסה (179 - When All the Bad Stuff Floats Up) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-179-when-all-the-bad-stuff-floats-up
+- 178- אינדונזיה - לא רק באלי | עירית להב (178 - Indonesia - Not Just Bali | Irit Lahav) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-178-indonesia-not-just-bali
+- 177 - פלאו - איי הפלא | עילאי פרקש (177 - Palau - Islands of Wonder | Ilai Farkash) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-177-palau-islands-of-wonder
+- 175- להבין את הפיליפינים | מצב טיסה (175 - understanding the Philipines | flight mode) [transcript available]: https://paperplanes.co.il/episode.html?id=ep-175-%D7%9C%D7%94%D7%91%D7%99%D7%9F-%D7%90%D7%AA-%D7%94%D7%A4%D7%99%D7%9C%D7%99%D7%A4%D7%99%D7%A0%D7%99%D7%9D
 - 174- צפון הפיליפינים ומנילה - כל מה שצריך לדעת | מצב טיסה [transcript available]: https://paperplanes.co.il/episode.html?id=ep-174-%D7%A6%D7%A4%D7%95%D7%9F-%D7%94%D7%A4%D7%99%D7%9C%D7%99%D7%A4%D7%99%D7%A0%D7%99%D7%9D-%D7%95%D7%9E%D7%A0%D7%99%D7%9C%D7%94-%D7%9B%D7%9C-%D7%9E%D7%94-%D7%A9%D7%A6%D7%A8%D7%99%D7%9A-%D7%9C%D7%93%D7%A2%D7%AA-%D7%9E
 - 173- להכיר את הפיליפינים - רשמים ראשוניים | מצב טיסה [transcript available]: https://paperplanes.co.il/episode.html?id=ep-173-%D7%9C%D7%94%D7%9B%D7%99%D7%A8-%D7%90%D7%AA-%D7%94%D7%A4%D7%99%D7%9C%D7%99%D7%A4%D7%99%D7%A0%D7%99%D7%9D-%D7%A8%D7%A9%D7%9E%D7%99%D7%9D-%D7%A8%D7%90%D7%A9%D7%95%D7%A0%D7%99%D7%99%D7%9D-%D7%9E%D7%A6%D7%91-%D7%98%D7%99
 - 172- להבין את איי שלמה | מצב טיסה [transcript available]: https://paperplanes.co.il/episode.html?id=ep-172-%D7%9C%D7%94%D7%91%D7%99%D7%9F-%D7%90%D7%AA-%D7%90%D7%99%D7%99-%D7%A9%D7%9C%D7%9E%D7%94-%D7%9E%D7%A6%D7%91-%D7%98%D7%99%D7%A1%D7%94
