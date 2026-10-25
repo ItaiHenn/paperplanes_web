@@ -91,7 +91,6 @@
       <div id="eDesc"></div>
 
       <div class="transcript">
-        <span class="seo-pill" id="eSeoPill"></span>
         <h2 data-i18n="ep_transcript"></h2>
         <div class="tabs" id="eTabs">
           <button data-t="he" class="active" data-i18n="ep_tab_he"></button>
@@ -174,13 +173,15 @@
 
   // spotify player
   var src = e.spotify || "";
-  if (src.indexOf("/embed/")===-1) src = src.replace("open.spotify.com/","open.spotify.com/embed/");
-  document.getElementById("ePlayer").innerHTML = src ?
+  var embeddable = src.indexOf("open.spotify.com")!==-1;
+  if (embeddable && src.indexOf("/embed/")===-1) src = src.replace("open.spotify.com/","open.spotify.com/embed/");
+  document.getElementById("ePlayer").innerHTML = !src ?
+    '<div class="notice">'+I.spotify+' '+t("player_soon")+'</div>' :
+    embeddable ?
     '<iframe src="'+src+'" height="232" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>' :
-    '<div class="notice">'+I.spotify+' '+t("player_soon")+'</div>';
+    '<a class="btn btn--primary" href="'+src+'" target="_blank" rel="noopener">'+I.spotify+' '+t("listen_chip")+'</a>';
 
   document.getElementById("eDesc").innerHTML = paras(e.description);
-  document.getElementById("eSeoPill").innerHTML = I.check + " " + t("ep_seo");
   document.getElementById("paneHe").innerHTML = paras(isBareLink(e.transcript_he) ? e.description : (e.transcript_he || e.description));
   document.getElementById("paneEn").innerHTML = paras(isBareLink(e.transcript_en) ? t("transcript_en_soon") : (e.transcript_en || t("transcript_en_soon")));
 
